@@ -3,189 +3,320 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cartelera Madrid — 20 marzo 2026</title>
+<title>GuiaMadrid — Cartelera 20 marzo 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0f0f0f;--card:#1a1a2e;--accent:#e94560;--text:#eee;--muted:#888;--border:#2a2a3e;--gold:#f5c518}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-header{background:linear-gradient(135deg,#1a1a2e,#16213e);padding:1.2rem 2rem;border-bottom:2px solid var(--accent);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-header h1{font-size:1.5rem;font-weight:700}
-header h1 span{color:var(--accent)}
-.date-label{color:var(--muted);font-size:.9rem}
-.controls{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
-.controls select{background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:.4rem .5rem;font-size:.85rem}
-.toolbar{display:flex;gap:.5rem;padding:1rem 2rem;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--border)}
-.view-btn,.vose-btn{padding:.45rem 1rem;border-radius:20px;cursor:pointer;font-size:.82rem;transition:all .2s;border:1px solid var(--border);background:var(--card);color:var(--muted)}
-.view-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
-.vose-btn{border-color:#4caf50;color:#81c784}
-.vose-btn.active{background:#4caf50;border-color:#4caf50;color:#fff}
-.separator{width:1px;height:24px;background:var(--border);margin:0 .5rem}
-.content{padding:1.2rem 2rem}
-.stats{display:flex;gap:1.2rem;margin-bottom:1.2rem;flex-wrap:wrap}
-.stat-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.6rem 1rem;min-width:100px}
-.stat-box .num{font-size:1.6rem;font-weight:700;color:var(--accent)}
-.stat-box .label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1rem}
-.card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:transform .2s,border-color .2s}
-.card:hover{transform:translateY(-2px);border-color:var(--accent)}
-.card .top{padding:1rem 1.2rem}
-.card .title{font-size:1.05rem;font-weight:600;margin-bottom:.3rem;line-height:1.3}
-.card .meta{font-size:.8rem;color:var(--muted);line-height:1.5}
-.card .synopsis{font-size:.78rem;color:#aaa;margin-top:.4rem;line-height:1.4}
-.card .rating{display:inline-flex;align-items:center;gap:.2rem;color:var(--gold);font-weight:600;font-size:.9rem;margin-top:.3rem}
-.card .sessions{border-top:1px solid var(--border);padding:.7rem 1rem}
-.cinema-group{margin-bottom:.5rem}
+:root{--bg:#000;--card:#0a0a0a;--text:#fff;--muted:#555;--dim:#888;--border:rgba(255,255,255,.08);--accent:#fff}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:#fff;color:#000}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#000}
+::-webkit-scrollbar-thumb{background:#333;border-radius:3px}
+
+/* === HEADER === */
+.header{padding:2rem 3rem;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--border)}
+.logo{font-family:'Space Mono',monospace;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.logo strong{color:#fff;font-weight:700}
+.header-date{font-family:'Space Mono',monospace;font-size:.75rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+
+/* === HERO === */
+.hero{padding:4rem 3rem 2rem;border-bottom:1px solid var(--border)}
+.hero h1{font-size:clamp(3rem,8vw,7rem);font-weight:300;line-height:.95;letter-spacing:-.03em;text-transform:uppercase}
+.hero h1 em{font-style:italic;font-weight:300;color:var(--muted)}
+
+/* === TOOLBAR === */
+.toolbar{padding:1.2rem 3rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(0,0,0,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.pill{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid var(--border);border-radius:0;cursor:pointer;background:transparent;color:var(--muted);transition:all .3s cubic-bezier(.4,0,.2,1)}
+.pill:hover{color:#fff;border-color:rgba(255,255,255,.3)}
+.pill.active{color:#000;background:#fff;border-color:#fff}
+.pill.vose{border-color:rgba(255,255,255,.15)}
+.pill.vose.active{background:#fff;color:#000;border-color:#fff}
+.divider{width:1px;height:20px;background:var(--border);margin:0 .5rem}
+.cinema-select{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;background:transparent;color:var(--muted);border:1px solid var(--border);padding:.5rem .8rem;cursor:pointer;appearance:none;-webkit-appearance:none;max-width:240px}
+.cinema-select option{background:#111;color:#fff}
+.cinema-select:focus{outline:none;border-color:rgba(255,255,255,.4);color:#fff}
+.toolbar-right{margin-left:auto;display:flex;align-items:center;gap:.8rem}
+
+/* === STATS BAR === */
+.stats-bar{padding:1rem 3rem;display:flex;gap:2.5rem;border-bottom:1px solid var(--border)}
+.stat{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.stat strong{color:#fff;font-size:1.1rem;font-weight:700;margin-right:.3rem}
+
+/* === GRID === */
+.content{padding:2rem 3rem 4rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:1px;background:var(--border)}
+.grid>*{background:var(--bg)}
+
+/* === MOVIE CARD === */
+.movie-card{position:relative;overflow:hidden;cursor:default;transition:background .4s}
+.movie-card:hover{background:#0a0a0a}
+.poster-area{position:relative;aspect-ratio:16/9;overflow:hidden;background:#080808}
+.poster-gradient{position:absolute;inset:0;opacity:.85;transition:opacity .5s}
+.poster-area::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#000 0%,transparent 60%)}
+.movie-card:hover .poster-gradient{opacity:1;transform:scale(1.03);transition:transform 8s cubic-bezier(.4,0,.2,1),opacity .5s}
+.poster-title{position:absolute;bottom:1rem;left:1.2rem;right:1.2rem;z-index:2;font-size:1.5rem;font-weight:600;line-height:1.1;letter-spacing:-.02em;text-transform:uppercase}
+.poster-director{position:absolute;bottom:auto;top:1rem;left:1.2rem;z-index:2;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.poster-rating{position:absolute;top:1rem;right:1.2rem;z-index:2;font-family:'Space Mono',monospace;font-size:.75rem;color:rgba(255,255,255,.7)}
+
+.card-body{padding:1.2rem}
+.card-meta{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;line-height:1.6}
+.card-synopsis{font-size:.8rem;line-height:1.6;color:var(--dim);margin-bottom:1rem;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* === SESSIONS === */
+.sessions-wrap{padding:0 1.2rem 1.2rem}
+.cinema-group{margin-bottom:.8rem}
 .cinema-group:last-child{margin-bottom:0}
-.cinema-name{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;margin-bottom:.25rem}
-.chips{display:flex;flex-wrap:wrap;gap:.25rem}
-.chip{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:.15rem .45rem;font-size:.75rem;white-space:nowrap}
-.chip.vose{border-color:#4caf50;color:#81c784}
-.chip.imax{border-color:#2196f3;color:#64b5f6}
-.chip.atmos{border-color:#9c27b0;color:#ce93d8}
-.chip.isense{border-color:#00bcd4;color:#4dd0e1}
-.movie-in-cinema{margin-bottom:.6rem}
-.movie-in-cinema:last-child{margin-bottom:0}
-.movie-in-cinema .mv-title{font-size:.85rem;font-weight:600;margin-bottom:.2rem}
-.movie-in-cinema .mv-meta{font-size:.72rem;color:var(--muted);margin-bottom:.2rem}
-.empty{text-align:center;padding:3rem;color:var(--muted)}
-@media(max-width:600px){header,.toolbar,.content{padding-left:1rem;padding-right:1rem}.grid{grid-template-columns:1fr}}
+.cinema-label{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
+.time-chips{display:flex;flex-wrap:wrap;gap:4px}
+.time-chip{font-family:'Space Mono',monospace;font-size:.68rem;padding:.25rem .55rem;border:1px solid var(--border);color:var(--dim);letter-spacing:.03em;transition:all .25s}
+.time-chip:hover{border-color:rgba(255,255,255,.4);color:#fff}
+.time-chip.vose{border-color:rgba(255,255,255,.25);color:#fff}
+.time-chip.imax{border-color:rgba(100,181,246,.4);color:#64b5f6}
+.time-chip.atmos{border-color:rgba(206,147,216,.4);color:#ce93d8}
+
+/* === CINEMA CARD === */
+.cinema-card{padding:2rem 1.5rem;border-bottom:1px solid var(--border)}
+.cinema-card:last-child{border-bottom:none}
+.cinema-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.5rem}
+.cinema-title{font-size:1.3rem;font-weight:600;letter-spacing:-.01em;text-transform:uppercase}
+.cinema-count{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.movie-row{display:flex;gap:1rem;align-items:baseline;padding:.6rem 0;border-top:1px solid var(--border)}
+.movie-row:first-child{border-top:none}
+.movie-row-title{flex:0 0 280px;font-size:.85rem;font-weight:500}
+.movie-row-rating{flex:0 0 50px;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--muted)}
+.movie-row-times{flex:1;display:flex;flex-wrap:wrap;gap:4px}
+
+/* === EMPTY STATE === */
+.empty{text-align:center;padding:6rem 2rem;font-family:'Space Mono',monospace;font-size:.8rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+
+/* === FOOTER === */
+footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* === RESPONSIVE === */
+@media(max-width:768px){
+  .header,.hero,.toolbar,.stats-bar,.content,footer{padding-left:1.5rem;padding-right:1.5rem}
+  .hero h1{font-size:clamp(2.2rem,12vw,4rem)}
+  .grid{grid-template-columns:1fr}
+  .movie-row{flex-direction:column;gap:.4rem}
+  .movie-row-title{flex:none}
+  .toolbar{gap:.5rem}
+  .toolbar-right{margin-left:0;width:100%}
+  .cinema-select{width:100%;max-width:none}
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.grid>*{animation:fadeIn .4s ease both}
+.grid>*:nth-child(1){animation-delay:0s}
+.grid>*:nth-child(2){animation-delay:.05s}
+.grid>*:nth-child(3){animation-delay:.1s}
+.grid>*:nth-child(4){animation-delay:.15s}
+.grid>*:nth-child(5){animation-delay:.2s}
+.grid>*:nth-child(6){animation-delay:.25s}
+.grid>*:nth-child(7){animation-delay:.3s}
+.grid>*:nth-child(8){animation-delay:.35s}
+.grid>*:nth-child(9){animation-delay:.4s}
+
+/* Noise texture overlay */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 </style>
 </head>
 <body>
-<header>
-<div><h1><span>Guia</span>Madrid</h1><div class="date-label">Viernes 20 de marzo de 2026</div></div>
-<div class="controls">
-<select id="cinemaFilter"><option value="">Todos los cines</option></select>
+
+<div class="header">
+  <div class="logo"><strong>Guia</strong>Madrid</div>
+  <div class="header-date">Viernes 20 Marzo 2026</div>
 </div>
-</header>
+
+<div class="hero">
+  <h1>Cartelera<br><em>de hoy</em></h1>
+</div>
+
 <div class="toolbar">
-<div class="view-btn active" data-view="movies">Por peliculas</div>
-<div class="view-btn" data-view="cinemas">Por cines</div>
-<div class="separator"></div>
-<div class="vose-btn" id="voseToggle">Solo VOSE</div>
+  <div class="pill active" data-view="movies">Peliculas</div>
+  <div class="pill" data-view="cinemas">Cines</div>
+  <div class="divider"></div>
+  <div class="pill vose" id="voseToggle">VOSE</div>
+  <div class="toolbar-right">
+    <select class="cinema-select" id="cinemaFilter">
+      <option value="">Todos los cines</option>
+    </select>
+  </div>
 </div>
+
+<div class="stats-bar" id="stats"></div>
+
 <div class="content">
-<div class="stats" id="stats"></div>
-<div id="container" class="grid"></div>
+  <div id="container" class="grid"></div>
 </div>
+
+<footer>
+  <span>20 cines &middot; Madrid</span>
+  <span>Datos actualizados 20.03.2026</span>
+</footer>
+
 <script>
 const RAW={"date":"2026-03-20","s":[{"c":"Cine Doré (Filmoteca)","m":"Kelly Reichardt: Carta blanca","t":"20:30","l":"VOSE","f":"2D"},{"c":"Cine Doré (Filmoteca)","m":"Lillian Hellman: Ficción, memoria y compromiso","t":"17:30","l":"VOSE","f":"2D"},{"c":"Cines Embajadores","m":"Amarga Navidad","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Amarga Navidad","t":"17:00","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Amarga Navidad","t":"21:45","l":"VOSE","f":"2D"},{"c":"Cines Embajadores","m":"Elegir mi vida","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Elegir mi vida","t":"18:45","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Elegir mi vida","t":"21:15","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Greenland 2: El regreso","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Greenland 2: El regreso","t":"17:15","l":"VOSE","f":"2D"},{"c":"Cines Embajadores","m":"Greenland 2: El regreso","t":"19:00","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Greenland 2: El regreso","t":"21:00","l":"VOSE","f":"2D"},{"c":"Cines Embajadores","m":"Greenland 2: El regreso","t":"21:45","l":"VOSE","f":"2D"},{"c":"Cines Embajadores","m":"Hoppers","t":"15:15","l":"VOSE","f":"2D"},{"c":"Cines Embajadores","m":"Hoppers","t":"18:30","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"La novia","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"La novia","t":"17:15","l":"VOSE","f":"2D"},{"c":"Cines Embajadores","m":"La novia","t":"20:30","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"La novia","t":"21:30","l":"VOSE","f":"2D"},{"c":"Cines Embajadores","m":"La novia","t":"22:30","l":"VOSE","f":"2D"},{"c":"Cines Embajadores","m":"La sonrisa del mal","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"La sonrisa del mal","t":"18:45","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"La sonrisa del mal","t":"20:15","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Scream VII","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Scream VII","t":"18:30","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Scream VII","t":"20:45","l":"VOSE","f":"2D"},{"c":"Cines Embajadores","m":"Tafiti y sus amigos","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Tafiti y sus amigos","t":"17:00","l":"VOSE","f":"2D"},{"c":"Cines Embajadores","m":"Tafiti y sus amigos","t":"19:15","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Tafiti y sus amigos","t":"21:00","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Torrente Presidente","t":"15:30","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Torrente Presidente","t":"18:30","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Torrente Presidente","t":"21:00","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Una hija en Tokio","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Una hija en Tokio","t":"18:45","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Whistle: El silbido del mal","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Whistle: El silbido del mal","t":"17:15","l":"VOSE","f":"2D"},{"c":"Cines Embajadores","m":"Whistle: El silbido del mal","t":"19:30","l":"Castellano","f":"2D"},{"c":"Cines Embajadores","m":"Whistle: El silbido del mal","t":"21:30","l":"VOSE","f":"2D"},{"c":"Cines Embajadores","m":"Whistle: El silbido del mal","t":"22:45","l":"Castellano","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"Amarga Navidad","t":"16:30","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"Amarga Navidad","t":"18:00","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"Amarga Navidad","t":"20:00","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"El mago del Kremlin","t":"16:00","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"El mago del Kremlin","t":"18:15","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"El mago del Kremlin","t":"21:30","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"Elegir mi vida","t":"16:30","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"Elegir mi vida","t":"18:45","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"La Grazia","t":"16:45","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"La Grazia","t":"19:30","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"La novia","t":"16:45","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"La novia","t":"19:15","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"La novia","t":"22:30","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"La última cena","t":"16:30","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"La última cena","t":"19:00","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"La última cena","t":"22:30","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"Perfect Blue (Reestreno)","t":"16:15","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"Perfect Blue (Reestreno)","t":"18:45","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"Perfect Blue (Reestreno)","t":"21:15","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"Power to the People","t":"16:00","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"Power to the People","t":"19:30","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"Una hija en Tokio","t":"16:30","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"Una hija en Tokio","t":"19:15","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"Your Name (Reposición)","t":"16:00","l":"VOSE","f":"2D"},{"c":"Cines Princesa (Renoir)","m":"Your Name (Reposición)","t":"19:00","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"Amarga Navidad","t":"16:15","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"Amarga Navidad","t":"18:45","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"Amarga Navidad","t":"21:45","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"El mago del Kremlin","t":"16:15","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"El mago del Kremlin","t":"18:15","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"Elegir mi vida","t":"16:15","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"Elegir mi vida","t":"18:00","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"Elegir mi vida","t":"21:00","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"La Grazia","t":"16:15","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"La Grazia","t":"18:45","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"La novia","t":"16:45","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"La novia","t":"18:15","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"La novia","t":"21:30","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"La última cena","t":"16:15","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"La última cena","t":"19:30","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"Perfect Blue (Reestreno)","t":"16:45","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"Perfect Blue (Reestreno)","t":"18:15","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"Perfect Blue (Reestreno)","t":"21:00","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"Power to the People","t":"16:00","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"Power to the People","t":"18:00","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"Una hija en Tokio","t":"16:30","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"Una hija en Tokio","t":"19:15","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"Your Name (Reposición)","t":"16:15","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"Your Name (Reposición)","t":"18:00","l":"VOSE","f":"2D"},{"c":"Cines Verdi Madrid","m":"Your Name (Reposición)","t":"20:30","l":"VOSE","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Amarga Navidad","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Amarga Navidad","t":"18:45","l":"VOSE","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Elegir mi vida","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Elegir mi vida","t":"17:15","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Elegir mi vida","t":"19:15","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Greenland 2: El regreso","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Greenland 2: El regreso","t":"17:45","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Greenland 2: El regreso","t":"21:45","l":"VOSE","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Hoppers","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Hoppers","t":"18:30","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"La novia","t":"15:30","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"La novia","t":"18:00","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"La novia","t":"21:15","l":"VOSE","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"La sonrisa del mal","t":"15:15","l":"VOSE","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"La sonrisa del mal","t":"17:00","l":"VOSE","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"La sonrisa del mal","t":"20:45","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Scream VII","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Scream VII","t":"17:45","l":"VOSE","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Scream VII","t":"20:30","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Scream VII","t":"23:00","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Tafiti y sus amigos","t":"15:30","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Tafiti y sus amigos","t":"17:45","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Torrente Presidente","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Torrente Presidente","t":"17:15","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Torrente Presidente","t":"19:15","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Torrente Presidente","t":"22:30","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Una hija en Tokio","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Una hija en Tokio","t":"17:45","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Una hija en Tokio","t":"19:00","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Una hija en Tokio","t":"21:30","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Whistle: El silbido del mal","t":"15:30","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Whistle: El silbido del mal","t":"18:15","l":"Castellano","f":"2D"},{"c":"Cinesa As Cancelas (Santiago)","m":"Whistle: El silbido del mal","t":"21:45","l":"VOSE","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Amarga Navidad","t":"15:30","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Amarga Navidad","t":"17:45","l":"VOSE","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Amarga Navidad","t":"19:15","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Amarga Navidad","t":"21:45","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Amarga Navidad","t":"21:45","l":"VOSE","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Elegir mi vida","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Elegir mi vida","t":"17:15","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Greenland 2: El regreso","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Greenland 2: El regreso","t":"18:45","l":"VOSE","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Greenland 2: El regreso","t":"21:00","l":"VOSE","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Greenland 2: El regreso","t":"21:30","l":"VOSE","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Hoppers","t":"15:30","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Hoppers","t":"18:30","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Hoppers","t":"20:15","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"La novia","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"La novia","t":"17:00","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"La novia","t":"21:15","l":"VOSE","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"La sonrisa del mal","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"La sonrisa del mal","t":"17:30","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"La sonrisa del mal","t":"19:00","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Scream VII","t":"15:45","l":"VOSE","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Scream VII","t":"17:00","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Scream VII","t":"19:15","l":"VOSE","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Scream VII","t":"21:15","l":"VOSE","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Tafiti y sus amigos","t":"15:30","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Tafiti y sus amigos","t":"17:15","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Torrente Presidente","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Torrente Presidente","t":"18:30","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Torrente Presidente","t":"21:00","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Torrente Presidente","t":"23:00","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Una hija en Tokio","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Una hija en Tokio","t":"17:00","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Una hija en Tokio","t":"20:45","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Una hija en Tokio","t":"23:00","l":"VOSE","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Whistle: El silbido del mal","t":"15:30","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Whistle: El silbido del mal","t":"18:00","l":"Castellano","f":"2D"},{"c":"Cinesa Equinoccio (Majadahonda)","m":"Whistle: El silbido del mal","t":"21:45","l":"VOSE","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Amarga Navidad","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Amarga Navidad","t":"18:30","l":"VOSE","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Amarga Navidad","t":"20:00","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Amarga Navidad","t":"23:45","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Elegir mi vida","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Elegir mi vida","t":"18:45","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Greenland 2: El regreso","t":"15:00","l":"VOSE","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Greenland 2: El regreso","t":"18:15","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Greenland 2: El regreso","t":"21:30","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Greenland 2: El regreso","t":"21:45","l":"VOSE","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Hoppers","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Hoppers","t":"17:15","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Hoppers","t":"20:15","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Hoppers","t":"22:30","l":"VOSE","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"La novia","t":"15:30","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"La novia","t":"17:15","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"La novia","t":"19:15","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"La novia","t":"21:00","l":"VOSE","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"La sonrisa del mal","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"La sonrisa del mal","t":"18:45","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"La sonrisa del mal","t":"21:30","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Scream VII","t":"15:00","l":"VOSE","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Scream VII","t":"18:00","l":"VOSE","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Scream VII","t":"21:00","l":"VOSE","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Tafiti y sus amigos","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Tafiti y sus amigos","t":"17:00","l":"VOSE","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Tafiti y sus amigos","t":"20:30","l":"VOSE","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Torrente Presidente","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Torrente Presidente","t":"17:15","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Torrente Presidente","t":"20:15","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Torrente Presidente","t":"23:00","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Una hija en Tokio","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Una hija en Tokio","t":"18:15","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Una hija en Tokio","t":"21:45","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Una hija en Tokio","t":"23:00","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Whistle: El silbido del mal","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Whistle: El silbido del mal","t":"18:30","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Whistle: El silbido del mal","t":"21:15","l":"Castellano","f":"2D"},{"c":"Cinesa Intu Xanadú (Arroyomolinos)","m":"Whistle: El silbido del mal","t":"21:15","l":"VOSE","f":"2D"},{"c":"Cinesa Manoteras","m":"Amarga Navidad","t":"15:45","l":"VOSE","f":"2D"},{"c":"Cinesa Manoteras","m":"Amarga Navidad","t":"18:00","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"Amarga Navidad","t":"21:30","l":"VOSE","f":"2D"},{"c":"Cinesa Manoteras","m":"Elegir mi vida","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"Elegir mi vida","t":"17:30","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"Greenland 2: El regreso","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"Greenland 2: El regreso","t":"18:00","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"Greenland 2: El regreso","t":"21:00","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"Greenland 2: El regreso","t":"21:00","l":"VOSE","f":"2D"},{"c":"Cinesa Manoteras","m":"Hoppers","t":"15:45","l":"VOSE","f":"2D"},{"c":"Cinesa Manoteras","m":"Hoppers","t":"17:45","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"Hoppers","t":"19:30","l":"VOSE","f":"2D"},{"c":"Cinesa Manoteras","m":"La novia","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"La novia","t":"18:30","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"La novia","t":"21:15","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"La novia","t":"21:15","l":"VOSE","f":"2D"},{"c":"Cinesa Manoteras","m":"La novia","t":"23:15","l":"VOSE","f":"2D"},{"c":"Cinesa Manoteras","m":"La sonrisa del mal","t":"15:45","l":"VOSE","f":"2D"},{"c":"Cinesa Manoteras","m":"La sonrisa del mal","t":"18:00","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"La sonrisa del mal","t":"21:00","l":"VOSE","f":"2D"},{"c":"Cinesa Manoteras","m":"Scream VII","t":"15:00","l":"VOSE","f":"2D"},{"c":"Cinesa Manoteras","m":"Scream VII","t":"17:45","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"Scream VII","t":"19:45","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"Scream VII","t":"21:00","l":"VOSE","f":"2D"},{"c":"Cinesa Manoteras","m":"Scream VII","t":"21:45","l":"VOSE","f":"2D"},{"c":"Cinesa Manoteras","m":"Tafiti y sus amigos","t":"15:45","l":"VOSE","f":"2D"},{"c":"Cinesa Manoteras","m":"Tafiti y sus amigos","t":"17:45","l":"VOSE","f":"2D"},{"c":"Cinesa Manoteras","m":"Tafiti y sus amigos","t":"19:30","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"Torrente Presidente","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"Torrente Presidente","t":"17:45","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"Torrente Presidente","t":"19:00","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"Una hija en Tokio","t":"15:15","l":"VOSE","f":"2D"},{"c":"Cinesa Manoteras","m":"Una hija en Tokio","t":"17:30","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"Una hija en Tokio","t":"20:15","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"Whistle: El silbido del mal","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"Whistle: El silbido del mal","t":"17:00","l":"Castellano","f":"2D"},{"c":"Cinesa Manoteras","m":"Whistle: El silbido del mal","t":"21:00","l":"VOSE","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Amarga Navidad","t":"15:30","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Amarga Navidad","t":"18:45","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Amarga Navidad","t":"21:30","l":"VOSE","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Elegir mi vida","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Elegir mi vida","t":"18:30","l":"VOSE","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Elegir mi vida","t":"21:45","l":"VOSE","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Greenland 2: El regreso","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Greenland 2: El regreso","t":"17:45","l":"VOSE","f":"Atmos"},{"c":"Cinesa Méndez Álvaro","m":"Greenland 2: El regreso","t":"20:15","l":"VOSE","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Greenland 2: El regreso","t":"21:30","l":"VOSE","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Greenland 2: El regreso","t":"23:45","l":"Castellano","f":"IMAX"},{"c":"Cinesa Méndez Álvaro","m":"Hoppers","t":"15:30","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Hoppers","t":"17:00","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"La novia","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"La novia","t":"18:45","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"La novia","t":"20:15","l":"VOSE","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"La novia","t":"21:00","l":"VOSE","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"La novia","t":"22:00","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"La sonrisa del mal","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"La sonrisa del mal","t":"18:45","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"La sonrisa del mal","t":"20:30","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Scream VII","t":"15:15","l":"Castellano","f":"IMAX"},{"c":"Cinesa Méndez Álvaro","m":"Scream VII","t":"18:45","l":"Castellano","f":"Atmos"},{"c":"Cinesa Méndez Álvaro","m":"Scream VII","t":"21:30","l":"VOSE","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Tafiti y sus amigos","t":"15:30","l":"VOSE","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Tafiti y sus amigos","t":"18:00","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Tafiti y sus amigos","t":"20:15","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Torrente Presidente","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Torrente Presidente","t":"18:15","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Torrente Presidente","t":"21:00","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Una hija en Tokio","t":"15:45","l":"VOSE","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Una hija en Tokio","t":"18:30","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Whistle: El silbido del mal","t":"15:30","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Whistle: El silbido del mal","t":"17:15","l":"Castellano","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Whistle: El silbido del mal","t":"20:15","l":"VOSE","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Whistle: El silbido del mal","t":"21:15","l":"VOSE","f":"2D"},{"c":"Cinesa Méndez Álvaro","m":"Whistle: El silbido del mal","t":"22:15","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Amarga Navidad","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Amarga Navidad","t":"17:45","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Amarga Navidad","t":"20:45","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Amarga Navidad","t":"22:45","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Elegir mi vida","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Elegir mi vida","t":"18:00","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Elegir mi vida","t":"20:30","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Greenland 2: El regreso","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Greenland 2: El regreso","t":"18:00","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Greenland 2: El regreso","t":"21:30","l":"VOSE","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Hoppers","t":"15:30","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Hoppers","t":"18:30","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Hoppers","t":"21:45","l":"VOSE","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"La novia","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"La novia","t":"17:00","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"La novia","t":"21:15","l":"VOSE","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"La sonrisa del mal","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"La sonrisa del mal","t":"18:00","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Scream VII","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Scream VII","t":"18:45","l":"VOSE","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Scream VII","t":"21:30","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Tafiti y sus amigos","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Tafiti y sus amigos","t":"18:45","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Tafiti y sus amigos","t":"21:30","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Tafiti y sus amigos","t":"23:30","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Torrente Presidente","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Torrente Presidente","t":"18:30","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Torrente Presidente","t":"21:45","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Una hija en Tokio","t":"15:00","l":"VOSE","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Una hija en Tokio","t":"17:30","l":"VOSE","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Whistle: El silbido del mal","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Whistle: El silbido del mal","t":"18:30","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Whistle: El silbido del mal","t":"21:00","l":"Castellano","f":"2D"},{"c":"Cinesa Parquesur (Leganés)","m":"Whistle: El silbido del mal","t":"21:15","l":"VOSE","f":"2D"},{"c":"Cinesa Proyecciones","m":"Amarga Navidad","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Amarga Navidad","t":"18:00","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Amarga Navidad","t":"21:15","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Amarga Navidad","t":"21:15","l":"VOSE","f":"2D"},{"c":"Cinesa Proyecciones","m":"Elegir mi vida","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Elegir mi vida","t":"17:45","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Elegir mi vida","t":"19:00","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Greenland 2: El regreso","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Greenland 2: El regreso","t":"17:00","l":"Castellano","f":"IMAX"},{"c":"Cinesa Proyecciones","m":"Greenland 2: El regreso","t":"21:30","l":"VOSE","f":"2D"},{"c":"Cinesa Proyecciones","m":"Hoppers","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Hoppers","t":"18:45","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Hoppers","t":"20:00","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Hoppers","t":"23:30","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"La novia","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"La novia","t":"17:00","l":"VOSE","f":"2D"},{"c":"Cinesa Proyecciones","m":"La novia","t":"20:30","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"La novia","t":"22:15","l":"VOSE","f":"2D"},{"c":"Cinesa Proyecciones","m":"La sonrisa del mal","t":"15:45","l":"VOSE","f":"2D"},{"c":"Cinesa Proyecciones","m":"La sonrisa del mal","t":"18:15","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"La sonrisa del mal","t":"21:00","l":"VOSE","f":"2D"},{"c":"Cinesa Proyecciones","m":"Scream VII","t":"15:15","l":"VOSE","f":"Atmos"},{"c":"Cinesa Proyecciones","m":"Scream VII","t":"18:45","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Tafiti y sus amigos","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Tafiti y sus amigos","t":"18:45","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Tafiti y sus amigos","t":"21:15","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Torrente Presidente","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Torrente Presidente","t":"17:15","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Torrente Presidente","t":"19:45","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Torrente Presidente","t":"21:30","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Una hija en Tokio","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Una hija en Tokio","t":"18:00","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Una hija en Tokio","t":"20:45","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Una hija en Tokio","t":"22:00","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Whistle: El silbido del mal","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Whistle: El silbido del mal","t":"17:15","l":"Castellano","f":"2D"},{"c":"Cinesa Proyecciones","m":"Whistle: El silbido del mal","t":"20:15","l":"VOSE","f":"2D"},{"c":"Cinesa Proyecciones","m":"Whistle: El silbido del mal","t":"21:45","l":"VOSE","f":"2D"},{"c":"Cinesa Proyecciones","m":"Whistle: El silbido del mal","t":"23:45","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Amarga Navidad","t":"15:30","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Amarga Navidad","t":"17:45","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Amarga Navidad","t":"19:30","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Amarga Navidad","t":"21:15","l":"VOSE","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Elegir mi vida","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Elegir mi vida","t":"18:45","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Greenland 2: El regreso","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Greenland 2: El regreso","t":"18:00","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Greenland 2: El regreso","t":"21:30","l":"VOSE","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Hoppers","t":"15:15","l":"VOSE","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Hoppers","t":"18:45","l":"VOSE","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"La novia","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"La novia","t":"18:00","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"La novia","t":"20:30","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"La novia","t":"21:45","l":"VOSE","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"La novia","t":"23:45","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"La sonrisa del mal","t":"15:30","l":"VOSE","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"La sonrisa del mal","t":"17:15","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Scream VII","t":"15:30","l":"VOSE","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Scream VII","t":"18:30","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Scream VII","t":"21:30","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Tafiti y sus amigos","t":"15:45","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Tafiti y sus amigos","t":"18:45","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Tafiti y sus amigos","t":"21:45","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Torrente Presidente","t":"15:00","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Torrente Presidente","t":"17:30","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Torrente Presidente","t":"19:45","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Una hija en Tokio","t":"15:15","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Una hija en Tokio","t":"18:00","l":"VOSE","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Una hija en Tokio","t":"20:15","l":"VOSE","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Una hija en Tokio","t":"22:00","l":"VOSE","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Whistle: El silbido del mal","t":"15:30","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Whistle: El silbido del mal","t":"17:15","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Whistle: El silbido del mal","t":"20:15","l":"Castellano","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Whistle: El silbido del mal","t":"21:30","l":"VOSE","f":"2D"},{"c":"Cinesa Príncipe Pío","m":"Whistle: El silbido del mal","t":"23:15","l":"Castellano","f":"2D"},{"c":"Renoir Plaza de España","m":"Amarga Navidad","t":"16:00","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"Amarga Navidad","t":"19:30","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"El mago del Kremlin","t":"16:00","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"El mago del Kremlin","t":"19:30","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"El mago del Kremlin","t":"21:45","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"Elegir mi vida","t":"16:00","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"Elegir mi vida","t":"18:15","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"La Grazia","t":"16:00","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"La Grazia","t":"19:00","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"La Grazia","t":"22:15","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"La novia","t":"16:45","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"La novia","t":"18:15","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"La novia","t":"20:45","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"La última cena","t":"16:00","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"La última cena","t":"18:00","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"La última cena","t":"21:00","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"Perfect Blue (Reestreno)","t":"16:30","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"Perfect Blue (Reestreno)","t":"18:30","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"Perfect Blue (Reestreno)","t":"21:15","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"Power to the People","t":"16:30","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"Power to the People","t":"19:00","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"Una hija en Tokio","t":"16:15","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"Una hija en Tokio","t":"18:00","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"Your Name (Reposición)","t":"16:45","l":"VOSE","f":"2D"},{"c":"Renoir Plaza de España","m":"Your Name (Reposición)","t":"18:45","l":"VOSE","f":"2D"},{"c":"Yelmo Ideal","m":"Amarga Navidad","t":"15:00","l":"VOSE","f":"2D"},{"c":"Yelmo Ideal","m":"Amarga Navidad","t":"17:30","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"Amarga Navidad","t":"19:15","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"Amarga Navidad","t":"21:00","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"Elegir mi vida","t":"15:30","l":"VOSE","f":"2D"},{"c":"Yelmo Ideal","m":"Elegir mi vida","t":"17:15","l":"VOSE","f":"2D"},{"c":"Yelmo Ideal","m":"Elegir mi vida","t":"20:15","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"Greenland 2: El regreso","t":"15:30","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"Greenland 2: El regreso","t":"18:15","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"Greenland 2: El regreso","t":"21:00","l":"VOSE","f":"2D"},{"c":"Yelmo Ideal","m":"Hoppers","t":"15:00","l":"VOSE","f":"2D"},{"c":"Yelmo Ideal","m":"Hoppers","t":"17:45","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"Hoppers","t":"19:45","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"Hoppers","t":"22:00","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"La novia","t":"15:30","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"La novia","t":"17:15","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"La novia","t":"19:15","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"La novia","t":"21:30","l":"VOSE","f":"2D"},{"c":"Yelmo Ideal","m":"La novia","t":"22:45","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"La sonrisa del mal","t":"15:15","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"La sonrisa del mal","t":"17:30","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"La sonrisa del mal","t":"20:45","l":"VOSE","f":"2D"},{"c":"Yelmo Ideal","m":"Scream VII","t":"15:30","l":"VOSE","f":"2D"},{"c":"Yelmo Ideal","m":"Scream VII","t":"18:30","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"Scream VII","t":"21:45","l":"VOSE","f":"2D"},{"c":"Yelmo Ideal","m":"Tafiti y sus amigos","t":"15:00","l":"VOSE","f":"2D"},{"c":"Yelmo Ideal","m":"Tafiti y sus amigos","t":"17:15","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"Torrente Presidente","t":"15:30","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"Torrente Presidente","t":"17:00","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"Una hija en Tokio","t":"15:45","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"Una hija en Tokio","t":"18:30","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"Una hija en Tokio","t":"20:00","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"Whistle: El silbido del mal","t":"15:00","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"Whistle: El silbido del mal","t":"18:30","l":"Castellano","f":"2D"},{"c":"Yelmo Ideal","m":"Whistle: El silbido del mal","t":"21:15","l":"VOSE","f":"2D"},{"c":"Yelmo La Vaguada","m":"Amarga Navidad","t":"15:00","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"Amarga Navidad","t":"17:30","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"Amarga Navidad","t":"20:45","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"Amarga Navidad","t":"21:15","l":"VOSE","f":"2D"},{"c":"Yelmo La Vaguada","m":"Elegir mi vida","t":"15:30","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"Elegir mi vida","t":"18:45","l":"VOSE","f":"2D"},{"c":"Yelmo La Vaguada","m":"Elegir mi vida","t":"21:15","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"Greenland 2: El regreso","t":"15:00","l":"VOSE","f":"2D"},{"c":"Yelmo La Vaguada","m":"Greenland 2: El regreso","t":"17:30","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"Greenland 2: El regreso","t":"20:45","l":"VOSE","f":"IMAX"},{"c":"Yelmo La Vaguada","m":"Greenland 2: El regreso","t":"23:45","l":"VOSE","f":"2D"},{"c":"Yelmo La Vaguada","m":"Hoppers","t":"15:15","l":"VOSE","f":"2D"},{"c":"Yelmo La Vaguada","m":"Hoppers","t":"18:15","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"Hoppers","t":"20:00","l":"VOSE","f":"2D"},{"c":"Yelmo La Vaguada","m":"Hoppers","t":"22:30","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"La novia","t":"15:15","l":"VOSE","f":"2D"},{"c":"Yelmo La Vaguada","m":"La novia","t":"17:30","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"La novia","t":"19:45","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"La novia","t":"21:15","l":"VOSE","f":"2D"},{"c":"Yelmo La Vaguada","m":"La novia","t":"21:30","l":"VOSE","f":"2D"},{"c":"Yelmo La Vaguada","m":"La sonrisa del mal","t":"15:15","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"La sonrisa del mal","t":"17:30","l":"VOSE","f":"2D"},{"c":"Yelmo La Vaguada","m":"La sonrisa del mal","t":"20:30","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"La sonrisa del mal","t":"23:00","l":"VOSE","f":"2D"},{"c":"Yelmo La Vaguada","m":"Scream VII","t":"15:30","l":"VOSE","f":"Atmos"},{"c":"Yelmo La Vaguada","m":"Scream VII","t":"17:00","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"Scream VII","t":"19:00","l":"VOSE","f":"Atmos"},{"c":"Yelmo La Vaguada","m":"Scream VII","t":"21:30","l":"VOSE","f":"2D"},{"c":"Yelmo La Vaguada","m":"Scream VII","t":"22:00","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"Tafiti y sus amigos","t":"15:45","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"Tafiti y sus amigos","t":"18:30","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"Tafiti y sus amigos","t":"21:45","l":"VOSE","f":"2D"},{"c":"Yelmo La Vaguada","m":"Torrente Presidente","t":"15:45","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"Torrente Presidente","t":"18:45","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"Torrente Presidente","t":"21:00","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"Torrente Presidente","t":"23:45","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"Una hija en Tokio","t":"15:45","l":"VOSE","f":"2D"},{"c":"Yelmo La Vaguada","m":"Una hija en Tokio","t":"17:30","l":"VOSE","f":"2D"},{"c":"Yelmo La Vaguada","m":"Whistle: El silbido del mal","t":"15:45","l":"Castellano","f":"2D"},{"c":"Yelmo La Vaguada","m":"Whistle: El silbido del mal","t":"18:00","l":"VOSE","f":"2D"},{"c":"Yelmo La Vaguada","m":"Whistle: El silbido del mal","t":"20:30","l":"VOSE","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Amarga Navidad","t":"15:00","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Amarga Navidad","t":"17:00","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Amarga Navidad","t":"19:45","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Elegir mi vida","t":"15:15","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Elegir mi vida","t":"17:00","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Elegir mi vida","t":"20:45","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Greenland 2: El regreso","t":"15:15","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Greenland 2: El regreso","t":"18:30","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Greenland 2: El regreso","t":"21:30","l":"VOSE","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Hoppers","t":"15:15","l":"VOSE","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Hoppers","t":"18:45","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Hoppers","t":"21:00","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"La novia","t":"15:00","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"La novia","t":"17:00","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"La novia","t":"19:00","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"La novia","t":"21:00","l":"VOSE","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"La novia","t":"22:15","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"La sonrisa del mal","t":"15:00","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"La sonrisa del mal","t":"17:30","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"La sonrisa del mal","t":"20:15","l":"VOSE","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Scream VII","t":"15:45","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Scream VII","t":"18:00","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Tafiti y sus amigos","t":"15:45","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Tafiti y sus amigos","t":"17:15","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Torrente Presidente","t":"15:15","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Torrente Presidente","t":"18:15","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Torrente Presidente","t":"21:00","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Torrente Presidente","t":"23:30","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Una hija en Tokio","t":"15:15","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Una hija en Tokio","t":"17:15","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Whistle: El silbido del mal","t":"15:45","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Whistle: El silbido del mal","t":"18:00","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Whistle: El silbido del mal","t":"20:45","l":"Castellano","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Whistle: El silbido del mal","t":"21:45","l":"VOSE","f":"2D"},{"c":"Yelmo Luxury Palafox","m":"Whistle: El silbido del mal","t":"23:00","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Amarga Navidad","t":"15:15","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Amarga Navidad","t":"18:45","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Amarga Navidad","t":"21:45","l":"VOSE","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Elegir mi vida","t":"15:45","l":"VOSE","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Elegir mi vida","t":"17:15","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Elegir mi vida","t":"19:30","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Greenland 2: El regreso","t":"15:15","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Greenland 2: El regreso","t":"17:15","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Greenland 2: El regreso","t":"19:00","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Greenland 2: El regreso","t":"21:15","l":"VOSE","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Hoppers","t":"15:30","l":"VOSE","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Hoppers","t":"17:30","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Hoppers","t":"19:30","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"La novia","t":"15:15","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"La novia","t":"18:45","l":"VOSE","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"La novia","t":"21:30","l":"VOSE","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"La sonrisa del mal","t":"15:00","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"La sonrisa del mal","t":"18:00","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"La sonrisa del mal","t":"20:30","l":"VOSE","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"La sonrisa del mal","t":"23:15","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Scream VII","t":"15:00","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Scream VII","t":"18:45","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Scream VII","t":"21:15","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Scream VII","t":"21:30","l":"VOSE","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Scream VII","t":"23:45","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Tafiti y sus amigos","t":"15:45","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Tafiti y sus amigos","t":"17:45","l":"VOSE","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Torrente Presidente","t":"15:15","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Torrente Presidente","t":"18:00","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Torrente Presidente","t":"20:30","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Torrente Presidente","t":"23:45","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Una hija en Tokio","t":"15:30","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Una hija en Tokio","t":"17:00","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Whistle: El silbido del mal","t":"15:45","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Whistle: El silbido del mal","t":"17:15","l":"Castellano","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Whistle: El silbido del mal","t":"19:15","l":"VOSE","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Whistle: El silbido del mal","t":"21:45","l":"VOSE","f":"2D"},{"c":"Yelmo Plaza Norte 2 (S.S. Reyes)","m":"Whistle: El silbido del mal","t":"22:00","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Amarga Navidad","t":"15:15","l":"VOSE","f":"2D"},{"c":"Yelmo Plenilunio","m":"Amarga Navidad","t":"18:00","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Amarga Navidad","t":"20:30","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Amarga Navidad","t":"21:15","l":"VOSE","f":"2D"},{"c":"Yelmo Plenilunio","m":"Amarga Navidad","t":"22:45","l":"VOSE","f":"2D"},{"c":"Yelmo Plenilunio","m":"Elegir mi vida","t":"15:30","l":"VOSE","f":"2D"},{"c":"Yelmo Plenilunio","m":"Elegir mi vida","t":"18:30","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Elegir mi vida","t":"20:45","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Elegir mi vida","t":"23:00","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Greenland 2: El regreso","t":"15:15","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Greenland 2: El regreso","t":"18:15","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Greenland 2: El regreso","t":"21:45","l":"VOSE","f":"2D"},{"c":"Yelmo Plenilunio","m":"Hoppers","t":"15:45","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Hoppers","t":"18:30","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"La novia","t":"15:30","l":"VOSE","f":"2D"},{"c":"Yelmo Plenilunio","m":"La novia","t":"18:30","l":"VOSE","f":"2D"},{"c":"Yelmo Plenilunio","m":"La novia","t":"21:30","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"La sonrisa del mal","t":"15:15","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"La sonrisa del mal","t":"18:15","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Scream VII","t":"15:00","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Scream VII","t":"18:00","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Scream VII","t":"20:45","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Scream VII","t":"21:45","l":"VOSE","f":"2D"},{"c":"Yelmo Plenilunio","m":"Scream VII","t":"22:30","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Tafiti y sus amigos","t":"15:00","l":"VOSE","f":"2D"},{"c":"Yelmo Plenilunio","m":"Tafiti y sus amigos","t":"18:15","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Tafiti y sus amigos","t":"20:30","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Torrente Presidente","t":"15:45","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Torrente Presidente","t":"18:45","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Torrente Presidente","t":"20:00","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Torrente Presidente","t":"22:30","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Una hija en Tokio","t":"15:30","l":"VOSE","f":"2D"},{"c":"Yelmo Plenilunio","m":"Una hija en Tokio","t":"18:15","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Whistle: El silbido del mal","t":"15:15","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Whistle: El silbido del mal","t":"18:15","l":"VOSE","f":"2D"},{"c":"Yelmo Plenilunio","m":"Whistle: El silbido del mal","t":"20:45","l":"Castellano","f":"2D"},{"c":"Yelmo Plenilunio","m":"Whistle: El silbido del mal","t":"23:45","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Amarga Navidad","t":"15:15","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Amarga Navidad","t":"17:30","l":"VOSE","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Amarga Navidad","t":"21:00","l":"VOSE","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Elegir mi vida","t":"15:45","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Elegir mi vida","t":"18:30","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Elegir mi vida","t":"20:15","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Elegir mi vida","t":"23:30","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Greenland 2: El regreso","t":"15:00","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Greenland 2: El regreso","t":"18:00","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Greenland 2: El regreso","t":"20:45","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Greenland 2: El regreso","t":"21:30","l":"VOSE","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Greenland 2: El regreso","t":"23:00","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Hoppers","t":"15:00","l":"VOSE","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Hoppers","t":"18:15","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"La novia","t":"15:45","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"La novia","t":"18:15","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"La novia","t":"20:00","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"La novia","t":"21:30","l":"VOSE","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"La novia","t":"23:00","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"La sonrisa del mal","t":"15:45","l":"VOSE","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"La sonrisa del mal","t":"18:45","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"La sonrisa del mal","t":"21:15","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Scream VII","t":"15:45","l":"VOSE","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Scream VII","t":"17:00","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Scream VII","t":"20:00","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Scream VII","t":"21:15","l":"VOSE","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Scream VII","t":"22:15","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Tafiti y sus amigos","t":"15:45","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Tafiti y sus amigos","t":"17:45","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Torrente Presidente","t":"15:15","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Torrente Presidente","t":"18:00","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Torrente Presidente","t":"20:15","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Una hija en Tokio","t":"15:00","l":"VOSE","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Una hija en Tokio","t":"18:30","l":"VOSE","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Whistle: El silbido del mal","t":"15:00","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Whistle: El silbido del mal","t":"18:15","l":"Castellano","f":"2D"},{"c":"Yelmo Tres Aguas (Alcorcón)","m":"Whistle: El silbido del mal","t":"21:15","l":"VOSE","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Amarga Navidad","t":"15:30","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Amarga Navidad","t":"17:30","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Amarga Navidad","t":"19:30","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Amarga Navidad","t":"21:00","l":"VOSE","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Amarga Navidad","t":"21:30","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Elegir mi vida","t":"15:45","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Elegir mi vida","t":"17:15","l":"VOSE","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Elegir mi vida","t":"20:00","l":"VOSE","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Greenland 2: El regreso","t":"15:30","l":"VOSE","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Greenland 2: El regreso","t":"18:45","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Greenland 2: El regreso","t":"20:30","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Greenland 2: El regreso","t":"22:30","l":"VOSE","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Hoppers","t":"15:00","l":"VOSE","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Hoppers","t":"17:30","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"La novia","t":"15:15","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"La novia","t":"18:45","l":"VOSE","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"La sonrisa del mal","t":"15:00","l":"VOSE","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"La sonrisa del mal","t":"17:45","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"La sonrisa del mal","t":"19:30","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Scream VII","t":"15:00","l":"VOSE","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Scream VII","t":"17:15","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Scream VII","t":"20:45","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Scream VII","t":"21:30","l":"VOSE","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Tafiti y sus amigos","t":"15:00","l":"VOSE","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Tafiti y sus amigos","t":"17:30","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Tafiti y sus amigos","t":"20:00","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Torrente Presidente","t":"15:30","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Torrente Presidente","t":"18:45","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Torrente Presidente","t":"20:45","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Una hija en Tokio","t":"15:00","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Una hija en Tokio","t":"18:30","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Whistle: El silbido del mal","t":"15:00","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Whistle: El silbido del mal","t":"18:45","l":"Castellano","f":"2D"},{"c":"mk2 Palacio de Hielo","m":"Whistle: El silbido del mal","t":"21:30","l":"VOSE","f":"2D"}],"m":[{"title":"Amarga Navidad","director":"Pedro Almodóvar","genre":"Drama","dur":111,"rating":4.1,"synopsis":"Tras la muerte de su madre, Elsa, directora de publicidad, se refugia en el trabajo para evitar el duelo. Una crisis de pánico la obliga a parar, y viaja a Lanzarote con su amiga Patricia. Con Bárbara Lennie, Leonardo Sbaraglia, Aitana Sánchez-Gijón y Rossy de Palma."},{"title":"El mago del Kremlin","director":"Olivier Assayas","genre":"Thriller, Drama","dur":120,"rating":3.7,"synopsis":"Un spin doctor del Kremlin manipula la realidad política rusa. Con Jude Law y Alicia Vikander."},{"title":"Elegir mi vida","director":"Amélie Bonnin","genre":"Drama","dur":98,"rating":3.5,"synopsis":"Cécile abandona su sueño de abrir un restaurante para cuidar a su padre enfermo. El reencuentro con su primer amor la lleva a cuestionar sus decisiones."},{"title":"Greenland 2: El regreso","director":"Ric Roman Waugh","genre":"Acción, Ciencia ficción","dur":97,"rating":3.1,"synopsis":"La familia Garrity lucha por sobrevivir en un mundo devastado tras el impacto del cometa. Con Gerard Butler."},{"title":"Hoppers","director":"Daniel Chong","genre":"Animación, Aventura","dur":105,"rating":3.8,"synopsis":"Una rana y sus amigos viven aventuras en un mundo de fantasía. Con las voces de Bobby Moynihan, Jon Hamm y Meryl Streep."},{"title":"Kelly Reichardt: Carta blanca","director":"","genre":"Drama, Ciclo","dur":null,"rating":null,"synopsis":"Sesión del ciclo en la Filmoteca Española. Entrada gratuita."},{"title":"La Grazia","director":"Paolo Sorrentino","genre":"Drama","dur":130,"rating":4.0,"synopsis":"El presidente saliente de Italia enfrenta dilemas morales y personales. La nueva obra del director ganador del Oscar."},{"title":"La novia","director":"Maggie Gyllenhaal","genre":"Terror, Drama","dur":125,"rating":3.6,"synopsis":"En el Chicago de los años treinta, un solitario Frankenstein busca crear una compañera con ayuda de una científica. Con Jessie Buckley, Christian Bale y Penélope Cruz."},{"title":"La sonrisa del mal","director":"","genre":"Terror","dur":92,"rating":2.9,"synopsis":"Una psicóloga descubre que la sonrisa de sus pacientes oculta algo terrorífico."},{"title":"La última cena","director":"","genre":"Thriller","dur":105,"rating":3.3,"synopsis":"Una cena entre viejos amigos se convierte en una noche de revelaciones y tensiones mortales."},{"title":"Lillian Hellman: Ficción, memoria y compromiso","director":"","genre":"Documental, Ciclo","dur":null,"rating":null,"synopsis":"Sesión del ciclo en la Filmoteca Española. Entrada gratuita."},{"title":"Perfect Blue (Reestreno)","director":"Satoshi Kon","genre":"Animación, Thriller","dur":81,"rating":4.5,"synopsis":"Mima, estrella del pop, deja su carrera musical para convertirse en actriz. Pronto una presencia siniestra la persigue."},{"title":"Power to the People","director":"","genre":"Documental, Música","dur":110,"rating":3.9,"synopsis":"Los dos conciertos benéficos que John Lennon y Yoko Ono ofrecieron en el Madison Square Garden de Nueva York en 1972."},{"title":"Scream VII","director":"Kevin Williamson","genre":"Terror, Misterio","dur":114,"rating":3.4,"synopsis":"Ghostface regresa para aterrorizar a Sidney Prescott y una nueva generación. Con Neve Campbell y Courteney Cox."},{"title":"Tafiti y sus amigos","director":"","genre":"Animación","dur":78,"rating":3.2,"synopsis":"Un pequeño suricato se embarca en una aventura por la sabana africana con sus inseparables amigos."},{"title":"Torrente Presidente","director":"Santiago Segura","genre":"Comedia","dur":90,"rating":2.5,"synopsis":"Torrente irrumpe en la política española. Santiago Segura recupera a su más famosa creación 12 años después."},{"title":"Una hija en Tokio","director":"","genre":"Drama","dur":108,"rating":3.8,"synopsis":"Una madre viaja a Tokio para reconectar con su hija, que lleva años viviendo en Japón."},{"title":"Whistle: El silbido del mal","director":"Corin Hardy","genre":"Terror","dur":96,"rating":3.0,"synopsis":"Un grupo de adolescentes desata un antiguo mal en un pueblo rural irlandés. Con Dafne Keen y Percy Hynes White."},{"title":"Your Name (Reposición)","director":"Makoto Shinkai","genre":"Animación, Romance","dur":102,"rating":4.4,"synopsis":"Un chico de Tokio y una chica de un pueblo rural descubren que intercambian sus cuerpos mientras duermen."}],"c":["Cine Doré (Filmoteca)","Cines Embajadores","Cines Princesa (Renoir)","Cines Verdi Madrid","Cinesa As Cancelas (Santiago)","Cinesa Equinoccio (Majadahonda)","Cinesa Intu Xanadú (Arroyomolinos)","Cinesa Manoteras","Cinesa Méndez Álvaro","Cinesa Parquesur (Leganés)","Cinesa Proyecciones","Cinesa Príncipe Pío","Renoir Plaza de España","Yelmo Ideal","Yelmo La Vaguada","Yelmo Luxury Palafox","Yelmo Plaza Norte 2 (S.S. Reyes)","Yelmo Plenilunio","Yelmo Tres Aguas (Alcorcón)","mk2 Palacio de Hielo"]};
-const allShowtimes=RAW.s.map(s=>({cinema:s.c,movie:s.m,time:s.t,language:s.l,format:s.f}));
-const allMovies=RAW.m;
-const allCinemas=RAW.c;
-let currentView='movies';
-let voseOnly=false;
+const S=RAW.s,M=RAW.m,C=RAW.c;
+let view='movies',vose=false;
+
+// Gradients for movie poster areas
+const GRADIENTS=[
+  'linear-gradient(135deg,#1a0000 0%,#4a0e0e 30%,#2d0000 100%)',
+  'linear-gradient(135deg,#0a1628 0%,#1e3a5f 40%,#0d1f3c 100%)',
+  'linear-gradient(135deg,#1a1a00 0%,#3d3d0a 30%,#1f1f00 100%)',
+  'linear-gradient(135deg,#0f1a0a 0%,#1e3a12 40%,#0d1f0a 100%)',
+  'linear-gradient(135deg,#1a0a1a 0%,#3d1440 30%,#1f001f 100%)',
+  'linear-gradient(135deg,#0a1a1a 0%,#144040 40%,#001f1f 100%)',
+  'linear-gradient(135deg,#1a1410 0%,#3d2e1a 30%,#1f1500 100%)',
+  'linear-gradient(135deg,#100a1a 0%,#2a1a40 40%,#0f001f 100%)',
+  'linear-gradient(135deg,#1a0a10 0%,#401428 30%,#1f0010 100%)',
+  'linear-gradient(135deg,#0a1018 0%,#142838 40%,#001020 100%)',
+  'linear-gradient(135deg,#181818 0%,#2a2a2a 30%,#111 100%)',
+  'linear-gradient(135deg,#0a0a18 0%,#1a1a38 40%,#000020 100%)',
+  'linear-gradient(135deg,#180a0a 0%,#381a1a 30%,#200000 100%)',
+  'linear-gradient(135deg,#0a180a 0%,#1a381a 40%,#002000 100%)',
+  'linear-gradient(135deg,#18180a 0%,#38381a 30%,#202000 100%)',
+  'linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 40%,#050505 100%)',
+  'linear-gradient(135deg,#180a18 0%,#381a38 30%,#200020 100%)',
+  'linear-gradient(135deg,#0a1810 0%,#1a3828 40%,#002010 100%)',
+  'linear-gradient(135deg,#10180a 0%,#28381a 30%,#102000 100%)',
+];
+
+const gradientMap=new Map();
+let gi=0;
+function getGradient(title){
+  if(!gradientMap.has(title))gradientMap.set(title,GRADIENTS[gi++%GRADIENTS.length]);
+  return gradientMap.get(title);
+}
 
 const cinemaFilter=document.getElementById('cinemaFilter');
-allCinemas.forEach(n=>{const o=document.createElement('option');o.value=n;o.textContent=n;cinemaFilter.appendChild(o)});
+C.forEach(n=>{const o=document.createElement('option');o.value=n;o.textContent=n;cinemaFilter.appendChild(o)});
 cinemaFilter.addEventListener('change',render);
 
-document.querySelectorAll('.view-btn').forEach(btn=>{
+document.querySelectorAll('.pill[data-view]').forEach(btn=>{
   btn.addEventListener('click',()=>{
-    document.querySelectorAll('.view-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.pill[data-view]').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
-    currentView=btn.dataset.view;
+    view=btn.dataset.view;
     render();
   });
 });
 
 document.getElementById('voseToggle').addEventListener('click',function(){
-  voseOnly=!voseOnly;
-  this.classList.toggle('active',voseOnly);
+  vose=!vose;
+  this.classList.toggle('active',vose);
   render();
 });
 
 function getFiltered(){
-  let f=allShowtimes;
-  if(cinemaFilter.value)f=f.filter(s=>s.cinema===cinemaFilter.value);
-  if(voseOnly)f=f.filter(s=>s.language==='VOSE');
+  let f=S;
+  if(cinemaFilter.value)f=f.filter(s=>s.c===cinemaFilter.value);
+  if(vose)f=f.filter(s=>s.l==='VOSE');
   return f;
 }
 
-function renderStats(filtered){
-  const mc=new Set(filtered.map(s=>s.movie)).size;
-  const cc=new Set(filtered.map(s=>s.cinema)).size;
-  const vc=filtered.filter(s=>s.language==='VOSE').length;
-  document.getElementById('stats').innerHTML=`
-    <div class="stat-box"><div class="num">${mc}</div><div class="label">Peliculas</div></div>
-    <div class="stat-box"><div class="num">${filtered.length}</div><div class="label">Sesiones</div></div>
-    <div class="stat-box"><div class="num">${cc}</div><div class="label">Cines</div></div>
-    <div class="stat-box"><div class="num">${vc}</div><div class="label">VOSE</div></div>`;
-}
-
-function render(){
-  const filtered=getFiltered();
-  renderStats(filtered);
-  if(currentView==='movies')renderByMovies(filtered);
-  else renderByCinemas(filtered);
-}
-
-function renderByMovies(filtered){
-  const container=document.getElementById('container');
-  const movieMap=new Map();
-  filtered.forEach(s=>{
-    if(!movieMap.has(s.movie)){
-      const mv=allMovies.find(m=>m.title===s.movie)||{};
-      movieMap.set(s.movie,{...mv,title:s.movie,showtimes:[]});
-    }
-    movieMap.get(s.movie).showtimes.push(s);
-  });
-  if(movieMap.size===0){container.className='empty';container.textContent='No hay sesiones para este filtro.';return}
-  const movies=[...movieMap.values()].sort((a,b)=>(b.rating||0)-(a.rating||0));
-  container.className='grid';
-  container.innerHTML=movies.map(mv=>{
-    const byCinema={};
-    mv.showtimes.forEach(s=>{if(!byCinema[s.cinema])byCinema[s.cinema]=[];byCinema[s.cinema].push(s)});
-    const rH=mv.rating?`<div class="rating">&#9733; ${mv.rating.toFixed(1)}</div>`:'';
-    const meta=[mv.director,mv.genre,mv.dur?mv.dur+' min':null].filter(Boolean);
-    const syn=mv.synopsis?`<div class="synopsis">${esc(mv.synopsis)}</div>`:'';
-    const groups=Object.entries(byCinema).sort((a,b)=>a[0].localeCompare(b[0])).map(([cinema,sts])=>{
-      const chips=sts.sort((a,b)=>a.time.localeCompare(b.time)).map(s=>{
-        let cls='chip';
-        if(s.language==='VOSE')cls+=' vose';
-        if(s.format==='IMAX')cls+=' imax';
-        else if(s.format==='Atmos')cls+=' atmos';
-        else if(s.format==='iSense')cls+=' isense';
-        const lbl=s.time+(s.language==='VOSE'?' VOSE':'')+(s.format!=='2D'?' '+s.format:'');
-        return `<span class="${cls}">${lbl}</span>`;
-      }).join('');
-      return `<div class="cinema-group"><div class="cinema-name">${esc(cinema)}</div><div class="chips">${chips}</div></div>`;
-    }).join('');
-    return `<div class="card"><div class="top"><div class="title">${esc(mv.title)}</div><div class="meta">${esc(meta.join(' \u00B7 '))}</div>${rH}${syn}</div><div class="sessions">${groups}</div></div>`;
-  }).join('');
-}
-
-function renderByCinemas(filtered){
-  const container=document.getElementById('container');
-  const cinemaMap=new Map();
-  filtered.forEach(s=>{
-    if(!cinemaMap.has(s.cinema))cinemaMap.set(s.cinema,[]);
-    cinemaMap.get(s.cinema).push(s);
-  });
-  if(cinemaMap.size===0){container.className='empty';container.textContent='No hay sesiones para este filtro.';return}
-  container.className='grid';
-  container.innerHTML=[...cinemaMap.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([cinema,sts])=>{
-    const byMovie={};
-    sts.forEach(s=>{if(!byMovie[s.movie])byMovie[s.movie]=[];byMovie[s.movie].push(s)});
-    const movieGroups=Object.entries(byMovie).sort((a,b)=>a[0].localeCompare(b[0])).map(([movie,sessions])=>{
-      const mv=allMovies.find(m=>m.title===movie)||{};
-      const metaParts=[mv.director,mv.genre].filter(Boolean);
-      const chips=sessions.sort((a,b)=>a.time.localeCompare(b.time)).map(s=>{
-        let cls='chip';
-        if(s.language==='VOSE')cls+=' vose';
-        if(s.format==='IMAX')cls+=' imax';
-        else if(s.format==='Atmos')cls+=' atmos';
-        else if(s.format==='iSense')cls+=' isense';
-        const lbl=s.time+(s.language==='VOSE'?' VOSE':'')+(s.format!=='2D'?' '+s.format:'');
-        return `<span class="${cls}">${lbl}</span>`;
-      }).join('');
-      return `<div class="movie-in-cinema"><div class="mv-title">${esc(movie)}${mv.rating?' <span style="color:var(--gold)">\u2605 '+mv.rating.toFixed(1)+'</span>':''}</div><div class="mv-meta">${esc(metaParts.join(' \u00B7 '))}</div><div class="chips">${chips}</div></div>`;
-    }).join('');
-    return `<div class="card"><div class="top"><div class="title">${esc(cinema)}</div><div class="meta">${sts.length} sesiones \u00B7 ${Object.keys(byMovie).length} peliculas</div></div><div class="sessions">${movieGroups}</div></div>`;
-  }).join('');
+function renderStats(f){
+  const mc=new Set(f.map(s=>s.m)).size;
+  const cc=new Set(f.map(s=>s.c)).size;
+  const vc=f.filter(s=>s.l==='VOSE').length;
+  document.getElementById('stats').innerHTML=
+    `<div class="stat"><strong>${mc}</strong>Peliculas</div>`+
+    `<div class="stat"><strong>${f.length}</strong>Sesiones</div>`+
+    `<div class="stat"><strong>${cc}</strong>Cines</div>`+
+    `<div class="stat"><strong>${vc}</strong>VOSE</div>`;
 }
 
 function esc(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
+function render(){
+  const f=getFiltered();
+  renderStats(f);
+  if(view==='movies')renderMovies(f);
+  else renderCinemas(f);
+}
+
+function renderMovies(f){
+  const container=document.getElementById('container');
+  const map=new Map();
+  f.forEach(s=>{
+    if(!map.has(s.m)){
+      const mv=M.find(x=>x.title===s.m)||{};
+      map.set(s.m,{...mv,title:s.m,sts:[]});
+    }
+    map.get(s.m).sts.push(s);
+  });
+  if(!map.size){container.className='empty';container.textContent='No hay sesiones con estos filtros';return}
+  const movies=[...map.values()].sort((a,b)=>(b.rating||0)-(a.rating||0));
+  container.className='grid';
+  container.innerHTML=movies.map(mv=>{
+    const byCinema={};
+    mv.sts.forEach(s=>{(byCinema[s.c]=byCinema[s.c]||[]).push(s)});
+    const meta=[mv.director,mv.genre,mv.dur?mv.dur+' min':''].filter(Boolean).join(' · ');
+    const rating=mv.rating?`★ ${mv.rating.toFixed(1)}`:'';
+    const groups=Object.entries(byCinema).sort((a,b)=>a[0].localeCompare(b[0])).map(([cinema,sts])=>{
+      const chips=sts.sort((a,b)=>a.t.localeCompare(b.t)).map(s=>{
+        let cls='time-chip';
+        if(s.l==='VOSE')cls+=' vose';
+        if(s.f==='IMAX')cls+=' imax';
+        else if(s.f==='Atmos')cls+=' atmos';
+        return`<span class="${cls}">${s.t}${s.l==='VOSE'?' VOSE':''}${s.f!=='2D'?' '+s.f:''}</span>`;
+      }).join('');
+      return`<div class="cinema-group"><div class="cinema-label">${esc(cinema)}</div><div class="time-chips">${chips}</div></div>`;
+    }).join('');
+    return`<div class="movie-card">
+      <div class="poster-area">
+        <div class="poster-gradient" style="background:${getGradient(mv.title)}"></div>
+        <div class="poster-director">${esc(mv.director)}</div>
+        <div class="poster-rating">${rating}</div>
+        <div class="poster-title">${esc(mv.title)}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">${esc(meta)}</div>
+        <div class="card-synopsis">${esc(mv.synopsis)}</div>
+      </div>
+      <div class="sessions-wrap">${groups}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderCinemas(f){
+  const container=document.getElementById('container');
+  const map=new Map();
+  f.forEach(s=>{(map.has(s.c)?map.get(s.c):map.set(s.c,[]).get(s.c)).push(s)});
+  if(!map.size){container.className='empty';container.textContent='No hay sesiones con estos filtros';return}
+  container.className='';
+  container.innerHTML=[...map.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([cinema,sts])=>{
+    const byMovie={};
+    sts.forEach(s=>{(byMovie[s.m]=byMovie[s.m]||[]).push(s)});
+    const rows=Object.entries(byMovie).sort((a,b)=>a[0].localeCompare(b[0])).map(([movie,sessions])=>{
+      const mv=M.find(x=>x.title===movie)||{};
+      const chips=sessions.sort((a,b)=>a.t.localeCompare(b.t)).map(s=>{
+        let cls='time-chip';
+        if(s.l==='VOSE')cls+=' vose';
+        if(s.f==='IMAX')cls+=' imax';
+        else if(s.f==='Atmos')cls+=' atmos';
+        return`<span class="${cls}">${s.t}${s.l==='VOSE'?' VOSE':''}${s.f!=='2D'?' '+s.f:''}</span>`;
+      }).join('');
+      return`<div class="movie-row">
+        <div class="movie-row-title">${esc(movie)}</div>
+        <div class="movie-row-rating">${mv.rating?'★ '+mv.rating.toFixed(1):''}</div>
+        <div class="movie-row-times">${chips}</div>
+      </div>`;
+    }).join('');
+    return`<div class="cinema-card">
+      <div class="cinema-header">
+        <div class="cinema-title">${esc(cinema)}</div>
+        <div class="cinema-count">${sts.length} sesiones · ${Object.keys(byMovie).length} peliculas</div>
+      </div>
+      ${rows}
+    </div>`;
+  }).join('');
+}
+
 render();
 </script>
 </body>
