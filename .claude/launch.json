@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dragon-comecocos",
+      "runtimeExecutable": "/usr/bin/python3",
+      "runtimeArgs": ["/tmp/serve_dragon.py"],
+      "port": 8080
+    },
+    {
+      "name": "war-zone",
+      "runtimeExecutable": "/usr/bin/ruby",
+      "runtimeArgs": ["/tmp/serve_warzone.rb", "/tmp"],
+      "port": 8765,
+      "autoPort": true
+    }
+  ]
+}

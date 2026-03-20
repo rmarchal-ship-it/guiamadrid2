@@ -1,0 +1,20 @@
+{
+  "run_date": "2026-03-19",
+  "months": "v12g PIT (24m)",
+  "cagr": 9.39,
+  "max_dd": 40.56,
+  "profit_factor": 1.26,
+  "total_trades": 158,
+  "stock_trades": 144,
+  "option_trades": 14,
+  "win_rate": 33.5,
+  "final_equity": 11966.51,
+  "pit_filtered": 121,
+  "pit_passed": 295,
+  "gold_cagr": 15.99,
+  "gold_max_dd": 18.6,
+  "gold_equity": 13185.56,
+  "baseline_cagr": 33.55052434634298,
+  "baseline_pf": 1.4122193720629597,
+  "baseline_dd": 26.158381422991056
+}

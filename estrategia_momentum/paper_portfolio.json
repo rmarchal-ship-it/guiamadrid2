@@ -1,7 +1,8 @@
 {
   "created": "2026-02-10T23:20:05.761992",
   "initial_capital": 10000.0,
-  "cash": 3096.53,
+  "cash": 7433.57,
+  "cash_fix_note": "18-mar-2026: Corregido de 3096.53. Las ventas no se sumaban al cash. Recalculado: 10000 - 20923.26 (compras) + 18356.83 (ventas) = 7433.57.",
   "margin_note": "Cash negativo = uso de margen DEGIRO. Coherente con cuenta real (margen libre EUR 11,257).",
   "option_rules": {
     "max_us_option_slots": 2,
@@ -43,15 +44,15 @@
       "fx_entry": 1.1802,
       "entry_atr": 0.4,
       "R": 0.8,
-      "trailing_stop": 20.74,
+      "trailing_stop": 22.72,
       "trailing_active": true,
       "trailing_activated_date": "2026-03-03",
       "trailing_activated_at_r": 2.0,
-      "highest_since": 22.44,
-      "max_r_mult": 2.54,
-      "current_r_mult": 2.54,
-      "current_price_12mar": 22.22,
-      "bars_held": 8,
+      "highest_since": 25.19,
+      "max_r_mult": 11.96,
+      "current_r_mult": 11.96,
+      "current_price_19mar": 24.98,
+      "bars_held": 14,
       "costs": {
         "commission": 2.0,
         "autofx": 4.27,
@@ -59,8 +60,8 @@
         "note": "DEGIRO US ADR (NYSE, XNYS) + AutoFX. 5 lotes: 9+18+1+20+52=100 uds. Verificado DEGIRO 2-mar."
       },
       "last_bar_date": "2026-03-12",
-      "sl_order": "$20.74 (100 uds) — verificado DEGIRO 10-mar. High subio a $22.44, Chandelier 4xATR=$19.65, 3xATR=$20.34. SL $20.74 sigue siendo el mas alto -> no mover.",
-      "time_exit_note": "Day 8 alcanzado. Trailing 3xATR activo pero $20.34 < SL actual $20.74. SL protege +0.69R minimo.",
+      "sl_order": "$22.72 (100 uds) — actualizado DEGIRO 19-mar. Chandelier 3xATR desde high $25.19 = $22.71. Protege +6.33R minimo.",
+      "time_exit_note": "Day 14. Time exit day 8 superado. Trailing 3xATR unico mecanismo de salida activo.",
       "scanner_note": "Senal scanner 27-feb score 41 (WDS.AX). Comprado como ADR (WDS) en NYSE via DEGIRO.",
       "option_eligible": false
     }
@@ -462,8 +463,8 @@
   "dividends_total_eur": 122.31,
   "dividends_note": "Total pendiente EUR 122.31 (BHP EUR 71.49 + WDS EUR 50.82). Cobro 26-27 mar 2026.",
   "last_scan": "2026-03-12T12:32:00",
-  "last_update": "2026-03-12T12:32:00",
-  "last_update_note": "12-mar-2026 13:00: CERRADAS AI.PA (-EUR 118.92, -1.66R) y NESN.SW (-EUR 89.09, -0.99R) por time exit manual. Ambas debian cerrarse day 8 (10-mar) por trailing 3xATR. Solo queda WDS (+2.54R, SL $20.74). Cash EUR 3,096.53. Total cerradas 9: 3W/6L, PnL -EUR 863. Dividendos pendientes EUR 122.31.",
+  "last_update": "2026-03-19T15:00:00",
+  "last_update_note": "19-mar-2026: WDS +9.3% hoy ($24.98, high $25.19, +11.96R). SL subido $20.74 -> $22.72 en DEGIRO (Chandelier 3xATR). Protege +6.33R minimo. Day 14. Macro BEAR. Dividendos EUR 122.31 pendientes (cobro 26-27 mar).",
   "degiro_snapshot_6mar": {
     "valor_cartera": 51716.61,
     "cash": -29338.98,

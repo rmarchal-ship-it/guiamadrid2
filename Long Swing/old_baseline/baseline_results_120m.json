@@ -1,0 +1,14 @@
+{
+  "final": 73992.0,
+  "cagr": 19.9,
+  "dd": -20.9,
+  "wr": 47.6,
+  "trades": 124,
+  "pf": 3.47,
+  "skipped": 753,
+  "avg_hold_d": 114.6,
+  "n_pyr": 32,
+  "lookback_months": 120,
+  "run_date": "2026-03-17",
+  "universe": "76 tickers (fixed)"
+}

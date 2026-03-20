@@ -97,7 +97,7 @@ OPTIONS_ELIGIBLE = [
     'BABA', 'JD', 'PDD', 'BIDU',
     # ETFs
     'QQQ', 'SPY', 'IWM', 'DIA', 'GLD', 'SLV', 'XLE', 'TLT',
-    'TQQQ', 'SPXL', 'TNA', 'BITO',
+    'TQQQ', 'SPXL', 'TNA',  # BITO excluido: cripto ETF con IV extrema, siempre stock
     'SMH', 'XBI', 'XLU', 'XLI', 'XLF', 'XLV',
     'EEM', 'EFA', 'HYG',
 ]

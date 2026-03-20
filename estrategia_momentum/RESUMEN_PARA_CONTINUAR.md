@@ -219,7 +219,11 @@ estrategia_momentum/
 │   ├── backtest_v12_eu_options.py         ← BACKTEST v12: v8 + opciones EU (2+2 slots separados)
 │   ├── backtest_v12_montecarlo.py         ← Validacion Monte Carlo v12 (3 tests, 10K sims)
 │   ├── backtest_v12_40y.py               ← Test DEFINITIVO v12 a 40 años (^GSPC + GC=F)
+│   ├── backtest_v13_eu_expanded.py        ← v13 EU Expanded (DESCARTADO — bancos+telcos empeoran)
 │   ├── backtest_v13_rolling.py            ← v13 Rolling Thunder (DESCARTADO — rolar opciones ganadoras)
+│   ├── test_v14_universo_abierto.py       ← v14 Universo Abierto (SP500+NDX+ETFs + filtro vol)
+│   ├── data_eodhd.py                      ← Fuente de datos EODHD (alternativa a yfinance)
+│   ├── data_cache/                        ← Cache de datos descargados (parquet por ticker)
 │   ├── backtest_time_adjusted.py          ← v8 con delay 1-bar (alineado con paper trading)
 │   ├── momentum_breakout.py               ← Motor de senales (MomentumEngine, 225 tickers)
 │   ├── paper_trading.py                   ← Paper trading v3.0. Ejecutar con --scan
@@ -1370,6 +1374,7 @@ Nota: audit corre sobre v8 base (sin EU options). Valida el motor core que es id
 
 
 ### Alta prioridad:
+- **v14 Universo Abierto con filtro de volatilidad** — EN PROGRESO (17 Mar 2026). Test con S&P500, NDX100, ETFs a 24m con filtro vol>25%. Archivo: `test_v14_universo_abierto.py`. Si funciona, elimina sesgo de seleccion del universo 225.
 - **Opcion B: Trailing adaptativo** (ajustar ATR mult segun volatilidad del mercado) — ataca los años con WR<17%
 - **Opcion D: Sizing dinamico** (reducir tamaño en alta volatilidad) — complementario a B
 - Alertas por email/Telegram cuando hay senal
@@ -1388,6 +1393,7 @@ Nota: audit corre sobre v8 base (sin EU options). Valida el motor core que es id
 - ~~v8.1 Exencion macro~~ (peor MaxDD a 36m)
 - ~~Gold allocation diferente a 30%~~ (grid 15-50% probado, 30% optimo a 240m)
 - ~~v13 Rolling Thunder~~ (rolar opciones ganadoras a 45 DTE — bloquea slots, peor a 240m)
+- ~~v13 EU Expanded (bancos+telcos)~~ (24 tickers extra → CAGR +21.8% vs +45.4%, MaxDD -64.5%)
 
 ### Baja prioridad:
 - Sector rotation
@@ -1406,11 +1412,21 @@ Prompt sugerido:
 >
 > **Paper trading activo** (13 Mar 2026): 1 posicion abierta (WDS +2.54R, SL $20.74), 9 cerradas (3W/6L, PnL EUR -863). Cash EUR 3,097. Dividendos pendientes EUR 122 (BHP+WDS, cobro 26-27 mar). Macro **BEAR** — no abrir nuevas. Ver `paper_portfolio.json` para detalle.
 >
+> **Trabajo reciente (17 Mar 2026)**:
+> - Cache de datos implementado (parquet, `data_cache/`)
+> - EODHD integrado como fuente alternativa (`data_eodhd.py`, `--data-source eodhd`)
+> - v13 EU Expanded (bancos+telcos) DESCARTADO (CAGR +21.8% vs +45.4%)
+> - Analisis sesgo universo 225 tickers: sesgo moderado, mega-winners conocidos
+> - **Descubrimiento clave**: señales con vol >27% dan PF 3.04 vs PF 1.37 en vol <22%
+> - v14 Universo Abierto: test en curso (`test_v14_universo_abierto.py`) — S&P500+NDX100+ETFs con filtro vol>25% a 24m
+>
 > **Precauciones DEGIRO**: (1) SL pueden borrarse sin aviso — verificar diariamente. (2) yfinance unreliable para tickers EU/JP/AX — usar precios DEGIRO reales. (3) Motor correcto para v12 es `backtest_v12_eu_options.py` (4 slots: 2US+2EU), NO `backtest_experimental.py --test b` (solo 2 US → 15pp menos CAGR).
 >
 > Archivos activos (`estrategia_momentum/`):
-> - `backtest_experimental.py` — backtest v8 principal (NO usar para v12)
-> - `backtest_v12_eu_options.py` — backtest v12 (acepta --gold, --multi-period, --months)
+> - `backtest_experimental.py` — backtest v8 principal (NO usar para v12) + cache system
+> - `backtest_v12_eu_options.py` — backtest v12 (acepta --gold, --multi-period, --months, --data-source, --save-cache, --export-csv)
+> - `test_v14_universo_abierto.py` — test universo abierto con filtro volatilidad
+> - `data_eodhd.py` — fuente EODHD (alternativa yfinance)
 > - `momentum_breakout.py` — motor de senales, 225 tickers
 > - `paper_trading.py` — paper trading v3.0
 > - `run_scanner.py` — scanner/radar
@@ -1422,11 +1438,86 @@ Prompt sugerido:
 
 ---
 
-*Ultima actualizacion: 13 Mar 2026 — Paper trading: 1 pos abierta (WDS +2.54R, SL $20.74), 9 cerradas (3W/6L, PnL EUR -863). Cerrados desde 9-mar: PSA trailing breakeven (+EUR 26), 6861.T SL gap (-EUR 430), AI.PA time exit (-EUR 119), NESN.SW time exit (-EUR 89). Dividendos pendientes EUR 122 (BHP+WDS). Macro BEAR. Cash EUR 3,097. ERRATA Cowork: ver seccion 27.*
+*Ultima actualizacion: 17 Mar 2026 — Sesion: cache de datos implementado, EODHD integrado como fuente alternativa (14 fallbacks Yahoo), v13 EU expanded DESCARTADO (CAGR +21.8% vs +45.4%), analisis sesgo de supervivencia del universo 225 tickers, analisis de perfil de señales por volatilidad, test v14 universo abierto en progreso (S&P500+NDX100+ETFs con filtro vol>25%).*
 
 ---
 
-## 27. ERRATA INFORME COWORK — CAGR 120m (4 Mar 2026)
+## 27. CACHE DE DATOS + EODHD (16-17 Mar 2026)
+
+### Sistema de cache
+Implementado en `backtest_experimental.py`: `save_data_cache()`, `load_data_cache()`, `list_data_caches()`.
+Formato: parquet por ticker en `data_cache/YYYY-MM-DD_{months}m_{source}/`.
+
+Caches disponibles:
+- `data_cache/2026-03-16_120m/` — Yahoo, 224 tickers
+- `data_cache/2026-03-16_240m/` — Yahoo, 217 tickers
+- `data_cache/2026-03-17_120m_eodhd/` — EODHD, 225 tickers (14 fallback Yahoo)
+- `data_cache/2026-03-17_120m_yahoo/` — Yahoo, 247 tickers (para v13)
+
+### EODHD como fuente alternativa
+Archivo: `data_eodhd.py`. API key: configurada en `.env`.
+- US tickers: identicos a Yahoo (diferencias <0.1%)
+- EU tickers: EODHD mas fiable (ULVR.L tiene error de split 40% en Yahoo, BHP.AX falla en Yahoo a 240m)
+- Japan (.T): NO disponible en plan EODHD → fallback a Yahoo (14 tickers)
+- Integrado en `backtest_v12_eu_options.py` via `--data-source eodhd`
+
+### v12 EODHD vs Yahoo @ 120m
+Resultados practicamente identicos. Diferencias menores en señales EU por ajuste de splits diferente.
+
+---
+
+## 28. ANALISIS SESGO UNIVERSO 225 TICKERS (17 Mar 2026)
+
+### Sesgo de supervivencia
+El universo de 225 tickers tiene **sesgo moderado-alto** de seleccion:
+- **Mega-winners conocidos**: NVDA (200x), TSLA (150x), AMD (100x), META, CRM, NOW
+- **Post-2014 IPOs**: PDD (2018), BITO (2021), BABA (2014), JD (2014), META (2012), NOW (2012)
+- **Sectores ausentes**: airlines 0, acero 0, shipping 0, homebuilders 0, gaming 0, solar puro 0
+- **Mitigantes**: incluye laggards (INTC, CSCO, IBM), defensivos (utilities, REITs, bonds)
+
+A **120m**: sesgo bajo (casi todos existian en 2016). A **240m**: 6-7 tickers con look-ahead bias directo.
+
+### v13 EU Expanded — DESCARTADO (17 Mar 2026)
+Archivo: `backtest_v13_eu_expanded.py`. 249 tickers (+24 bancos/telcos).
+Resultados catastroficos: CAGR +21.8% (vs +45.4%), MaxDD -64.5% (vs -33.5%).
+Las 730 señales extra de baja calidad desplazaron trades mejores del universo original.
+
+### Perfil de señales ganadoras — VOLATILIDAD (17 Mar 2026)
+Analisis por quintil de volatilidad anualizada 60d pre-señal:
+
+| Quintil Vol | Trades | WR | PF | Exp/trade | Total PnL |
+|-------------|--------|-----|-----|-----------|-----------|
+| Q1 (3-17%) | 116 | 37.1% | 1.29 | EUR 6 | EUR 692 |
+| Q2 (17-22%) | 115 | 26.1% | 1.42 | EUR 9 | EUR 1,048 |
+| **Q3 (22-27%)** | 115 | 29.6% | **2.88** | EUR 41 | EUR 4,740 |
+| Q4 (27-37%) | 115 | 24.3% | 1.19 | EUR 7 | EUR 834 |
+| **Q5 (37-183%)** | 116 | 35.3% | **5.66** | **EUR 125** | **EUR 14,514** |
+
+**Hallazgo clave**: Vol >27% = PF 3.04, Exp EUR 66/trade (71% del PnL total, 41% de los trades).
+Vol <22% = PF 1.37, Exp EUR 8/trade (apenas edge).
+
+**Explicacion**: Momentum breakout es estrategia de convexidad. Necesita volatilidad para que los breakouts produzcan movimientos grandes. En acciones "tranquilas", el breakout se agota rapidamente.
+
+### Señales US vs EU (solo acciones, 120m)
+
+| Region | Trades | WR | PF | Exp/trade | Total PnL |
+|--------|--------|-----|-----|-----------|-----------|
+| **US** | 412 | 31.6% | **2.39** | **EUR 35** | EUR 14,567 |
+| EU | 165 | 23.6% | 1.70 | EUR 21 | EUR 3,465 |
+| Asia-Pac | 66 | 27.3% | **3.06** | **EUR 46** | EUR 3,066 |
+
+US claramente superior en fiabilidad. Opciones US: PF 2.24 (+EUR 43K). Opciones EU: PF 0.89 (-EUR 2.4K).
+
+### Propuesta: Filtro de volatilidad ex-ante (v14)
+**Regla**: Solo tomar señales donde vol anualizada 60d > 25%.
+- Sistematico (calculable en el momento de la señal)
+- Auto-adaptativo (un banco en crisis SÍ genera señales si su vol sube)
+- Permite abrir el universo a CUALQUIER accion liquida
+- Archivo test: `test_v14_universo_abierto.py` — S&P500, NDX100, ETFs, v12 ref a 24m
+
+---
+
+## 29. ERRATA INFORME COWORK — CAGR 120m (4 Mar 2026)
 
 **Error detectado en**: `analisis_v12_momentum_breakout.html` (informe Cowork, Mar 2026)
 

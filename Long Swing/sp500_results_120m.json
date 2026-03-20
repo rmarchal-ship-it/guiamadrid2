@@ -1,0 +1,26 @@
+{
+  "lookback_months": 120,
+  "run_date": "2026-03-18",
+  "equity": 63664.25,
+  "cagr": 18.16,
+  "max_dd": -8.79,
+  "pf": 4.88,
+  "trades": 56,
+  "wins": 24,
+  "losses": 32,
+  "wr": 42.9,
+  "spy_cagr": 14.72,
+  "alpha": 3.45,
+  "universe_start": 508,
+  "universe_end": 503,
+  "tickers_downloaded": 696,
+  "tickers_failed": 6,
+  "failed_tickers": [
+    "BF.B",
+    "BRK.B",
+    "CDAY",
+    "Q",
+    "RE",
+    "SPLS"
+  ]
+}

@@ -23,12 +23,18 @@ import requests
 import pandas as pd
 from datetime import datetime, timedelta
 
-# .env support (opcional)
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except ImportError:
-    pass
+# .env support — leer manualmente (no requiere python-dotenv)
+def _load_env():
+    env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env')
+    if os.path.exists(env_path):
+        with open(env_path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, val = line.split('=', 1)
+                    os.environ.setdefault(key.strip(), val.strip())
+
+_load_env()
 
 EODHD_API_KEY = os.environ.get('EODHD_API_KEY')
 EODHD_BASE_URL = 'https://eodhd.com/api/eod'
@@ -96,10 +102,7 @@ def download_data_eodhd(ticker, months):
     o None si falla.
     """
     if not EODHD_API_KEY:
-        raise ValueError(
-            "EODHD_API_KEY no configurada. "
-            "Usa: export EODHD_API_KEY=tu_key (o crea .env)"
-        )
+        return None  # Sin key, devolver None para permitir fallback a Yahoo
 
     eodhd_ticker = yahoo_to_eodhd(ticker)
 
