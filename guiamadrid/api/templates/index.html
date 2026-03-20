@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía del Ocio Madrid — Cartelera</title>
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --card: #1a1a2e;
+    --accent: #e94560;
+    --text: #eee;
+    --muted: #888;
+    --border: #2a2a3e;
+    --gold: #f5c518;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 1.5rem 2rem;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  header h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  header h1 span { color: var(--accent); }
+  .controls {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .controls label { font-size: 0.85rem; color: var(--muted); }
+  .controls input[type="date"],
+  .controls select {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.9rem;
+  }
+  .tabs {
+    display: flex;
+    gap: 0;
+    margin: 1.5rem 2rem 0;
+  }
+  .tab {
+    padding: 0.6rem 1.4rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-bottom: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--muted);
+    border-radius: 8px 8px 0 0;
+    transition: all 0.2s;
+  }
+  .tab.active {
+    background: var(--bg);
+    color: var(--text);
+    border-color: var(--accent);
+    border-bottom-color: var(--bg);
+  }
+  .content {
+    padding: 1.5rem 2rem;
+  }
+  .stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.8rem 1.2rem;
+    min-width: 120px;
+  }
+  .stat-box .num {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-box .label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  /* Movie cards */
+  .movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.2rem;
+  }
+  .movie-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+  .movie-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+  }
+  .movie-card .top {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .movie-card .poster {
+    width: 90px;
+    height: 130px;
+    border-radius: 6px;
+    object-fit: cover;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+  .movie-card .poster-placeholder {
+    width: 90px;
+    height: 130px;
+    border-radius: 6px;
+    background: var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+  .movie-card .info { flex: 1; min-width: 0; }
+  .movie-card .title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+  }
+  .movie-card .meta {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .movie-card .rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+  }
+  .movie-card .showtimes-section {
+    border-top: 1px solid var(--border);
+    padding: 0.8rem 1rem;
+  }
+  .movie-card .cinema-group { margin-bottom: 0.6rem; }
+  .movie-card .cinema-group:last-child { margin-bottom: 0; }
+  .movie-card .cinema-name {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-bottom: 0.3rem;
+  }
+  .time-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  .chip {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+  .chip.vose { border-color: #4caf50; color: #81c784; }
+  .chip.imax { border-color: #2196f3; color: #64b5f6; }
+  .chip.atmos { border-color: #9c27b0; color: #ce93d8; }
+  .chip.three-d { border-color: #ff9800; color: #ffb74d; }
+
+  /* Cinemas tab */
+  .cinemas-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .cinema-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+  }
+  .cinema-card h3 { font-size: 1rem; margin-bottom: 0.3rem; }
+  .cinema-card .addr { font-size: 0.8rem; color: var(--muted); }
+  .cinema-card .ext-id { font-size: 0.75rem; color: var(--accent); margin-top: 0.2rem; }
+
+  .loading {
+    text-align: center;
+    padding: 3rem;
+    color: var(--muted);
+    font-size: 1.1rem;
+  }
+  .empty {
+    text-align: center;
+    padding: 3rem;
+    color: var(--muted);
+  }
+  .error {
+    background: #2a0a0a;
+    border: 1px solid #e94560;
+    border-radius: 8px;
+    padding: 1rem;
+    color: #e94560;
+    margin: 1rem 0;
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 0.35rem 0.9rem;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+  }
+  .filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span>Guia</span>Madrid — Cartelera</h1>
+  <div class="controls">
+    <label>Fecha:</label>
+    <input type="date" id="datePicker">
+    <select id="cinemaFilter">
+      <option value="">Todos los cines</option>
+    </select>
+  </div>
+</header>
+
+<div class="tabs">
+  <div class="tab active" data-tab="peliculas">Peliculas</div>
+  <div class="tab" data-tab="cines">Cines</div>
+</div>
+
+<div class="content">
+  <div id="peliculas-tab">
+    <div class="stats" id="stats"></div>
+    <div class="filter-bar" id="lang-filters"></div>
+    <div id="movies-container" class="loading">Cargando cartelera...</div>
+  </div>
+  <div id="cines-tab" style="display:none">
+    <div id="cinemas-container" class="loading">Cargando cines...</div>
+  </div>
+</div>
+
+<script>
+const API = window.location.origin;
+let allShowtimes = [];
+let allMovies = [];
+let allCinemas = [];
+let activeLanguageFilter = '';
+
+// Date picker
+const datePicker = document.getElementById('datePicker');
+const today = new Date().toISOString().split('T')[0];
+datePicker.value = today;
+datePicker.addEventListener('change', () => loadData());
+
+// Tabs
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const name = tab.dataset.tab;
+    document.getElementById('peliculas-tab').style.display = name === 'peliculas' ? '' : 'none';
+    document.getElementById('cines-tab').style.display = name === 'cines' ? '' : 'none';
+    if (name === 'cines' && allCinemas.length === 0) loadCinemas();
+  });
+});
+
+// Cinema filter
+const cinemaFilter = document.getElementById('cinemaFilter');
+cinemaFilter.addEventListener('change', () => renderMovies());
+
+async function fetchJSON(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+
+async function loadData() {
+  const fecha = datePicker.value;
+  const container = document.getElementById('movies-container');
+  container.className = 'loading';
+  container.textContent = 'Cargando cartelera...';
+
+  try {
+    const [stData, mvData] = await Promise.all([
+      fetchJSON(`${API}/api/showtimes?fecha=${fecha}`),
+      fetchJSON(`${API}/api/movies?fecha=${fecha}`),
+    ]);
+    allShowtimes = stData.showtimes;
+    allMovies = mvData.movies;
+
+    // Populate cinema filter
+    const cinemaNames = [...new Set(allShowtimes.map(s => s.cinema))].sort();
+    cinemaFilter.innerHTML = '<option value="">Todos los cines</option>';
+    cinemaNames.forEach(name => {
+      const opt = document.createElement('option');
+      opt.value = name;
+      opt.textContent = name;
+      cinemaFilter.appendChild(opt);
+    });
+
+    renderStats();
+    renderLanguageFilters();
+    renderMovies();
+  } catch (err) {
+    container.innerHTML = `<div class="error">Error cargando datos: ${err.message}</div>`;
+  }
+}
+
+function renderStats() {
+  const cinemaCount = new Set(allShowtimes.map(s => s.cinema)).size;
+  const voseCount = allShowtimes.filter(s => s.language === 'VOSE').length;
+  document.getElementById('stats').innerHTML = `
+    <div class="stat-box"><div class="num">${allMovies.length}</div><div class="label">Peliculas</div></div>
+    <div class="stat-box"><div class="num">${allShowtimes.length}</div><div class="label">Sesiones</div></div>
+    <div class="stat-box"><div class="num">${cinemaCount}</div><div class="label">Cines</div></div>
+    <div class="stat-box"><div class="num">${voseCount}</div><div class="label">VOSE</div></div>
+  `;
+}
+
+function renderLanguageFilters() {
+  const langs = [...new Set(allShowtimes.map(s => s.language))].sort();
+  const bar = document.getElementById('lang-filters');
+  bar.innerHTML = `<div class="filter-btn ${activeLanguageFilter === '' ? 'active' : ''}" data-lang="">Todos</div>`;
+  langs.forEach(lang => {
+    bar.innerHTML += `<div class="filter-btn ${activeLanguageFilter === lang ? 'active' : ''}" data-lang="${lang}">${lang}</div>`;
+  });
+  bar.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeLanguageFilter = btn.dataset.lang;
+      renderLanguageFilters();
+      renderMovies();
+    });
+  });
+}
+
+function renderMovies() {
+  const container = document.getElementById('movies-container');
+  const selectedCinema = cinemaFilter.value;
+
+  // Filter showtimes
+  let filtered = allShowtimes;
+  if (selectedCinema) filtered = filtered.filter(s => s.cinema === selectedCinema);
+  if (activeLanguageFilter) filtered = filtered.filter(s => s.language === activeLanguageFilter);
+
+  // Group by movie
+  const movieMap = new Map();
+  filtered.forEach(s => {
+    if (!movieMap.has(s.movie)) {
+      const mv = allMovies.find(m => m.title === s.movie) || {};
+      movieMap.set(s.movie, { ...mv, title: s.movie, showtimes: [] });
+    }
+    movieMap.get(s.movie).showtimes.push(s);
+  });
+
+  if (movieMap.size === 0) {
+    container.className = 'empty';
+    container.textContent = 'No hay sesiones para esta fecha / filtro.';
+    return;
+  }
+
+  // Sort by rating desc
+  const movies = [...movieMap.values()].sort((a, b) => (b.rating || 0) - (a.rating || 0));
+
+  container.className = 'movies-grid';
+  container.innerHTML = movies.map(mv => {
+    // Group showtimes by cinema
+    const byCinema = {};
+    mv.showtimes.forEach(s => {
+      if (!byCinema[s.cinema]) byCinema[s.cinema] = [];
+      byCinema[s.cinema].push(s);
+    });
+
+    const posterHtml = mv.poster_url
+      ? `<img class="poster" src="${mv.poster_url}" alt="${esc(mv.title)}" loading="lazy" onerror="this.outerHTML='<div class=poster-placeholder>&#x1f3ac;</div>'">`
+      : `<div class="poster-placeholder">&#x1f3ac;</div>`;
+
+    const ratingHtml = mv.rating
+      ? `<div class="rating">&#9733; ${mv.rating.toFixed(1)}</div>`
+      : '';
+
+    const metaParts = [
+      mv.director,
+      mv.genre,
+      mv.duration_min ? `${mv.duration_min} min` : null,
+    ].filter(Boolean);
+
+    const cinemaGroups = Object.entries(byCinema).map(([cinema, sts]) => {
+      const chips = sts
+        .sort((a, b) => a.time.localeCompare(b.time))
+        .map(s => {
+          let cls = 'chip';
+          if (s.language === 'VOSE') cls += ' vose';
+          if (s.format === 'IMAX') cls += ' imax';
+          else if (s.format === 'Atmos') cls += ' atmos';
+          else if (s.format === '3D') cls += ' three-d';
+          const label = s.time + (s.language === 'VOSE' ? ' VOSE' : '') + (s.format !== '2D' ? ' ' + s.format : '');
+          return `<span class="${cls}">${label}</span>`;
+        }).join('');
+      return `<div class="cinema-group"><div class="cinema-name">${esc(cinema)}</div><div class="time-chips">${chips}</div></div>`;
+    }).join('');
+
+    return `
+      <div class="movie-card">
+        <div class="top">
+          ${posterHtml}
+          <div class="info">
+            <div class="title">${esc(mv.title)}</div>
+            <div class="meta">${esc(metaParts.join(' · '))}</div>
+            ${ratingHtml}
+          </div>
+        </div>
+        <div class="showtimes-section">${cinemaGroups}</div>
+      </div>`;
+  }).join('');
+}
+
+async function loadCinemas() {
+  const container = document.getElementById('cinemas-container');
+  try {
+    const data = await fetchJSON(`${API}/api/cinemas`);
+    allCinemas = data.cinemas;
+    if (allCinemas.length === 0) {
+      container.className = 'empty';
+      container.textContent = 'No hay cines en la base de datos.';
+      return;
+    }
+    container.className = 'cinemas-list';
+    container.innerHTML = allCinemas.map(c => `
+      <div class="cinema-card">
+        <h3>${esc(c.name)}</h3>
+        <div class="addr">${esc(c.address || 'Direccion no disponible')}</div>
+        <div class="ext-id">${esc(c.external_id)}</div>
+      </div>
+    `).join('');
+  } catch (err) {
+    container.innerHTML = `<div class="error">Error: ${err.message}</div>`;
+  }
+}
+
+function esc(s) {
+  if (!s) return '';
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+// Initial load
+loadData();
+</script>
+</body>
+</html>

@@ -1,9 +1,11 @@
 """FastAPI server for Guía del Ocio Madrid."""
 
 from datetime import date
+from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
 
 from guiamadrid.db.database import (
     get_cinemas,
@@ -11,6 +13,8 @@ from guiamadrid.db.database import (
     get_showtimes_for_date,
     init_db,
 )
+
+TEMPLATES_DIR = Path(__file__).parent / "templates"
 
 app = FastAPI(
     title="Guía del Ocio Madrid",
@@ -31,8 +35,15 @@ def startup():
     init_db()
 
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 def root():
+    """Serve the main HTML frontend."""
+    html_file = TEMPLATES_DIR / "index.html"
+    return HTMLResponse(html_file.read_text(encoding="utf-8"))
+
+
+@app.get("/api/health")
+def health():
     return {"service": "Guía del Ocio Madrid", "version": "0.1.0"}
 
 
