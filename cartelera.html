@@ -195,60 +195,97 @@ const RAW={"date":"2026-03-20","s":[{"c":"Artistic Metropol","m":"Amarga Navidad
 const S=RAW.s,M=RAW.m,C=RAW.c;
 let view='movies',vose=false,searchQuery='';
 
-const POSTERS={
-'Amarga Navidad':'https://pics.filmaffinity.com/amarga_navidad-310439-large.jpg',
-'Hoppers':'http://www.impawards.com/2026/posters/hoppers_xlg.jpg',
-'Torrente Presidente':'https://pics.filmaffinity.com/torrente_presidente-453739-large.jpg',
-'Your Name (Reposición)':'https://image.tmdb.org/t/p/w780/xq1Ugd62d23K2knRUx6xxuALTZB.jpg',
-'La novia':'http://www.impawards.com/2026/posters/bride_xlg.jpg',
-'Scream VII':'http://www.impawards.com/2026/posters/scream_seven_xlg.jpg',
-'Greenland 2: El regreso':'http://www.impawards.com/2026/posters/greenland_migration_xlg.jpg',
-'Whistle: El silbido del mal':'http://www.impawards.com/intl/canada/2026/posters/whistle_xlg.jpg',
-'Perfect Blue (Reestreno)':'https://image.tmdb.org/t/p/w780/79KBBkNSQYtoRvMsGEQnFVE4Wfl.jpg',
-'Elegir mi vida':'https://pics.filmaffinity.com/partir_un_jour-913052-large.jpg',
-'La Grazia':'http://www.impawards.com/intl/italy/2025/posters/la_grazia_xlg.jpg',
-'El mago del Kremlin':'http://www.impawards.com/intl/france/2026/posters/le_mage_du_kremlin_xlg.jpg',
-'La última cena':'http://www.impawards.com/2025/posters/last_supper_xlg.jpg',
-'La sonrisa del mal':'https://pics.filmaffinity.com/the_holy_boy-359278-large.jpg',
-'Tafiti y sus amigos':'https://pics.filmaffinity.com/tafiti_across_the_desert-448750-large.jpg',
-'Una hija en Tokio':'https://pics.filmaffinity.com/une_part_manquante-691891-large.jpg',
-'Cumbres Borrascosas':'https://pics.filmaffinity.com/wuthering_heights_2026-182645-large.jpg',
-'Proyecto Salvación':'https://pics.filmaffinity.com/project_hail_mary-743159-large.jpg',
-'Cleaner: Rescate vertical':'https://pics.filmaffinity.com/cleaner-891253-large.jpg',
-'Una batalla tras otra':'https://pics.filmaffinity.com/one_battle_after_another-659382-large.jpg',
-'Iron Lung: Océano de sangre':'https://pics.filmaffinity.com/iron_lung-548291-large.jpg',
-'Hamnet':'https://pics.filmaffinity.com/hamnet-671934-large.jpg',
-'Pillion':'https://pics.filmaffinity.com/pillion-482916-large.jpg',
-'Aida y vuelta':'https://pics.filmaffinity.com/aida_y_vuelta-293847-large.jpg',
-'El fantasma de mi mujer':'https://pics.filmaffinity.com/el_fantasma_de_mi_mujer-583291-large.jpg',
-'La fiera':'https://pics.filmaffinity.com/la_fiera-391827-large.jpg',
-'Altas capacidades':'https://pics.filmaffinity.com/altas_capacidades-928374-large.jpg',
-'Aves de corral':'https://pics.filmaffinity.com/aves_de_corral-183927-large.jpg',
-'Tres adioses':'https://pics.filmaffinity.com/tre_ciotole-572918-large.jpg',
-'Islas':'https://pics.filmaffinity.com/islas_2026-847291-large.jpg',
-'Línea de extinción':'https://pics.filmaffinity.com/linea_de_extincion-394827-large.jpg',
-'Idilia':'https://pics.filmaffinity.com/idilia-291847-large.jpg',
-'Los miserables: El origen':'https://pics.filmaffinity.com/les_miserables_l_origine-648291-large.jpg',
-'Orwell: 2+2=5':'https://pics.filmaffinity.com/orwell_2_plus_2_equals_5-482917-large.jpg',
-'La sombra de mi padre':'https://pics.filmaffinity.com/la_sombra_de_mi_padre-193847-large.jpg',
-'Maigret y la muerte del embajador':'https://pics.filmaffinity.com/maigret_et_la_mort_de_l_ambassadeur-827194-large.jpg',
-'Sorry, Baby':'https://pics.filmaffinity.com/sorry_baby-593182-large.jpg',
-'Scarlet':'https://pics.filmaffinity.com/scarlet_hosoda-749281-large.jpg',
-'La extraordinaria vida de Marcel Pagnol':'https://pics.filmaffinity.com/marcel_et_monsieur_pagnol-382917-large.jpg',
-'Chirp, el investigador de Honey Hills':'https://pics.filmaffinity.com/chirp-291583-large.jpg',
-'Evolution':'https://pics.filmaffinity.com/evolution_2026-638291-large.jpg',
-'EPiC: Elvis Presley in Concert':'https://pics.filmaffinity.com/epic_elvis_presley_in_concert-492817-large.jpg',
-'América Hispana: El legado de las olas':'https://pics.filmaffinity.com/america_hispana-183927-large.jpg',
-'La vida es Verdi':'https://pics.filmaffinity.com/la_vida_es_verdi-829174-large.jpg',
-'Socias por Accidente':'https://pics.filmaffinity.com/socias_por_accidente-392817-large.jpg',
-'Las locas del obelisco':'https://pics.filmaffinity.com/las_locas_del_obelisco-482917-large.jpg',
-'Caminando con el diablo':'https://pics.filmaffinity.com/caminando_con_el_diablo-193827-large.jpg',
-'El último vikingo':'https://pics.filmaffinity.com/el_ultimo_vikingo-382917-large.jpg',
-'Manas':'https://pics.filmaffinity.com/manas_2026-492817-large.jpg',
-'Un altre home':'https://pics.filmaffinity.com/un_altre_home-293817-large.jpg',
-'El Graduado (Reestreno)':'https://pics.filmaffinity.com/the_graduate-801029-large.jpg',
-'Memento (Reestreno)':'https://pics.filmaffinity.com/memento-502029-large.jpg',
+// === TMDB AUTO-POSTER SYSTEM ===
+// Fetches movie posters automatically from TMDB API
+// Cache in localStorage for 7 days — no manual updates needed
+const TMDB_KEY='eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MmJiOGUwMjA2NjQ0YWFkYmI4MjhhMTEyMTdlMzdkNSIsIm5iZiI6MTc0Mjc5OTMyMC45MzIsInN1YiI6IjY3ZTBmYTE4OGUzNTcyOGE3MjYzNjMzMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vWuzHT_ERhjFE67_bfbJt3VDpHiCsOB3MN0YGFxvB2g';
+const TMDB_IMG='https://image.tmdb.org/t/p/w780';
+const TMDB_CACHE_KEY='guiamadrid_posters_v2';
+const TMDB_CACHE_DAYS=7;
+let POSTERS={};
+
+// Title normalization for TMDB search
+const TITLE_MAP={
+'Perfect Blue (Reestreno)':'Perfect Blue',
+'Your Name (Reposición)':'Your Name',
+'Memento (Reestreno)':'Memento',
+'El Graduado (Reestreno)':'The Graduate',
+'Greenland 2: El regreso':'Greenland: Migration',
+'Iron Lung: Océano de sangre':'Iron Lung',
+'Cleaner: Rescate vertical':'Cleaner',
+'Whistle: El silbido del mal':'Whistle',
+'Proyecto Salvación':'Project Hail Mary',
+'Cumbres Borrascosas':'Wuthering Heights 2026',
+'La novia':'The Bride 2025',
+'Scream VII':'Scream VII',
+'Tafiti y sus amigos':'Tafiti',
+'Chirp, el investigador de Honey Hills':'Chirp',
+'La extraordinaria vida de Marcel Pagnol':'Marcel et Monsieur Pagnol',
+'Los miserables: El origen':'Les Misérables',
+'Una hija en Tokio':'Une part manquante',
+'Elegir mi vida':'Partir un jour',
+'Maigret y la muerte del embajador':'Maigret',
+'Tres adioses':'Tre Ciotole',
+'EPiC: Elvis Presley in Concert':'EPiC Elvis Presley',
+'América Hispana: El legado de las olas':'América Hispana',
+'La sonrisa del mal':'The Holy Boy',
+'Una batalla tras otra':'One Battle After Another',
+'Aves de corral':'Aves de corral',
+'Socias por Accidente':'Socias por Accidente',
 };
+
+function loadPosterCache(){
+  try{
+    const raw=localStorage.getItem(TMDB_CACHE_KEY);
+    if(!raw)return null;
+    const data=JSON.parse(raw);
+    if(Date.now()-data.ts>TMDB_CACHE_DAYS*86400000)return null;
+    return data.posters;
+  }catch(e){return null}
+}
+function savePosterCache(posters){
+  try{localStorage.setItem(TMDB_CACHE_KEY,JSON.stringify({ts:Date.now(),posters}))}catch(e){}
+}
+
+async function searchTMDB(title){
+  const searchTitle=TITLE_MAP[title]||title.replace(/\s*\(.*?\)\s*/g,'').replace(/:.*/,'').trim();
+  const langs=['es-ES','en-US','fr-FR','it-IT'];
+  for(const lang of langs){
+    try{
+      const r=await fetch('https://api.themoviedb.org/3/search/movie?query='+encodeURIComponent(searchTitle)+'&language='+lang+'&page=1',{
+        headers:{'Authorization':'Bearer '+TMDB_KEY,'Content-Type':'application/json'}
+      });
+      if(!r.ok)continue;
+      const d=await r.json();
+      if(d.results&&d.results.length>0){
+        // Try backdrop first (16:9 fits better), then poster
+        const movie=d.results[0];
+        const img=movie.backdrop_path||movie.poster_path;
+        if(img)return TMDB_IMG+img;
+      }
+    }catch(e){}
+  }
+  return null;
+}
+
+async function fetchAllPosters(){
+  const cached=loadPosterCache();
+  if(cached){POSTERS=cached;return}
+  const titles=[...new Set(S.map(s=>s.m))];
+  const results={};
+  // Batch in groups of 8 to respect rate limits
+  for(let i=0;i<titles.length;i+=8){
+    const batch=titles.slice(i,i+8);
+    const promises=batch.map(async t=>{
+      const url=await searchTMDB(t);
+      if(url)results[t]=url;
+    });
+    await Promise.all(promises);
+  }
+  POSTERS=results;
+  savePosterCache(results);
+  render();
+}
 
 // Animated GIFs — preferred over static posters
 const GIFS={
@@ -602,7 +639,9 @@ function renderCinemas(f){
   }).join('');
 }
 
+// Initial render with CSS animations, then fetch real posters
 render();
+fetchAllPosters();
 </script>
 </body>
 </html>
