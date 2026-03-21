@@ -112,7 +112,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
 
 .cinema-card{background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:1rem;overflow:hidden}
 .cinema-card:hover{border-color:rgba(255,255,255,.12)}
-.cinema-header{padding:1.2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);background:var(--surface)}
+.cinema-header{padding:1.2rem 1.5rem;display:flex;align-items:center;gap:1rem;border-bottom:1px solid var(--border);background:var(--surface)}
+.cinema-logo{width:44px;height:44px;border-radius:8px;object-fit:cover;background:rgba(255,255,255,.06);flex-shrink:0}
+.cinema-logo-placeholder{width:44px;height:44px;border-radius:8px;background:rgba(255,255,255,.06);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;color:var(--muted);font-family:'Space Grotesk',sans-serif}
+.cinema-header-text{flex:1;min-width:0}
 .cinema-title{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700}
 .cinema-count{font-size:.75rem;font-weight:500;color:var(--muted)}
 .cinema-body{padding:.5rem 0}
@@ -196,42 +199,50 @@ const S=RAW.s,M=RAW.m,C=RAW.c;
 let view='movies',vose=false,searchQuery='';
 
 // === TMDB AUTO-POSTER SYSTEM ===
-// Fetches movie posters automatically from TMDB API
-// Cache in localStorage for 7 days — no manual updates needed
-const TMDB_KEY='eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MmJiOGUwMjA2NjQ0YWFkYmI4MjhhMTEyMTdlMzdkNSIsIm5iZiI6MTc0Mjc5OTMyMC45MzIsInN1YiI6IjY3ZTBmYTE4OGUzNTcyOGE3MjYzNjMzMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vWuzHT_ERhjFE67_bfbJt3VDpHiCsOB3MN0YGFxvB2g';
-const TMDB_IMG='https://image.tmdb.org/t/p/w780';
-const TMDB_CACHE_KEY='guiamadrid_posters_v2';
+// 1. Pon tu API key gratuita de TMDB: https://www.themoviedb.org/settings/api
+// 2. El sistema busca pósters automáticamente y los cachea 7 días
+const TMDB_API_KEY=''; // ← Pon aquí tu API key v3 de TMDB (gratuita)
+const TMDB_IMG='https://image.tmdb.org/t/p/';
+const TMDB_CACHE_KEY='guiamadrid_posters_v3';
 const TMDB_CACHE_DAYS=7;
 let POSTERS={};
 
-// Title normalization for TMDB search
+// TMDB movie IDs — búsqueda directa por ID (más fiable que por título)
+const TMDB_IDS={
+'Perfect Blue (Reestreno)':10494,
+'Your Name (Reposición)':372058,
+'Scream VII':1159559,
+'Memento (Reestreno)':77,
+'El Graduado (Reestreno)':37247,
+'Greenland 2: El regreso':840464,
+'La novia':1159831,
+'Iron Lung: Océano de sangre':1116201,
+'Cleaner: Rescate vertical':1125899,
+'Proyecto Salvación':687163,
+'Cumbres Borrascosas':1316092,
+'Hoppers':1327819,
+'Hamnet':858024,
+};
+
+// Títulos alternativos para búsqueda cuando no hay ID
 const TITLE_MAP={
-'Perfect Blue (Reestreno)':'Perfect Blue',
-'Your Name (Reposición)':'Your Name',
-'Memento (Reestreno)':'Memento',
-'El Graduado (Reestreno)':'The Graduate',
-'Greenland 2: El regreso':'Greenland: Migration',
-'Iron Lung: Océano de sangre':'Iron Lung',
-'Cleaner: Rescate vertical':'Cleaner',
-'Whistle: El silbido del mal':'Whistle',
-'Proyecto Salvación':'Project Hail Mary',
-'Cumbres Borrascosas':'Wuthering Heights 2026',
-'La novia':'The Bride 2025',
-'Scream VII':'Scream VII',
+'Whistle: El silbido del mal':'Whistle 2025',
 'Tafiti y sus amigos':'Tafiti',
-'Chirp, el investigador de Honey Hills':'Chirp',
+'Chirp, el investigador de Honey Hills':'Chirp animated',
 'La extraordinaria vida de Marcel Pagnol':'Marcel et Monsieur Pagnol',
 'Los miserables: El origen':'Les Misérables',
 'Una hija en Tokio':'Une part manquante',
 'Elegir mi vida':'Partir un jour',
 'Maigret y la muerte del embajador':'Maigret',
 'Tres adioses':'Tre Ciotole',
-'EPiC: Elvis Presley in Concert':'EPiC Elvis Presley',
-'América Hispana: El legado de las olas':'América Hispana',
 'La sonrisa del mal':'The Holy Boy',
 'Una batalla tras otra':'One Battle After Another',
-'Aves de corral':'Aves de corral',
-'Socias por Accidente':'Socias por Accidente',
+'Torrente Presidente':'Torrente',
+'Pillion':'Pillion 2025',
+'Sorry, Baby':'Sorry Baby 2025',
+'Scarlet':'Scarlet Hosoda',
+'EPiC: Elvis Presley in Concert':'Elvis Presley Concert',
+'América Hispana: El legado de las olas':'América Hispana',
 };
 
 function loadPosterCache(){
@@ -243,25 +254,30 @@ function loadPosterCache(){
     return data.posters;
   }catch(e){return null}
 }
-function savePosterCache(posters){
-  try{localStorage.setItem(TMDB_CACHE_KEY,JSON.stringify({ts:Date.now(),posters}))}catch(e){}
+function savePosterCache(p){
+  try{localStorage.setItem(TMDB_CACHE_KEY,JSON.stringify({ts:Date.now(),posters:p}))}catch(e){}
 }
 
-async function searchTMDB(title){
-  const searchTitle=TITLE_MAP[title]||title.replace(/\s*\(.*?\)\s*/g,'').replace(/:.*/,'').trim();
-  const langs=['es-ES','en-US','fr-FR','it-IT'];
-  for(const lang of langs){
+// Buscar por ID de TMDB (más fiable)
+async function fetchByID(id){
+  const r=await fetch('https://api.themoviedb.org/3/movie/'+id+'?api_key='+TMDB_API_KEY+'&language=es-ES');
+  if(!r.ok)return null;
+  const d=await r.json();
+  const path=d.backdrop_path||d.poster_path;
+  return path?TMDB_IMG+'w1280'+path:null;
+}
+
+// Buscar por título (fallback)
+async function fetchByTitle(title){
+  const q=TITLE_MAP[title]||title.replace(/\s*\(.*?\)\s*/g,'').replace(/:.*/,'').trim();
+  for(const lang of['es-ES','en-US','fr-FR']){
     try{
-      const r=await fetch('https://api.themoviedb.org/3/search/movie?query='+encodeURIComponent(searchTitle)+'&language='+lang+'&page=1',{
-        headers:{'Authorization':'Bearer '+TMDB_KEY,'Content-Type':'application/json'}
-      });
+      const r=await fetch('https://api.themoviedb.org/3/search/movie?api_key='+TMDB_API_KEY+'&query='+encodeURIComponent(q)+'&language='+lang);
       if(!r.ok)continue;
       const d=await r.json();
-      if(d.results&&d.results.length>0){
-        // Try backdrop first (16:9 fits better), then poster
-        const movie=d.results[0];
-        const img=movie.backdrop_path||movie.poster_path;
-        if(img)return TMDB_IMG+img;
+      if(d.results&&d.results[0]){
+        const path=d.results[0].backdrop_path||d.results[0].poster_path;
+        if(path)return TMDB_IMG+'w1280'+path;
       }
     }catch(e){}
   }
@@ -269,31 +285,74 @@ async function searchTMDB(title){
 }
 
 async function fetchAllPosters(){
+  if(!TMDB_API_KEY){console.info('GuiaMadrid: Pon tu TMDB API key en TMDB_API_KEY para cargar pósters automáticamente. Gratis en https://www.themoviedb.org/settings/api');return}
   try{
     const cached=loadPosterCache();
-    if(cached&&Object.keys(cached).length>0){POSTERS=cached;render();return}
+    if(cached&&Object.keys(cached).length>5){POSTERS=cached;render();return}
     const titles=[...new Set(S.map(s=>s.m))];
     const results={};
-    // Batch in groups of 8 to respect rate limits
-    for(let i=0;i<titles.length;i+=8){
-      const batch=titles.slice(i,i+8);
-      const promises=batch.map(async t=>{
+    for(let i=0;i<titles.length;i+=6){
+      const batch=titles.slice(i,i+6);
+      await Promise.all(batch.map(async t=>{
         try{
-          const url=await searchTMDB(t);
+          const id=TMDB_IDS[t];
+          const url=id?await fetchByID(id):await fetchByTitle(t);
           if(url)results[t]=url;
         }catch(e){}
-      });
-      await Promise.all(promises);
+      }));
     }
     if(Object.keys(results).length>0){
       POSTERS=results;
       savePosterCache(results);
       render();
     }
-  }catch(e){console.warn('TMDB fetch failed:',e)}
+  }catch(e){console.warn('TMDB fetch error:',e)}
 }
 
 // Animated GIFs — preferred over static posters
+// Cinema brand colors & initials for logo placeholders
+const CINEMA_BRANDS={
+'Artistic Metropol':{color:'#c62828',initials:'AM'},
+'Capitol Gran Vía':{color:'#f9a825',initials:'CG'},
+'Cine Doré (Filmoteca)':{color:'#e65100',initials:'FE'},
+'Cines Callao':{color:'#1565c0',initials:'CC'},
+'Cines Embajadores':{color:'#6a1b9a',initials:'CE'},
+'Cines Golem':{color:'#2e7d32',initials:'Go'},
+'Cines Renoir Princesa':{color:'#00838f',initials:'RP'},
+'Cines Verdi':{color:'#ad1457',initials:'CV'},
+'Cinesa Equinoccio':{color:'#0d47a1',initials:'Ci'},
+'Cinesa La Gavia':{color:'#0d47a1',initials:'Ci'},
+'Cinesa Las Rozas':{color:'#0d47a1',initials:'Ci'},
+'Cinesa Manoteras':{color:'#0d47a1',initials:'Ci'},
+'Cinesa Méndez Álvaro':{color:'#0d47a1',initials:'Ci'},
+'Cinesa Nassica':{color:'#0d47a1',initials:'Ci'},
+'Cinesa Parquesur':{color:'#0d47a1',initials:'Ci'},
+'Cinesa Proyecciones':{color:'#0d47a1',initials:'Ci'},
+'Cinesa Príncipe Pío':{color:'#0d47a1',initials:'Ci'},
+'Cineteca Madrid (Matadero)':{color:'#e53935',initials:'CT'},
+'Kinépolis Ciudad de la Imagen':{color:'#ff6f00',initials:'Kp'},
+'Kinépolis Diversia':{color:'#ff6f00',initials:'Kp'},
+'Pequeño Cine Estudio':{color:'#5d4037',initials:'PE'},
+'Renoir Plaza de España':{color:'#00838f',initials:'RE'},
+'Renoir Retiro':{color:'#00838f',initials:'RR'},
+'Sala Berlanga':{color:'#37474f',initials:'SB'},
+'Sala Equis':{color:'#d84315',initials:'SX'},
+'Yelmo Ideal':{color:'#b71c1c',initials:'Yi'},
+'Yelmo Islazul':{color:'#b71c1c',initials:'Yi'},
+'Yelmo La Vaguada':{color:'#b71c1c',initials:'Yv'},
+'Yelmo Luxury Palafox':{color:'#b71c1c',initials:'YP'},
+'Yelmo Plaza Norte 2':{color:'#b71c1c',initials:'Yp'},
+'Yelmo Plenilunio':{color:'#b71c1c',initials:'Yp'},
+'Yelmo Tres Aguas':{color:'#b71c1c',initials:'Yt'},
+'mk2 Cine Paz':{color:'#212121',initials:'m2'},
+'mk2 Palacio de Hielo':{color:'#212121',initials:'m2'},
+};
+
+function cinemaLogoHTML(name){
+  const b=CINEMA_BRANDS[name]||{color:'#424242',initials:name.slice(0,2)};
+  return '<div class="cinema-logo-placeholder" style="background:'+b.color+'">'+b.initials+'</div>';
+}
+
 const GIFS={
 'Perfect Blue (Reestreno)':'https://media.giphy.com/media/PSAXmb9dulDiUVYbvX/giphy.gif',
 'Your Name (Reposición)':'https://media.giphy.com/media/xUOxfnfaU0TKSpXWtq/giphy.gif',
@@ -641,7 +700,7 @@ function renderCinemas(f){
       }).join('');
       return'<div class="movie-row"><div class="movie-row-title">'+esc(movie)+'</div><div class="movie-row-rating">'+(mv.rating?'<span class="star">\u2605</span><span class="val">'+mv.rating.toFixed(1)+'</span>':'')+'</div><div class="movie-row-times">'+chips+'</div></div>';
     }).join('');
-    return'<div class="cinema-card"><div class="cinema-header"><div class="cinema-title">'+esc(cinema)+'</div><div class="cinema-count">'+sts.length+' sesiones \u00b7 '+Object.keys(byMovie).length+' peliculas</div></div><div class="cinema-body">'+rows+'</div></div>';
+    return'<div class="cinema-card"><div class="cinema-header">'+cinemaLogoHTML(cinema)+'<div class="cinema-header-text"><div class="cinema-title">'+esc(cinema)+'</div><div class="cinema-count">'+sts.length+' sesiones \u00b7 '+Object.keys(byMovie).length+' peliculas</div></div></div><div class="cinema-body">'+rows+'</div></div>';
   }).join('');
 }
 
