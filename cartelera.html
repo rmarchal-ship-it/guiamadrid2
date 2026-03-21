@@ -52,9 +52,16 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
 
 /* POSTER */
 .poster-area{position:relative;aspect-ratio:16/9;overflow:hidden;background:#080808}
-.poster-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;transition:transform 6s cubic-bezier(.25,.1,.25,1),opacity .5s;opacity:0;z-index:1}
-.poster-img.loaded{opacity:1}
-.movie-card:hover .poster-img.loaded{transform:scale(1.04)}
+.poster-img{position:absolute;inset:-8%;width:116%;height:116%;object-fit:cover;object-position:center 25%;opacity:0;z-index:1;animation:kenBurns 24s ease-in-out infinite alternate}
+.poster-img.loaded{opacity:1;transition:opacity .6s}
+.movie-card:hover .poster-img.loaded{animation-play-state:paused;transform:scale(1.02)}
+@keyframes kenBurns{
+0%{transform:scale(1) translate(0,0)}
+25%{transform:scale(1.08) translate(-2%,-1%)}
+50%{transform:scale(1.04) translate(1%,2%)}
+75%{transform:scale(1.1) translate(-1%,-2%)}
+100%{transform:scale(1.06) translate(2%,1%)}
+}
 /* CSS fallback gradient — animated scene layers */
 .poster-fallback{position:absolute;inset:0;overflow:hidden}
 .poster-fallback .el{position:absolute;mix-blend-mode:screen;will-change:transform}
@@ -79,7 +86,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
 .poster-fallback .glow-line{position:absolute;height:1px;mix-blend-mode:screen;opacity:.3;animation:scScan 8s ease-in-out infinite}
 /* grain overlay inside poster */
 .poster-fallback .scene-grain{position:absolute;inset:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.poster-area::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(24,24,24,1) 0%,rgba(24,24,24,.6) 30%,rgba(0,0,0,.05) 60%,rgba(0,0,0,.3) 100%);z-index:2}
+.poster-area::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(24,24,24,1) 0%,rgba(24,24,24,.55) 22%,rgba(0,0,0,.02) 55%,rgba(0,0,0,.15) 100%);z-index:2}
 .poster-title{position:absolute;bottom:.8rem;left:1.2rem;right:1.2rem;z-index:3;font-family:'Space Grotesk',sans-serif;font-size:1.45rem;font-weight:700;line-height:1.1;letter-spacing:-.02em;text-shadow:0 2px 12px rgba(0,0,0,.8)}
 .poster-director{position:absolute;top:.9rem;left:1.2rem;z-index:3;font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.5)}
 .poster-rating{position:absolute;top:.8rem;right:1.2rem;z-index:3;display:flex;align-items:center;gap:.3rem;background:rgba(0,0,0,.6);border-radius:4px;padding:.2rem .5rem}
@@ -243,6 +250,21 @@ const POSTERS={
 'Memento (Reestreno)':'https://pics.filmaffinity.com/memento-502029-large.jpg',
 };
 
+// Animated GIFs — preferred over static posters
+const GIFS={
+'Perfect Blue (Reestreno)':'https://media.giphy.com/media/PSAXmb9dulDiUVYbvX/giphy.gif',
+'Your Name (Reposición)':'https://media.giphy.com/media/xUOxfnfaU0TKSpXWtq/giphy.gif',
+'Scream VII':'https://media.giphy.com/media/TdGxtfn2RbsAByWTUn/giphy.gif',
+'Memento (Reestreno)':'https://media.giphy.com/media/McmSqMYWdJ3aAkpajv/giphy.gif',
+'El Graduado (Reestreno)':'https://media.giphy.com/media/Qz5vGstmKuMHPuCbCh/giphy.gif',
+'Greenland 2: El regreso':'https://media.giphy.com/media/USIwmcc2r5qU1wTkGM/giphy.gif',
+'Hoppers':'https://media.giphy.com/media/NVSVHP0GuqRRbuIKTX/giphy.gif',
+'Iron Lung: Océano de sangre':'https://media.giphy.com/media/OLwJtGDTzrbnbozxJS/giphy.gif',
+'Cumbres Borrascosas':'https://media.giphy.com/media/A4l9UQvccrMfhRJ7RU/giphy.gif',
+'Proyecto Salvación':'https://media.giphy.com/media/hYbDd7TrLYi43JZWKh/giphy.gif',
+'Pillion':'https://media.giphy.com/media/EnWsMjbAbhsbNlU5ad/giphy.gif',
+};
+
 // VIS: bg=gradient, s1/s2/s3=accent colors, sc=scene type
 // Scene types: horror,scifi,romance,action,drama,anim,thriller,docu,classic,comedy
 const VIS={
@@ -339,153 +361,159 @@ function hashStr(s){let h=0;for(let i=0;i<s.length;i++)h=((h<<5)-h+s.charCodeAt(
 function seededRng(seed){let s=seed;return()=>{s=s*16807%2147483647;return(s-1)/2147483646}}
 
 // Scene generators per type — each returns array of element descriptors
+// Opacities and sizes cranked up for maximum visual impact
 const SCENES={
   horror(v,rng){
     const els=[];
-    // Pulsing core glow
-    els.push({t:'orb',a:'a-pulse',c:v.s1,x:35+rng()*30,y:30+rng()*30,w:200+rng()*80,o:.35,bl:50});
-    // Flickering small orbs
-    for(let i=0;i<4;i++){
-      const d=rng()*4;
-      els.push({t:'orb',a:'a-flicker',c:v.s2,x:10+rng()*80,y:10+rng()*80,w:20+rng()*40,o:.3+rng()*.2,bl:15+rng()*20,del:d});
+    // Big pulsing core — menacing
+    els.push({t:'orb',a:'a-pulse',c:v.s1,x:30+rng()*30,y:25+rng()*30,w:240+rng()*100,o:.6,bl:35});
+    // Flickering small orbs — erratic
+    for(let i=0;i<5;i++){
+      els.push({t:'orb',a:'a-flicker',c:v.s2,x:5+rng()*85,y:5+rng()*85,w:25+rng()*50,o:.5+rng()*.3,bl:10+rng()*12,del:rng()*4});
     }
-    // Dripping bar shapes
-    for(let i=0;i<3;i++){
-      els.push({t:'bar',a:'a-rise',c:v.s1,x:15+rng()*70,y:0,w:2+rng()*4,h:40+rng()*60,o:.25,bl:3,del:rng()*8});
+    // Blood drip bars
+    for(let i=0;i<4;i++){
+      els.push({t:'bar',a:'a-rise',c:v.s1,x:10+rng()*75,y:0,w:3+rng()*5,h:50+rng()*80,o:.45,bl:2,del:rng()*8});
     }
     // Dark morphing mass
-    els.push({t:'orb',a:'a-morph',c:v.s3||v.s1,x:50+rng()*30,y:40+rng()*30,w:120+rng()*60,o:.2,bl:40});
-    els.push({line:true,c:v.s1,y:30+rng()*40,w:60+rng()*40});
+    els.push({t:'orb',a:'a-morph',c:v.s3||v.s1,x:45+rng()*30,y:35+rng()*30,w:150+rng()*80,o:.35,bl:28});
+    els.push({line:true,c:v.s1,y:25+rng()*40,w:70+rng()*30});
     return els;
   },
   scifi(v,rng){
     const els=[];
-    // Orbiting particles
-    for(let i=0;i<5;i++){
-      els.push({t:'orb',a:'a-orbit',c:i%2?v.s1:v.s2,x:40+rng()*20,y:35+rng()*20,w:8+rng()*16,o:.5+rng()*.3,bl:4+rng()*8,r:30+i*18,del:i*4});
+    // Orbiting particles — bright and defined
+    for(let i=0;i<6;i++){
+      els.push({t:'orb',a:'a-orbit',c:i%2?v.s1:v.s2,x:38+rng()*20,y:30+rng()*20,w:10+rng()*20,o:.7+rng()*.2,bl:3+rng()*5,r:35+i*16,del:i*3.5});
     }
-    // Central glow
-    els.push({t:'orb',a:'a-pulse',c:v.s1,x:45+rng()*10,y:40+rng()*10,w:140+rng()*60,o:.25,bl:55});
-    // Geometric accents
-    els.push({t:'diamond',a:'a-spin',c:v.s2,x:25+rng()*50,y:20+rng()*40,w:40+rng()*30,o:.2,bl:8,del:rng()*6});
-    els.push({t:'ring',a:'a-float',c:v.s3||v.s2,x:60+rng()*20,y:25+rng()*30,w:60+rng()*40,o:.15,bl:2});
+    // Bright central glow
+    els.push({t:'orb',a:'a-pulse',c:v.s1,x:42+rng()*10,y:35+rng()*10,w:180+rng()*70,o:.45,bl:35});
+    // Geometric accents — sharp
+    els.push({t:'diamond',a:'a-spin',c:v.s2,x:20+rng()*55,y:15+rng()*45,w:50+rng()*35,o:.4,bl:5,del:rng()*6});
+    els.push({t:'ring',a:'a-float',c:v.s3||v.s2,x:55+rng()*25,y:20+rng()*35,w:70+rng()*50,o:.3,bl:1});
+    // Extra ring
+    els.push({t:'ring',a:'a-orbit',c:v.s1,x:40+rng()*15,y:35+rng()*15,w:100+rng()*40,o:.15,bl:1,r:10,del:rng()*10});
     // Scan line
-    els.push({line:true,c:v.s1,y:20+rng()*60,w:80+rng()*20});
+    els.push({line:true,c:v.s1,y:15+rng()*65,w:90+rng()*10});
     return els;
   },
   romance(v,rng){
     const els=[];
-    // Soft flowing orbs
-    els.push({t:'orb',a:'a-float',c:v.s1,x:25+rng()*20,y:25+rng()*20,w:180+rng()*80,o:.3,bl:60});
-    els.push({t:'orb',a:'a-drift',c:v.s2,x:55+rng()*20,y:45+rng()*20,w:140+rng()*60,o:.25,bl:50});
-    // Gentle morphing shapes
-    els.push({t:'orb',a:'a-morph',c:v.s3||v.s1,x:40+rng()*20,y:35+rng()*20,w:100+rng()*50,o:.2,bl:35});
-    // Rising particles
-    for(let i=0;i<4;i++){
-      els.push({t:'orb',a:'a-rise',c:i%2?v.s1:v.s2,x:15+rng()*70,y:0,w:6+rng()*12,o:.3+rng()*.2,bl:6+rng()*10,del:rng()*12});
+    // Big warm flowing orbs
+    els.push({t:'orb',a:'a-float',c:v.s1,x:20+rng()*25,y:20+rng()*20,w:220+rng()*80,o:.5,bl:40});
+    els.push({t:'orb',a:'a-drift',c:v.s2,x:50+rng()*25,y:40+rng()*20,w:180+rng()*60,o:.4,bl:35});
+    // Morphing shape — organic feel
+    els.push({t:'orb',a:'a-morph',c:v.s3||v.s1,x:35+rng()*25,y:30+rng()*20,w:130+rng()*60,o:.35,bl:25});
+    // Rising particles — delicate
+    for(let i=0;i<5;i++){
+      els.push({t:'orb',a:'a-rise',c:i%2?v.s1:v.s2,x:10+rng()*75,y:0,w:8+rng()*14,o:.45+rng()*.2,bl:4+rng()*6,del:rng()*12});
     }
-    // Warm sway
-    els.push({t:'orb',a:'a-sway',c:v.s2,x:30+rng()*40,y:50+rng()*20,w:80+rng()*40,o:.15,bl:45,sx:25});
+    // Warm sway — dreamy
+    els.push({t:'orb',a:'a-sway',c:v.s2,x:25+rng()*45,y:45+rng()*20,w:100+rng()*50,o:.3,bl:30,sx:30});
     return els;
   },
   action(v,rng){
     const els=[];
-    // Sharp diagonal bars
+    // Sharp diagonal bars — dynamic
+    for(let i=0;i<5;i++){
+      els.push({t:'bar',a:'a-sway',c:i%2?v.s1:v.s2,x:5+rng()*85,y:5+rng()*85,w:4+rng()*6,h:100+rng()*120,o:.5,bl:3+rng()*5,rot:25+rng()*50,sx:45+rng()*35,del:rng()*4});
+    }
+    // Explosive core — intense
+    els.push({t:'orb',a:'a-pulse',c:v.s1,x:35+rng()*25,y:30+rng()*20,w:200+rng()*80,o:.5,bl:30});
+    // Sparks rising
     for(let i=0;i<4;i++){
-      els.push({t:'bar',a:'a-sway',c:i%2?v.s1:v.s2,x:10+rng()*80,y:10+rng()*80,w:3+rng()*5,h:80+rng()*100,o:.3,bl:4+rng()*8,rot:30+rng()*40,sx:40+rng()*30,del:rng()*4});
+      els.push({t:'diamond',a:'a-rise',c:v.s3||v.s2,x:15+rng()*65,y:0,w:10+rng()*15,o:.6,bl:2,del:rng()*10});
     }
-    // Explosive core
-    els.push({t:'orb',a:'a-pulse',c:v.s1,x:40+rng()*20,y:35+rng()*20,w:160+rng()*60,o:.3,bl:40});
-    // Sparks
-    for(let i=0;i<3;i++){
-      els.push({t:'diamond',a:'a-rise',c:v.s3||v.s2,x:20+rng()*60,y:0,w:8+rng()*12,o:.4,bl:3,del:rng()*10});
-    }
-    // Angular accent
-    els.push({t:'tri',a:'a-float',c:v.s2,x:55+rng()*25,y:30+rng()*30,w:50+rng()*30,o:.15,bl:10});
+    // Angular accent — aggressive
+    els.push({t:'tri',a:'a-float',c:v.s2,x:50+rng()*30,y:25+rng()*35,w:60+rng()*40,o:.3,bl:6});
     return els;
   },
   drama(v,rng){
     const els=[];
-    // Slow deep orbs — contemplative
-    els.push({t:'orb',a:'a-float',c:v.s1,x:30+rng()*20,y:30+rng()*20,w:180+rng()*60,o:.3,bl:55});
-    els.push({t:'orb',a:'a-drift',c:v.s2,x:55+rng()*20,y:50+rng()*20,w:130+rng()*50,o:.2,bl:50});
+    // Deep contemplative orbs — visible but moody
+    els.push({t:'orb',a:'a-float',c:v.s1,x:25+rng()*25,y:25+rng()*20,w:220+rng()*70,o:.5,bl:38});
+    els.push({t:'orb',a:'a-drift',c:v.s2,x:50+rng()*25,y:45+rng()*20,w:160+rng()*60,o:.35,bl:35});
     // Morphing atmospheric shape
-    els.push({t:'orb',a:'a-morph',c:v.s3||v.s1,x:35+rng()*30,y:35+rng()*25,w:100+rng()*60,o:.18,bl:40});
-    // Subtle rising particles
-    for(let i=0;i<2;i++){
-      els.push({t:'orb',a:'a-rise',c:v.s2,x:20+rng()*60,y:0,w:4+rng()*8,o:.2,bl:8+rng()*12,del:rng()*15});
+    els.push({t:'orb',a:'a-morph',c:v.s3||v.s1,x:30+rng()*35,y:30+rng()*25,w:130+rng()*70,o:.3,bl:28});
+    // Rising particles — sparse but visible
+    for(let i=0;i<3;i++){
+      els.push({t:'orb',a:'a-rise',c:v.s2,x:15+rng()*65,y:0,w:6+rng()*10,o:.35,bl:5+rng()*8,del:rng()*15});
     }
-    // Gentle horizontal sway
-    els.push({t:'orb',a:'a-sway',c:v.s1,x:45+rng()*10,y:60+rng()*15,w:70+rng()*40,o:.12,bl:45,sx:15});
+    // Gentle sway — breathing feel
+    els.push({t:'orb',a:'a-sway',c:v.s1,x:40+rng()*15,y:55+rng()*15,w:90+rng()*50,o:.22,bl:32,sx:18});
     return els;
   },
   anim(v,rng){
     const els=[];
-    // Bouncy colorful orbs
-    for(let i=0;i<5;i++){
+    // Bouncy colorful orbs — vivid and playful
+    for(let i=0;i<6;i++){
       const colors=[v.s1,v.s2,v.s3||v.s1];
-      els.push({t:'orb',a:'a-float',c:colors[i%3],x:10+rng()*80,y:10+rng()*70,w:40+rng()*60,o:.4+rng()*.2,bl:20+rng()*15,del:rng()*6});
+      els.push({t:'orb',a:'a-float',c:colors[i%3],x:5+rng()*85,y:5+rng()*75,w:50+rng()*70,o:.55+rng()*.2,bl:15+rng()*10,del:rng()*6});
     }
     // Big playful morph
-    els.push({t:'orb',a:'a-morph',c:v.s1,x:35+rng()*30,y:30+rng()*30,w:120+rng()*60,o:.25,bl:30});
-    // Spinning diamond
-    els.push({t:'diamond',a:'a-spin',c:v.s2,x:60+rng()*20,y:20+rng()*20,w:30+rng()*20,o:.3,bl:5,del:rng()*4});
+    els.push({t:'orb',a:'a-morph',c:v.s1,x:30+rng()*35,y:25+rng()*30,w:150+rng()*70,o:.4,bl:20});
+    // Spinning diamond — fun
+    els.push({t:'diamond',a:'a-spin',c:v.s2,x:55+rng()*25,y:15+rng()*25,w:35+rng()*25,o:.5,bl:3,del:rng()*4});
     // Playful ring
-    els.push({t:'ring',a:'a-drift',c:v.s3||v.s2,x:20+rng()*30,y:50+rng()*20,w:50+rng()*30,o:.2,bl:2});
+    els.push({t:'ring',a:'a-drift',c:v.s3||v.s2,x:15+rng()*35,y:45+rng()*25,w:60+rng()*35,o:.35,bl:1});
     return els;
   },
   thriller(v,rng){
     const els=[];
-    // Tense angular shapes
-    els.push({t:'orb',a:'a-pulse',c:v.s1,x:40+rng()*20,y:35+rng()*20,w:160+rng()*50,o:.25,bl:45});
-    // Flickering accents
-    for(let i=0;i<3;i++){
-      els.push({t:'bar',a:'a-flicker',c:v.s2,x:20+rng()*60,y:15+rng()*60,w:30+rng()*60,h:1+rng()*2,o:.3,bl:3,del:rng()*3});
+    // Tense pulsing core
+    els.push({t:'orb',a:'a-pulse',c:v.s1,x:35+rng()*25,y:30+rng()*20,w:200+rng()*60,o:.45,bl:30});
+    // Flickering horizontal bars — unsettling
+    for(let i=0;i<4;i++){
+      els.push({t:'bar',a:'a-flicker',c:v.s2,x:15+rng()*65,y:10+rng()*70,w:40+rng()*80,h:2+rng()*3,o:.5,bl:2,del:rng()*3});
     }
-    // Sharp geometric
-    els.push({t:'tri',a:'a-sway',c:v.s3||v.s1,x:50+rng()*30,y:30+rng()*30,w:50+rng()*40,o:.15,bl:12,sx:20});
-    // Slow orbiting ring
-    els.push({t:'ring',a:'a-orbit',c:v.s2,x:40+rng()*20,y:40+rng()*20,w:80+rng()*40,o:.1,bl:3,r:20+rng()*30,del:rng()*8});
-    // Scan line
-    els.push({line:true,c:v.s1,y:35+rng()*30,w:70+rng()*30});
+    // Sharp geometric — angular tension
+    els.push({t:'tri',a:'a-sway',c:v.s3||v.s1,x:45+rng()*35,y:25+rng()*35,w:60+rng()*50,o:.3,bl:8,sx:25});
+    // Orbiting ring — surveillance feel
+    els.push({t:'ring',a:'a-orbit',c:v.s2,x:38+rng()*20,y:35+rng()*20,w:90+rng()*50,o:.2,bl:2,r:25+rng()*30,del:rng()*8});
+    // Scan line — sweeping
+    els.push({line:true,c:v.s1,y:30+rng()*35,w:80+rng()*20});
     return els;
   },
   docu(v,rng){
     const els=[];
-    // Film-grain inspired horizontal bars
-    for(let i=0;i<5;i++){
-      els.push({t:'bar',a:'a-sway',c:i%2?v.s1:v.s2,x:0,y:10+i*18+rng()*5,w:100,h:1,o:.15+rng()*.1,bl:2+rng()*4,sx:10+rng()*15,del:rng()*6,fullW:true});
+    // Film-grain horizontal bars — more visible
+    for(let i=0;i<6;i++){
+      els.push({t:'bar',a:'a-sway',c:i%2?v.s1:v.s2,x:0,y:8+i*16+rng()*5,w:100,h:1.5,o:.28+rng()*.12,bl:1+rng()*3,sx:12+rng()*18,del:rng()*6,fullW:true});
     }
-    // Central subject glow
-    els.push({t:'orb',a:'a-float',c:v.s1,x:40+rng()*20,y:35+rng()*20,w:140+rng()*50,o:.2,bl:50});
+    // Warm subject glow
+    els.push({t:'orb',a:'a-float',c:v.s1,x:35+rng()*25,y:30+rng()*20,w:180+rng()*60,o:.4,bl:35});
     // Accent morph
-    els.push({t:'orb',a:'a-morph',c:v.s3||v.s2,x:50+rng()*20,y:45+rng()*20,w:80+rng()*40,o:.12,bl:35});
+    els.push({t:'orb',a:'a-morph',c:v.s3||v.s2,x:45+rng()*25,y:40+rng()*20,w:100+rng()*50,o:.25,bl:25});
     return els;
   },
   classic(v,rng){
     const els=[];
-    // Vintage flickering glow
-    els.push({t:'orb',a:'a-flicker',c:v.s1,x:35+rng()*30,y:30+rng()*30,w:180+rng()*60,o:.25,bl:50,del:0});
+    // Vintage flickering glow — warm and visible
+    els.push({t:'orb',a:'a-flicker',c:v.s1,x:30+rng()*35,y:25+rng()*30,w:220+rng()*70,o:.45,bl:35,del:0});
     // Soft depth layers
-    els.push({t:'orb',a:'a-drift',c:v.s2,x:45+rng()*20,y:40+rng()*20,w:120+rng()*50,o:.2,bl:45});
-    // Film-frame bars (top/bottom)
-    els.push({t:'bar',a:'a-sway',c:v.s1,x:0,y:5,w:100,h:2,o:.12,bl:2,sx:8,fullW:true});
-    els.push({t:'bar',a:'a-sway',c:v.s1,x:0,y:90,w:100,h:2,o:.12,bl:2,sx:8,del:2,fullW:true});
+    els.push({t:'orb',a:'a-drift',c:v.s2,x:40+rng()*25,y:35+rng()*20,w:150+rng()*60,o:.35,bl:30});
+    // Film-frame bars (top/bottom) — more visible
+    els.push({t:'bar',a:'a-sway',c:v.s1,x:0,y:4,w:100,h:3,o:.25,bl:1,sx:10,fullW:true});
+    els.push({t:'bar',a:'a-sway',c:v.s1,x:0,y:92,w:100,h:3,o:.25,bl:1,sx:10,del:2,fullW:true});
     // Orbiting ring — nostalgic
-    els.push({t:'ring',a:'a-orbit',c:v.s3||v.s1,x:45+rng()*10,y:40+rng()*10,w:50+rng()*30,o:.12,bl:2,r:25,del:rng()*6});
+    els.push({t:'ring',a:'a-orbit',c:v.s3||v.s1,x:42+rng()*12,y:38+rng()*12,w:60+rng()*35,o:.22,bl:1,r:28,del:rng()*6});
+    // Extra depth orb
+    els.push({t:'orb',a:'a-morph',c:v.s3||v.s2,x:50+rng()*20,y:40+rng()*15,w:90+rng()*40,o:.2,bl:25});
     return els;
   },
   comedy(v,rng){
     const els=[];
-    // Bouncy bright orbs
-    for(let i=0;i<4;i++){
+    // Bouncy bright orbs — energetic
+    for(let i=0;i<5;i++){
       const colors=[v.s1,v.s2,v.s3||v.s1];
-      els.push({t:'orb',a:'a-float',c:colors[i%3],x:15+rng()*70,y:15+rng()*60,w:50+rng()*60,o:.35+rng()*.15,bl:25+rng()*15,del:rng()*5});
+      els.push({t:'orb',a:'a-float',c:colors[i%3],x:10+rng()*75,y:10+rng()*65,w:60+rng()*70,o:.5+rng()*.2,bl:18+rng()*12,del:rng()*5});
     }
-    // Big sway shape
-    els.push({t:'orb',a:'a-sway',c:v.s1,x:35+rng()*30,y:35+rng()*25,w:130+rng()*50,o:.2,bl:40,sx:35});
-    // Spinning accent
-    els.push({t:'diamond',a:'a-spin',c:v.s2,x:60+rng()*20,y:25+rng()*20,w:25+rng()*20,o:.25,bl:6,del:rng()*3});
+    // Big sway shape — playful
+    els.push({t:'orb',a:'a-sway',c:v.s1,x:30+rng()*35,y:30+rng()*25,w:160+rng()*60,o:.35,bl:28,sx:40});
+    // Spinning accent — fun
+    els.push({t:'diamond',a:'a-spin',c:v.s2,x:55+rng()*25,y:20+rng()*25,w:30+rng()*25,o:.4,bl:4,del:rng()*3});
+    // Bouncy ring
+    els.push({t:'ring',a:'a-float',c:v.s3||v.s2,x:20+rng()*30,y:50+rng()*20,w:45+rng()*30,o:.25,bl:1,del:rng()*4});
     return els;
   }
 };
@@ -515,7 +543,13 @@ function posterHTML(title){
     h+='<div class="el '+e.t+' '+e.a+'" style="'+s+'"></div>';
   });
   h+='</div>';
-  if(url&&!url.includes('placeholder'))h+='<img class="poster-img" src="'+url+'" alt="" loading="lazy" onload="this.classList.add(\'loaded\')" onerror="this.style.display=\'none\'">';
+  // Prefer animated GIF > static poster
+  const gif=GIFS[title];
+  const img=gif||url;
+  if(img&&!img.includes('placeholder')){
+    const delay=gif?'':'style="animation-delay:-'+(Math.abs(hashStr(title))%12)+'s"';
+    h+='<img class="poster-img" '+delay+' src="'+img+'" alt="" loading="lazy" onload="this.classList.add(\'loaded\')" onerror="this.style.display=\'none\'">';
+  }
   return h;
 }
 
