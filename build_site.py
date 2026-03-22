@@ -635,6 +635,17 @@ def update_html(
         html,
     )
 
+    # --- Update datePicker default value ---
+    if showtimes:
+        # Use the date from the first showtime
+        data_date = showtimes[0].get("date", "")
+        if data_date:
+            html = re.sub(
+                r'(<input type="date" id="datePicker" value=")[^"]*(")',
+                rf'\g<1>{data_date}\2',
+                html,
+            )
+
     HTML_FILE.write_text(html, encoding="utf-8")
 
 
