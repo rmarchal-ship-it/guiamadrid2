@@ -7,6 +7,7 @@ Usage:
     python -m guiamadrid digest          # Send email digest for today
     python -m guiamadrid stats           # Show DB stats
     python -m guiamadrid trailers        # Find YouTube trailers for current movies
+    python -m guiamadrid posters         # Fetch TMDB poster URLs (needs TMDB_API_KEY)
 """
 
 from __future__ import annotations
@@ -56,6 +57,16 @@ def cmd_trailers():
     sys.exit(mod.main())
 
 
+def cmd_posters():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "fetch_posters", Path(__file__).parent.parent / "fetch_posters.py"
+    )
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    sys.exit(mod.main())
+
+
 def cmd_stats():
     from guiamadrid.db.database import SessionLocal, init_db
     from guiamadrid.db.models import Cinema, Movie, ScrapeLog, Showtime
@@ -95,6 +106,8 @@ def main():
         cmd_stats()
     elif command == "trailers":
         cmd_trailers()
+    elif command == "posters":
+        cmd_posters()
     else:
         print(f"Unknown command: {command}")
         print(__doc__)

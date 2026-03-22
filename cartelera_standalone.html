@@ -80,6 +80,9 @@
     width: 100px; height: 150px; border-radius: 6px;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0; position: relative; overflow: hidden;
+    background: var(--border); color: var(--muted);
+    font-size: 0.7rem; text-align: center; padding: 0.5rem;
+    font-weight: 600; line-height: 1.3;
   }
   /* YouTube thumbnail poster */
   .yt-poster {
@@ -426,41 +429,8 @@ function generatePosterHtml(title, genre) {
   </div>`;
 }
 
-// Poster cache
+// Poster cache (populated from baked-in poster_url in EMBEDDED_MOVIES)
 const posterCache = {};
-
-// Try to fetch real posters from TMDB (optional enhancement)
-async function fetchPosters() {
-  const apiKey = localStorage.getItem('tmdb_api_key') || '';
-  if (!apiKey) return; // Generated posters are already shown
-
-  const apiBase = 'https://api.themoviedb.org/3/movie/';
-  for (const [title, tmdbId] of Object.entries(TMDB_IDS)) {
-    try {
-      const resp = await fetch(`${apiBase}${tmdbId}?api_key=${apiKey}&language=es-ES`);
-      if (resp.ok) {
-        const data = await resp.json();
-        if (data.poster_path) {
-          posterCache[title] = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
-        }
-      }
-    } catch(e) { /* silently skip */ }
-  }
-
-  // Replace generated posters with real ones
-  document.querySelectorAll('[data-poster-title]').forEach(el => {
-    const title = el.dataset.posterTitle;
-    if (posterCache[title]) {
-      const img = document.createElement('img');
-      img.className = 'poster';
-      img.src = posterCache[title];
-      img.alt = title;
-      img.loading = 'lazy';
-      img.onerror = () => { /* keep generated poster on error */ };
-      el.replaceWith(img);
-    }
-  });
-}
 
 let allShowtimes = EMBEDDED_SHOWTIMES;
 let allMovies = EMBEDDED_MOVIES;
@@ -554,20 +524,20 @@ function renderMovies() {
     });
 
     const ytId = YOUTUBE_TRAILERS[mv.title];
-    const hasPoster = posterCache[mv.title];
+    const hasPoster = posterCache[mv.title] || mv.poster_url;
     let posterHtml;
     if (ytId) {
       // YouTube thumbnail with play button
       posterHtml = `<div class="yt-poster" onclick="openTrailer('${ytId}')" title="Ver tráiler">
         <img src="https://img.youtube.com/vi/${ytId}/hqdefault.jpg" alt="${esc(mv.title)}" loading="lazy"
-          onerror="this.parentElement.outerHTML=generatePosterHtml('${esc(mv.title).replace(/'/g,"\\'")}','${esc(mv.genre||'').replace(/'/g,"\\'")}')">
+          onerror="this.parentElement.outerHTML='<div class=\\'poster-placeholder\\'>${esc(mv.title).replace(/'/g,"\\'")}</div>'">
         <div class="play-btn"></div>
       </div>`;
     } else if (hasPoster) {
-      posterHtml = `<img class="poster" src="${posterCache[mv.title]}" alt="${esc(mv.title)}" loading="lazy"
-        onerror="this.outerHTML=generatePosterHtml('${esc(mv.title).replace(/'/g,"\\'")}','${esc(mv.genre||'').replace(/'/g,"\\'")}')">`;
+      posterHtml = `<img class="poster" src="${hasPoster}" alt="${esc(mv.title)}" loading="lazy"
+        onerror="this.outerHTML='<div class=\\'poster-placeholder\\'>${esc(mv.title).replace(/'/g,"\\'")}</div>'">`;
     } else {
-      posterHtml = `<div data-poster-title="${esc(mv.title)}">${generatePosterHtml(mv.title, mv.genre)}</div>`;
+      posterHtml = `<div class="poster-placeholder">${esc(mv.title)}</div>`;
     }
 
     const ratingHtml = mv.rating
@@ -648,8 +618,8 @@ renderStats();
 renderLanguageFilters();
 renderMovies();
 
-// Fetch posters asynchronously (updates UI when ready)
-fetchPosters();
+// Build poster cache from baked-in poster_url
+allMovies.forEach(m => { if (m.poster_url) posterCache[m.title] = m.poster_url; });
 
 // Trailer modal
 function openTrailer(ytId) {
