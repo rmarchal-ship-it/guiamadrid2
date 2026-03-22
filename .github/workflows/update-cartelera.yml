@@ -28,50 +28,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install cloudscraper yt-dlp
 
-      - name: Test SensaCine connectivity
-        run: |
-          python3 << 'PYEOF'
-          import cloudscraper, json
-          s = cloudscraper.create_scraper(
-              browser={"browser": "chrome", "platform": "linux", "desktop": True},
-          )
-          import datetime
-          today = datetime.date.today().strftime("%Y-%m-%d")
-          url = f"https://www.sensacine.com/_/showtimes/theater-E0621/d-{today}/p-1"
-          result = {}
-          try:
-              r = s.get(url, timeout=15)
-              result["status"] = r.status_code
-              result["content_type"] = r.headers.get("content-type", "N/A")
-              result["body_preview"] = r.text[:500]
-              if r.status_code == 200 and "json" in r.headers.get("content-type", ""):
-                  data = r.json()
-                  result["num_results"] = len(data.get("results", []))
-                  result["ok"] = True
-              else:
-                  result["ok"] = False
-          except Exception as e:
-              result["error"] = str(e)
-              result["ok"] = False
-          with open("sensacine_test.json", "w") as f:
-              json.dump(result, f, indent=2, ensure_ascii=False)
-          print(json.dumps(result, indent=2, ensure_ascii=False))
-          if not result.get("ok"):
-              exit(1)
-          PYEOF
-
       - name: Run build pipeline
         run: python build_site.py
-
-      - name: Commit debug info on failure
-        if: failure()
-        run: |
-          [ -f sensacine_test.json ] || echo '{"no_debug_file": true}' > sensacine_test.json
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f sensacine_test.json
-          git commit -m "debug: build pipeline failure info" || true
-          git push || true
 
       - name: Commit and push if changed
         run: |

@@ -413,6 +413,8 @@ def fill_missing_posters(movies: list[dict], tmdb_ids: dict[str, int]) -> None:
 
 def _normalize(text: str) -> str:
     """Remove accents & lowercase for fuzzy matching."""
+    if not text:
+        return ""
     text = unicodedata.normalize("NFD", text.lower())
     return "".join(c for c in text if unicodedata.category(c) != "Mn")
 
@@ -455,9 +457,9 @@ def _search_youtube(query: str, max_results: int = 5) -> list[dict]:
 
 def _verify_video(video: dict, title: str, verify_keywords: list[str]) -> bool:
     """Check if a YouTube result actually matches the movie."""
-    vtitle = _normalize(video["title"])
-    vchannel = _normalize(video.get("channel", ""))
-    vdesc = _normalize(video.get("description", ""))
+    vtitle = _normalize(video.get("title") or "")
+    vchannel = _normalize(video.get("channel") or "")
+    vdesc = _normalize(video.get("description") or "")
     combined = f"{vtitle} {vchannel} {vdesc}"
 
     keyword_match = any(_normalize(kw) in combined for kw in verify_keywords)
