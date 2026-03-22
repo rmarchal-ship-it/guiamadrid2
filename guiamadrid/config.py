@@ -31,14 +31,16 @@ SENSACINE_THEATER_IDS = {
     "E0401": "Cinesa Príncipe Pío",
     "E0459": "Yelmo La Vaguada",
     "E0475": "Yelmo Plenilunio",
+    "E0681": "Yelmo Islazul",
     # Comunidad de Madrid
     "E0385": "Cinesa Equinoccio (Majadahonda)",
     "E0399": "Cinesa Parquesur (Leganés)",
     "E0406": "Cinesa Intu Xanadú (Arroyomolinos)",
     "E2916": "Yelmo Plaza Norte 2 (S.S. de los Reyes)",
     "E0207": "Yelmo Tres Aguas (Alcorcón)",
-    # Fuera de Madrid
-    "E0795": "Cinesa As Cancelas (Santiago)",
+    "E0392": "Cinesa La Moraleja (Alcobendas)",
+    "E0209": "Kinépolis Diversia (Alcobendas)",
+    "E0453": "Kinépolis Ciudad de la Imagen (Pozuelo)",
 }
 
 # Scraper settings
