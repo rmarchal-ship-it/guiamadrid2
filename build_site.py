@@ -19,8 +19,8 @@ import time
 import unicodedata
 from datetime import date, datetime
 from pathlib import Path
-from urllib.error import URLError
-from urllib.request import Request, urlopen
+
+import httpx
 
 # ---------------------------------------------------------------------------
 # Paths
@@ -63,16 +63,24 @@ except ImportError:
 # STEP 1: Scrape SensaCine
 # ═══════════════════════════════════════════════════════════════════════════
 
+# Shared httpx client — created once, reused everywhere
+_client = httpx.Client(
+    headers=HEADERS,
+    timeout=REQUEST_TIMEOUT,
+    follow_redirects=True,
+)
+
+
 def _fetch_json(url: str, referer: str = "") -> dict:
     """Fetch a URL and return parsed JSON, with retries."""
-    headers = dict(HEADERS)
+    extra: dict[str, str] = {}
     if referer:
-        headers["Referer"] = referer
+        extra["Referer"] = referer
     for attempt in range(MAX_RETRIES):
         try:
-            req = Request(url, headers=headers)
-            with urlopen(req, timeout=REQUEST_TIMEOUT) as resp:
-                return json.loads(resp.read().decode("utf-8", errors="replace"))
+            resp = _client.get(url, headers=extra)
+            resp.raise_for_status()
+            return resp.json()
         except Exception:
             if attempt == MAX_RETRIES - 1:
                 raise
@@ -82,9 +90,9 @@ def _fetch_json(url: str, referer: str = "") -> dict:
 
 def _fetch_text(url: str) -> str:
     """Fetch a URL and return text."""
-    req = Request(url, headers=HEADERS)
-    with urlopen(req, timeout=REQUEST_TIMEOUT) as resp:
-        return resp.read().decode("utf-8", errors="replace")
+    resp = _client.get(url)
+    resp.raise_for_status()
+    return resp.text
 
 
 def _parse_time(starts_at: str) -> str:
