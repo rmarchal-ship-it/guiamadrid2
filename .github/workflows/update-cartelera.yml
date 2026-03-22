@@ -33,14 +33,17 @@ jobs:
           pip install curl-cffi yt-dlp
 
       - name: Run build pipeline
-        run: python build_site.py 2>&1 | tee build_output.log
+        run: python build_site.py
 
-      - name: Upload build log
+      - name: Show changes
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-log
-          path: build_output.log
+        run: |
+          echo "=== git diff stats ==="
+          git diff --stat cartelera_standalone.html || true
+          echo "=== date in showtimes (first 3) ==="
+          grep -oP '"date": "[^"]*"' cartelera_standalone.html | head -3 || true
+          echo "=== datePicker value ==="
+          grep -oP 'value="[0-9-]+"' cartelera_standalone.html | head -1 || true
 
       - name: Commit and push if changed
         run: |
