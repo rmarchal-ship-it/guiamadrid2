@@ -162,8 +162,9 @@ def _extract_movie_info(movie: dict) -> dict:
     elif isinstance(poster_obj, str):
         poster = poster_obj
 
-    # Synopsis
-    synopsis = movie.get("synopsisFull") or movie.get("synopsis", "")
+    # Synopsis (strip HTML tags)
+    synopsis_raw = movie.get("synopsisFull") or movie.get("synopsis", "")
+    synopsis = re.sub(r"<[^>]+>", "", synopsis_raw).strip()
 
     # Rating
     rating = None
