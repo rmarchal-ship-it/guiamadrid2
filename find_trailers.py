@@ -302,15 +302,37 @@ def update_html(trailer_map: dict[str, str]):
     print(f"\n✅ HTML actualizado con {len(trailer_map)} tráilers")
 
 
+def load_existing_trailers() -> dict[str, str]:
+    """Load existing YOUTUBE_TRAILERS from HTML to merge with new results."""
+    html = HTML_FILE.read_text(encoding="utf-8")
+    match = re.search(r"const YOUTUBE_TRAILERS\s*=\s*\{([^}]*)\}", html)
+    if not match:
+        return {}
+    existing = {}
+    for line in match.group(1).split("\n"):
+        m = re.match(r'\s*"([^"]+)":\s*"([^"]+)"', line)
+        if m:
+            existing[m.group(1)] = m.group(2)
+    return existing
+
+
 def main():
     print("=" * 60)
     print("🎬 Buscador de Tráilers — Guía Madrid Cartelera")
     print("=" * 60)
 
+    # Load existing trailers so we don't lose them
+    existing = load_existing_trailers()
+    print(f"📦 {len(existing)} tráilers existentes en HTML")
+
     trailer_map: dict[str, str] = {}
     failed: list[str] = []
 
     for movie in MOVIES:
+        # Skip movies that already have trailers
+        if movie["title"] in existing:
+            print(f"\n⏭️  {movie['title']}: ya tiene tráiler ({existing[movie['title']]})")
+            continue
         result = find_trailer(movie)
         if result:
             trailer_map[movie["title"]] = result["id"]
@@ -318,22 +340,24 @@ def main():
             failed.append(movie["title"])
 
     print("\n" + "=" * 60)
-    print(f"📊 Resultados: {len(trailer_map)}/{len(MOVIES)} tráilers encontrados")
+    print(f"📊 Resultados: {len(trailer_map)} nuevos tráilers encontrados")
     if failed:
         print(f"❌ Sin tráiler: {', '.join(failed)}")
     print("=" * 60)
 
-    if trailer_map:
-        update_html(trailer_map)
+    # Merge new trailers with existing ones
+    merged = {**existing, **trailer_map}
+    if merged:
+        update_html(merged)
 
-    # Save results to JSON for reference
+    # Save merged results to JSON for reference
     results_file = Path(__file__).parent / "trailers.json"
     results_file.write_text(
-        json.dumps(trailer_map, indent=2, ensure_ascii=False), encoding="utf-8"
+        json.dumps(merged, indent=2, ensure_ascii=False), encoding="utf-8"
     )
-    print(f"💾 Resultados guardados en {results_file}")
+    print(f"💾 {len(merged)} tráilers guardados en {results_file}")
 
-    return 0 if trailer_map else 1
+    return 0 if merged else 1
 
 
 if __name__ == "__main__":
