@@ -911,8 +911,30 @@ def main() -> int:
     return 0
 
 
+def main_concerts_only() -> int:
+    """Only scrape and update concerts, skip movies/showtimes."""
+    today = date.today()
+    print(f"Scraping concerts only for {today}...")
+
+    if not HTML_FILE.exists():
+        print(f"ERROR: HTML file not found: {HTML_FILE}")
+        return 1
+
+    concerts = scrape_concerts(today)
+    print(f"  Total: {len(concerts)} concerts")
+
+    if concerts:
+        update_html_concerts(concerts)
+        print(f"Done! Updated {HTML_FILE.name} with {len(concerts)} concerts.")
+    else:
+        print("No concerts found.")
+    return 0
+
+
 if __name__ == "__main__":
     try:
+        if "--concerts-only" in sys.argv:
+            sys.exit(main_concerts_only())
         sys.exit(main())
     except Exception:
         import traceback
