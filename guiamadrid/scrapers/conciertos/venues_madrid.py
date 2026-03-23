@@ -33,7 +33,6 @@ class Venue(NamedTuple):
 
 VENUES: list[Venue] = [
     # --- Common ownership group (Café Berlín, Clamores, Villanos, Tempo) ---
-    # WordPress sites with similar structure
     Venue("Café Berlín", "https://berlincafe.es", ["/programas/", "/programa/"]),
     Venue("Sala Clamores", "https://www.salaclamores.es", ["/calendario", "/agenda/", "/"]),
     Venue("Sala Villanos", "https://salavillanos.es", ["/agenda/", "/"]),
@@ -43,13 +42,14 @@ VENUES: list[Venue] = [
     Venue("Siroco", "https://siroco.es", ["/agenda/", "/conciertos/", "/"]),
     Venue("Galileo Galilei", "https://salagalileo.es", ["/programacion/", "/"]),
     Venue("Sala Rockville", "https://rockville.es", ["/programacion/", "/"]),
+    Venue("Sala El Sol", "https://salaelsol.com", ["/agenda/", "/programacion/", "/"]),
     # --- Jazz / intimate venues ---
     Venue("Café Central", "https://cafecentralmadrid.com", ["/programacion/", "/"]),
     Venue("Recoletos Jazz", "https://www.recoletosjazz.com", ["/Tickets-Shows/", "/"]),
     Venue("The Jungle Jazz Club", "https://www.thejunglejazzclub.com", ["/agenda/", "/programacion/", "/"]),
     Venue("Café El Despertar", "https://www.cafeeldespertar.com", ["/agenda/", "/programacion/", "/"]),
     Venue("Babylon Club", "https://www.babylonmadrid.com", ["/agenda", "/"]),
-    # --- Smaller venues ---
+    # --- Smaller venues / clubs ---
     Venue("Sala Honky Tonk", "https://www.clubhonky.com", ["/agenda/", "/programacion/", "/"]),
     Venue("ContraClub", "https://www.contraclub.es", ["/agenda/", "/programacion/", "/"]),
     Venue("Sala La Caverna", "https://www.salalacaverna.com", ["/agenda/", "/"]),
@@ -59,6 +59,26 @@ VENUES: list[Venue] = [
     Venue("Intruso Bar", "https://www.intrusobar.com", ["/agenda/", "/programacion/", "/"]),
     Venue("Blackbird", "https://www.blackbirdrockbar.com", ["/agenda/", "/programacion/", "/"]),
     Venue("La Fontana de Oro", "https://www.fontanadeoro.com", ["/agenda/", "/programacion/", "/"]),
+    Venue("Café La Palma", "https://www.cafelapalma.com", ["/agenda/", "/programacion/", "/"]),
+    Venue("Moe Club", "https://www.moeclub.com", ["/agenda/", "/programacion/", "/"]),
+    Venue("Gruta 77", "https://www.gruta77.com", ["/agenda/", "/programacion/", "/"]),
+    Venue("El Perro de la Parte de Atrás del Coche", "https://www.elperroclub.com", ["/agenda/", "/programacion/", "/"]),
+    Venue("Cadavra Club", "https://www.cadavraclub.com", ["/agenda/", "/programacion/", "/"]),
+    Venue("Morocco Club", "https://www.moroccoclub.es", ["/agenda/", "/programacion/", "/"]),
+    Venue("Barracudas", "https://www.barracudasclub.com", ["/agenda/", "/programacion/", "/"]),
+    Venue("Olvido Club", "https://www.olvidoclub.com", ["/agenda/", "/programacion/", "/"]),
+    Venue("Hangar 48", "https://www.hangar48.es", ["/agenda/", "/programacion/", "/"]),
+    # --- Tablaos flamencos ---
+    Venue("Corral de la Morería", "https://www.corraldelamoreria.com", ["/programacion/", "/espectaculo/", "/"]),
+    Venue("Cardamomo", "https://cardamomo.com", ["/es/programacion/", "/es/", "/"]),
+    Venue("Tablao de La Villa", "https://tablaodelavilla.com", ["/programacion/", "/espectaculo/", "/"]),
+    Venue("Las Tablas", "https://lastablasmadrid.com", ["/programacion/", "/espectaculos/", "/"]),
+    Venue("Tablao La Quimera", "https://tablaolaquimera.com", ["/es/programacion/", "/es/", "/"]),
+    Venue("Tablao Los Porches", "https://tablaoflamencolosporches.com", ["/programacion/", "/espectaculos/", "/"]),
+    Venue("La Cueva de Lola", "https://www.lacuevadelola.com", ["/programacion/", "/espectaculos/", "/"]),
+    Venue("Flamenco de Leones", "https://flamencodeleones.es", ["/programacion/", "/espectaculos/", "/"]),
+    Venue("Tablao Flamenco 1911", "https://tablaoflamenco1911.com", ["/programacion/", "/espectaculos/", "/"]),
+    Venue("Tablao La Carmela", "https://tablaolacarmela.com", ["/programacion/", "/espectaculos/", "/"]),
 ]
 
 # Venues with only Instagram/Facebook (not scrapable via web)
