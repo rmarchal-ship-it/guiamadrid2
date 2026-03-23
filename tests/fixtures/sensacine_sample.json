@@ -1,0 +1,3696 @@
+{
+  "pagination": {
+    "page": 1,
+    "totalPages": 1
+  },
+  "results": [
+    {
+      "movie": {
+        "synopsis": "Tras la muerte de su madre, Elsa, directora de publicidad, se refugia en el trabajo para evitar el duelo. Una crisis de pánico la obliga a parar, y viaja a Lanzarote con su amiga Patricia en busca de descanso y claridad, dejando a su pareja Bonifacio en Madrid.",
+        "synopsis_json": {
+          "__typename": "BodyJson",
+          "body": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Elsa es una directora de publicidad, cuya madre fallece durante un puente en el mes de diciembre. Para sobrellevar el duelo, Elsa se centra plenamente en el trabajo, sin dejar tiempo para superarlo, intentando huir hacia delante. Sin embargo, una crisis de pánico la obliga a parar y tener que descansar."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Bonifacio, su pareja, había sido su salvación y la había ayudado a sobrellevar el fallecimiento. Pero para pasar página, Elsa decide irse a Lanzarote con su amiga Patricia, que también necesita un descanso de Madrid, mientras que Bonifacio se queda en la capital."
+                }
+              ]
+            }
+          ]
+        },
+        "__typename": "Movie",
+        "internalId": 1000025821,
+        "id": "TW92aWU6MTAwMDAyNTgyMQ==",
+        "poster": {
+          "__typename": "InternalImage",
+          "id": "SW1hZ2U6OTAwMjAwODUzOQ==",
+          "internalId": 9002008539,
+          "url": "https://es.web.img2.acsta.net/img/60/ff/60ff5df4d1e858aa504693e07468e58d.jpg",
+          "path": "/img/60/ff/60ff5df4d1e858aa504693e07468e58d.jpg"
+        },
+        "title": "Amarga Navidad",
+        "originalTitle": "Amarga Navidad",
+        "type": "FEATURE_FILM",
+        "runtime": "1h 51min",
+        "genres": [
+          {
+            "id": 13002,
+            "translate": "Comedia dramática",
+            "tag": "COMEDY_DRAMA"
+          }
+        ],
+        "languages": [
+          "SPANISH"
+        ],
+        "data": {
+          "__typename": "MovieData",
+          "seo": {
+            "__typename": "Seo",
+            "browsable": true,
+            "title": null
+          },
+          "productionYear": 2026,
+          "rules": {
+            "rating": {
+              "has_warning_message": false,
+              "has_mandatory_review": false
+            }
+          }
+        },
+        "stats": {
+          "userRating": {
+            "score": 2.71,
+            "count": 2
+          },
+          "userReview": {
+            "count": null
+          },
+          "pressReview": {
+            "score": 3.81,
+            "count": 8
+          },
+          "metric": {
+            "hits": 4017,
+            "sessions": 2793
+          },
+          "wantToSeeCount": 12
+        },
+        "editorialReviews": [
+          {
+            "rating": 4.5
+          }
+        ],
+        "releases": [
+          {
+            "__typename": "MovieRelease",
+            "releaseDate": {
+              "__typename": "PartialDate",
+              "date": "2026-03-20",
+              "precision": "day"
+            },
+            "name": "Released",
+            "certificate": {
+              "__typename": "Certificate",
+              "code": "12",
+              "label": "Pelicula no recomendada a menores de 12"
+            },
+            "advice": null,
+            "companyLimitation": null,
+            "releaseTags": {
+              "tagTypes": [
+                "THEATER"
+              ],
+              "tagFlags": null
+            },
+            "visaNumber": null
+          }
+        ],
+        "credits": [
+          {
+            "person": {
+              "__typename": "Person",
+              "internalId": 5289,
+              "lastName": "Almodóvar",
+              "firstName": "Pedro",
+              "seo": {
+                "__typename": "Seo",
+                "browsable": true
+              }
+            },
+            "position": {
+              "__typename": "Position",
+              "name": "DIRECTOR",
+              "department": "DIRECTION"
+            },
+            "rank": 1
+          }
+        ],
+        "cast": {
+          "__typename": "castMemberConnection",
+          "edges": [
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 192773,
+                  "lastName": "Lennie",
+                  "firstName": "Bárbara",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 1
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 41599,
+                  "lastName": "Sbaraglia",
+                  "firstName": "Leonardo",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 2
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 17640,
+                  "lastName": "Sánchez-Gijón",
+                  "firstName": "Aitana",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 3
+              }
+            }
+          ],
+          "nodes": [
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 192773,
+                "lastName": "Lennie",
+                "firstName": "Bárbara",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 1
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 41599,
+                "lastName": "Sbaraglia",
+                "firstName": "Leonardo",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 2
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 17640,
+                "lastName": "Sánchez-Gijón",
+                "firstName": "Aitana",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 3
+            }
+          ]
+        },
+        "countries": [
+          {
+            "__typename": "Country",
+            "id": 5017,
+            "name": "Spain",
+            "localizedName": "España"
+          }
+        ],
+        "relatedTags": [],
+        "flags": {
+          "hasDvdRelease": false,
+          "hasNews": true,
+          "hasOnlineProduct": false,
+          "hasOnlineRelease": false,
+          "hasPhysicalProduct": false,
+          "hasPreview": true,
+          "hasShowtime": true,
+          "hasSoundtrack": false,
+          "hasTheaterRelease": true,
+          "hasTrivia": true,
+          "hasAwards": false,
+          "isLesIndes": false,
+          "isIncontestable": false,
+          "isClubApproved": [],
+          "hasClubNews": [],
+          "isComingSoon": false,
+          "isPlayingNow": true,
+          "tvRelease": false,
+          "hasTeaser": true,
+          "hasTrailer": true
+        },
+        "customFlags": {
+          "isPremiere": false,
+          "weeklyOuting": true
+        },
+        "synopsisFull": "<p class=\"bo-p\">Elsa es una directora de publicidad, cuya madre fallece durante un puente en el mes de diciembre. Para sobrellevar el duelo, Elsa se centra plenamente en el trabajo, sin dejar tiempo para superarlo, intentando huir hacia delante. Sin embargo, una crisis de pánico la obliga a parar y tener que descansar.</p><p class=\"bo-p\">Bonifacio, su pareja, había sido su salvación y la había ayudado a sobrellevar el fallecimiento. Pero para pasar página, Elsa decide irse a Lanzarote con su amiga Patricia, que también necesita un descanso de Madrid, mientras que Bonifacio se queda en la capital.</p>"
+      },
+      "showtimes": {
+        "dubbed": [],
+        "original": [],
+        "local": [
+          {
+            "__typename": "Showtime",
+            "internalId": 73905330657,
+            "startsAt": "2026-03-20T20:25:00",
+            "timeBeforeStart": "PT0H0M0S",
+            "service": null,
+            "experience": null,
+            "comfort": null,
+            "projection": [
+              "DIGITAL"
+            ],
+            "picture": null,
+            "sound": null,
+            "tags": [
+              "Localization.Language.Spanish",
+              "Format.Projection.Digital"
+            ],
+            "diffusionVersion": "LOCAL",
+            "data": {
+              "__typename": "ShowtimeData",
+              "ticketing": [
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://relay.mvtx.us/ticketing/dbz?code_theater=E0621&gid_entity=movie.movie._.1000025821&tags=Localization.Language.Spanish,Format.Projection.Digital&perfd=20260320&perft=20:25&code=2D; ESPANOL"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "relay"
+                },
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://compra.yelmocines.es/?cinemaVistaId=780&showtimeVistaId=28136"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "default"
+                }
+              ]
+            },
+            "isPreview": false,
+            "isWeeklyMovieOuting": true
+          },
+          {
+            "__typename": "Showtime",
+            "internalId": 73905330617,
+            "startsAt": "2026-03-20T22:45:00",
+            "timeBeforeStart": "PT0H0M0S",
+            "service": null,
+            "experience": null,
+            "comfort": null,
+            "projection": [
+              "DIGITAL"
+            ],
+            "picture": null,
+            "sound": null,
+            "tags": [
+              "Localization.Language.Spanish",
+              "Format.Projection.Digital"
+            ],
+            "diffusionVersion": "LOCAL",
+            "data": {
+              "__typename": "ShowtimeData",
+              "ticketing": [
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://relay.mvtx.us/ticketing/dbz?code_theater=E0621&gid_entity=movie.movie._.1000025821&tags=Localization.Language.Spanish,Format.Projection.Digital&perfd=20260320&perft=22:45&code=2D; ESPANOL"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "relay"
+                },
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://compra.yelmocines.es/?cinemaVistaId=780&showtimeVistaId=28137"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "default"
+                }
+              ]
+            },
+            "isPreview": false,
+            "isWeeklyMovieOuting": true
+          }
+        ]
+      }
+    },
+    {
+      "movie": {
+        "synopsis": "La historia sigue a Agnes, esposa de Shakespeare, en su dolorosa lucha tras la muerte de su hijo Hamnet y su esfuerzo por sostener a su familia. Su pérdida se convierte en el trasfondo que inspira Hamlet, revelando la unión entre duelo, amor y creación artística.",
+        "synopsis_json": {
+          "__typename": "BodyJson",
+          "body": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "La vida de Agnes, la esposa de William Shakespeare, se ve marcada por el dolor tras la muerte de su hijo Hamnet. En un retrato íntimo y profundamente humano, se muestra su lucha por sobrellevar la pérdida mientras protege a su familia y busca sentido en medio del duelo."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "La historia revela cómo este acontecimiento trágico se convierte en telón de fondo para la creación de Hamlet, una de las obras más emblemáticas de Shakespeare. Con sensibilidad y fuerza emocional, la narración mezcla amor, maternidad y arte, iluminando la figura de Agnes como pilar invisible en la vida del dramaturgo."
+                }
+              ]
+            }
+          ]
+        },
+        "__typename": "Movie",
+        "internalId": 315003,
+        "id": "TW92aWU6MzE1MDAz",
+        "poster": {
+          "__typename": "InternalImage",
+          "id": "SW1hZ2U6OTAwMTk0MTUzMw==",
+          "internalId": 9001941533,
+          "url": "https://es.web.img3.acsta.net/img/07/8a/078a4f7d4dce42afa5d24bb304747b3a.jpg",
+          "path": "/img/07/8a/078a4f7d4dce42afa5d24bb304747b3a.jpg"
+        },
+        "title": "Hamnet",
+        "originalTitle": "Hamnet",
+        "type": "FEATURE_FILM",
+        "runtime": "2h 05min",
+        "genres": [
+          {
+            "id": 13008,
+            "translate": "Drama",
+            "tag": "DRAMA"
+          }
+        ],
+        "languages": [
+          "ENGLISH"
+        ],
+        "data": {
+          "__typename": "MovieData",
+          "seo": {
+            "__typename": "Seo",
+            "browsable": true,
+            "title": null
+          },
+          "productionYear": 2025,
+          "rules": {
+            "rating": {
+              "has_warning_message": false,
+              "has_mandatory_review": false
+            }
+          }
+        },
+        "stats": {
+          "userRating": {
+            "score": 4.04,
+            "count": 88
+          },
+          "userReview": {
+            "count": 13
+          },
+          "pressReview": {
+            "score": 3.43,
+            "count": 7
+          },
+          "metric": {
+            "hits": 53363,
+            "sessions": 36603
+          },
+          "wantToSeeCount": 76
+        },
+        "editorialReviews": [
+          {
+            "rating": 5
+          }
+        ],
+        "releases": [
+          {
+            "__typename": "MovieRelease",
+            "releaseDate": {
+              "__typename": "PartialDate",
+              "date": "2026-01-23",
+              "precision": "day"
+            },
+            "name": "Released",
+            "certificate": {
+              "__typename": "Certificate",
+              "code": "12",
+              "label": "Pelicula no recomendada a menores de 12"
+            },
+            "advice": null,
+            "companyLimitation": null,
+            "releaseTags": {
+              "tagTypes": [
+                "THEATER"
+              ],
+              "tagFlags": null
+            },
+            "visaNumber": null
+          }
+        ],
+        "credits": [
+          {
+            "person": {
+              "__typename": "Person",
+              "internalId": 714671,
+              "lastName": "Zhao",
+              "firstName": "Chloé",
+              "seo": {
+                "__typename": "Seo",
+                "browsable": true
+              }
+            },
+            "position": {
+              "__typename": "Position",
+              "name": "DIRECTOR",
+              "department": "DIRECTION"
+            },
+            "rank": 1
+          }
+        ],
+        "cast": {
+          "__typename": "castMemberConnection",
+          "edges": [
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 876352,
+                  "lastName": "Mescal",
+                  "firstName": "Paul",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 1
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 723723,
+                  "lastName": "Buckley",
+                  "firstName": "Jessie",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 2
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 24887,
+                  "lastName": "Watson",
+                  "firstName": "Emily",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 3
+              }
+            }
+          ],
+          "nodes": [
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 876352,
+                "lastName": "Mescal",
+                "firstName": "Paul",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 1
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 723723,
+                "lastName": "Buckley",
+                "firstName": "Jessie",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 2
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 24887,
+                "lastName": "Watson",
+                "firstName": "Emily",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 3
+            }
+          ]
+        },
+        "countries": [
+          {
+            "__typename": "Country",
+            "id": 5004,
+            "name": "United Kingdom",
+            "localizedName": "Gran Bretaña"
+          },
+          {
+            "__typename": "Country",
+            "id": 5002,
+            "name": "USA",
+            "localizedName": "EE.UU."
+          }
+        ],
+        "relatedTags": [],
+        "flags": {
+          "hasDvdRelease": false,
+          "hasNews": true,
+          "hasOnlineProduct": false,
+          "hasOnlineRelease": false,
+          "hasPhysicalProduct": false,
+          "hasPreview": false,
+          "hasShowtime": true,
+          "hasSoundtrack": false,
+          "hasTheaterRelease": true,
+          "hasTrivia": false,
+          "hasAwards": true,
+          "isLesIndes": false,
+          "isIncontestable": false,
+          "isClubApproved": [],
+          "hasClubNews": [],
+          "isComingSoon": false,
+          "isPlayingNow": true,
+          "tvRelease": false,
+          "hasTeaser": true,
+          "hasTrailer": true
+        },
+        "customFlags": {
+          "isPremiere": false,
+          "weeklyOuting": false
+        },
+        "synopsisFull": "<p class=\"bo-p\">La vida de Agnes, la esposa de William Shakespeare, se ve marcada por el dolor tras la muerte de su hijo Hamnet. En un retrato íntimo y profundamente humano, se muestra su lucha por sobrellevar la pérdida mientras protege a su familia y busca sentido en medio del duelo.</p><p class=\"bo-p\">La historia revela cómo este acontecimiento trágico se convierte en telón de fondo para la creación de Hamlet, una de las obras más emblemáticas de Shakespeare. Con sensibilidad y fuerza emocional, la narración mezcla amor, maternidad y arte, iluminando la figura de Agnes como pilar invisible en la vida del dramaturgo.</p>"
+      },
+      "showtimes": {
+        "dubbed": [],
+        "original": [
+          {
+            "__typename": "Showtime",
+            "internalId": 73905330586,
+            "startsAt": "2026-03-20T19:25:00",
+            "timeBeforeStart": "PT0H0M0S",
+            "service": null,
+            "experience": null,
+            "comfort": null,
+            "projection": [
+              "DIGITAL"
+            ],
+            "picture": null,
+            "sound": null,
+            "tags": [
+              "Localization.Language.English",
+              "Localization.Subtitle.Spanish",
+              "Localization.Version.Original",
+              "Format.Projection.Digital"
+            ],
+            "diffusionVersion": "ORIGINAL",
+            "data": {
+              "__typename": "ShowtimeData",
+              "ticketing": [
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://relay.mvtx.us/ticketing/dbz?code_theater=E0621&gid_entity=movie.movie._.315003&tags=Localization.Language.English,Localization.Subtitle.Spanish,Localization.Version.Original,Format.Projection.Digital&perfd=20260320&perft=19:25&code=2D; INGLES SUBTITULADO EN ESPANOL (VOSE)"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "relay"
+                },
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://compra.yelmocines.es/?cinemaVistaId=780&showtimeVistaId=28568"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "default"
+                }
+              ]
+            },
+            "isPreview": false,
+            "isWeeklyMovieOuting": false
+          },
+          {
+            "__typename": "Showtime",
+            "internalId": 73905330517,
+            "startsAt": "2026-03-20T22:00:00",
+            "timeBeforeStart": "PT0H0M0S",
+            "service": null,
+            "experience": null,
+            "comfort": null,
+            "projection": [
+              "DIGITAL"
+            ],
+            "picture": null,
+            "sound": null,
+            "tags": [
+              "Localization.Language.English",
+              "Localization.Subtitle.Spanish",
+              "Localization.Version.Original",
+              "Format.Projection.Digital"
+            ],
+            "diffusionVersion": "ORIGINAL",
+            "data": {
+              "__typename": "ShowtimeData",
+              "ticketing": [
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://relay.mvtx.us/ticketing/dbz?code_theater=E0621&gid_entity=movie.movie._.315003&tags=Localization.Language.English,Localization.Subtitle.Spanish,Localization.Version.Original,Format.Projection.Digital&perfd=20260320&perft=22:00&code=2D; INGLES SUBTITULADO EN ESPANOL (VOSE)"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "relay"
+                },
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://compra.yelmocines.es/?cinemaVistaId=780&showtimeVistaId=28569"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "default"
+                }
+              ]
+            },
+            "isPreview": false,
+            "isWeeklyMovieOuting": false
+          }
+        ],
+        "local": []
+      }
+    },
+    {
+      "movie": {
+        "synopsis": "Cumbres Borrascosas sigue a Heathcliff, un hombre marcado por el rechazo de su amor de juventud, cuyo deseo de venganza desata una tragedia familiar. Pasión, obsesión y rencor definen este clásico gótico.",
+        "synopsis_json": {
+          "__typename": "BodyJson",
+          "body": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Cumbres Borrascosas",
+                  "italic": true
+                },
+                {
+                  "text": ", dirigida por Emerald Fennell y protagonizada por Margot Robbie y Jacob Elordi, es una nueva adaptación del clásico de Emily Brontë. La historia sigue a Heathcliff, un hombre consumido por el rencor tras ser rechazado por su amor de juventud, quien eligió casarse con un hombre rico. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Su deseo de venganza lo llevará a desatar una tormenta de odio y sufrimiento sobre la familia de la mujer que lo traicionó, en un relato de pasión, obsesión y destrucción."
+                }
+              ]
+            }
+          ]
+        },
+        "__typename": "Movie",
+        "internalId": 1000007235,
+        "id": "TW92aWU6MTAwMDAwNzIzNQ==",
+        "poster": {
+          "__typename": "InternalImage",
+          "id": "SW1hZ2U6OTAwMjAwMTA4Nw==",
+          "internalId": 9002001087,
+          "url": "https://es.web.img3.acsta.net/img/40/29/40297cb013081b30dffa9858f56e1e40.jpg",
+          "path": "/img/40/29/40297cb013081b30dffa9858f56e1e40.jpg"
+        },
+        "title": "Cumbres Borrascosas",
+        "originalTitle": "Wuthering Heights",
+        "type": "FEATURE_FILM",
+        "runtime": "2h 16min",
+        "genres": [
+          {
+            "id": 13008,
+            "translate": "Drama",
+            "tag": "DRAMA"
+          },
+          {
+            "id": 13024,
+            "translate": "Romántico",
+            "tag": "ROMANCE"
+          }
+        ],
+        "languages": [
+          "ENGLISH"
+        ],
+        "data": {
+          "__typename": "MovieData",
+          "seo": {
+            "__typename": "Seo",
+            "browsable": true,
+            "title": null
+          },
+          "productionYear": 2026,
+          "rules": {
+            "rating": {
+              "has_warning_message": false,
+              "has_mandatory_review": false
+            }
+          }
+        },
+        "stats": {
+          "userRating": {
+            "score": 3.05,
+            "count": 44
+          },
+          "userReview": {
+            "count": 5
+          },
+          "pressReview": {
+            "score": 2.75,
+            "count": 8
+          },
+          "metric": {
+            "hits": 41755,
+            "sessions": 26243
+          },
+          "wantToSeeCount": 51
+        },
+        "editorialReviews": [
+          {
+            "rating": 3.5
+          }
+        ],
+        "releases": [
+          {
+            "__typename": "MovieRelease",
+            "releaseDate": {
+              "__typename": "PartialDate",
+              "date": "2026-02-13",
+              "precision": "day"
+            },
+            "name": "Released",
+            "certificate": {
+              "__typename": "Certificate",
+              "code": "13",
+              "label": "Pelicula no recomendada a menores de 13"
+            },
+            "advice": null,
+            "companyLimitation": null,
+            "releaseTags": {
+              "tagTypes": [
+                "THEATER"
+              ],
+              "tagFlags": null
+            },
+            "visaNumber": null
+          }
+        ],
+        "credits": [
+          {
+            "person": {
+              "__typename": "Person",
+              "internalId": 420587,
+              "lastName": "Fennell",
+              "firstName": "Emerald",
+              "seo": {
+                "__typename": "Seo",
+                "browsable": true
+              }
+            },
+            "position": {
+              "__typename": "Position",
+              "name": "DIRECTOR",
+              "department": "DIRECTION"
+            },
+            "rank": 1
+          }
+        ],
+        "cast": {
+          "__typename": "castMemberConnection",
+          "edges": [
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 403573,
+                  "lastName": "Robbie",
+                  "firstName": "Margot",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 1
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 838641,
+                  "lastName": "Elordi",
+                  "firstName": "Jacob",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 2
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 425221,
+                  "lastName": "Chau",
+                  "firstName": "Hong",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 3
+              }
+            }
+          ],
+          "nodes": [
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 403573,
+                "lastName": "Robbie",
+                "firstName": "Margot",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 1
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 838641,
+                "lastName": "Elordi",
+                "firstName": "Jacob",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 2
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 425221,
+                "lastName": "Chau",
+                "firstName": "Hong",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 3
+            }
+          ]
+        },
+        "countries": [
+          {
+            "__typename": "Country",
+            "id": 5004,
+            "name": "United Kingdom",
+            "localizedName": "Gran Bretaña"
+          },
+          {
+            "__typename": "Country",
+            "id": 5002,
+            "name": "USA",
+            "localizedName": "EE.UU."
+          }
+        ],
+        "relatedTags": [],
+        "flags": {
+          "hasDvdRelease": false,
+          "hasNews": true,
+          "hasOnlineProduct": false,
+          "hasOnlineRelease": false,
+          "hasPhysicalProduct": false,
+          "hasPreview": false,
+          "hasShowtime": true,
+          "hasSoundtrack": false,
+          "hasTheaterRelease": true,
+          "hasTrivia": false,
+          "hasAwards": false,
+          "isLesIndes": false,
+          "isIncontestable": false,
+          "isClubApproved": [],
+          "hasClubNews": [],
+          "isComingSoon": false,
+          "isPlayingNow": true,
+          "tvRelease": false,
+          "hasTeaser": false,
+          "hasTrailer": true
+        },
+        "customFlags": {
+          "isPremiere": false,
+          "weeklyOuting": false
+        },
+        "synopsisFull": "<p class=\"bo-p\"><i>Cumbres Borrascosas</i>, dirigida por Emerald Fennell y protagonizada por Margot Robbie y Jacob Elordi, es una nueva adaptación del clásico de Emily Brontë. La historia sigue a Heathcliff, un hombre consumido por el rencor tras ser rechazado por su amor de juventud, quien eligió casarse con un hombre rico. </p><p class=\"bo-p\">Su deseo de venganza lo llevará a desatar una tormenta de odio y sufrimiento sobre la familia de la mujer que lo traicionó, en un relato de pasión, obsesión y destrucción.</p>"
+      },
+      "showtimes": {
+        "dubbed": [],
+        "original": [
+          {
+            "__typename": "Showtime",
+            "internalId": 73905330621,
+            "startsAt": "2026-03-20T19:30:00",
+            "timeBeforeStart": "PT0H0M0S",
+            "service": null,
+            "experience": null,
+            "comfort": null,
+            "projection": [
+              "DIGITAL"
+            ],
+            "picture": null,
+            "sound": null,
+            "tags": [
+              "Localization.Language.English",
+              "Localization.Subtitle.Spanish",
+              "Localization.Version.Original",
+              "Format.Projection.Digital"
+            ],
+            "diffusionVersion": "ORIGINAL",
+            "data": {
+              "__typename": "ShowtimeData",
+              "ticketing": [
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://relay.mvtx.us/ticketing/dbz?code_theater=E0621&gid_entity=movie.movie._.1000007235&tags=Localization.Language.English,Localization.Subtitle.Spanish,Localization.Version.Original,Format.Projection.Digital&perfd=20260320&perft=19:30&code=2D; INGLES SUBTITULADO EN ESPANOL (VOSE)"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "relay"
+                },
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://compra.yelmocines.es/?cinemaVistaId=780&showtimeVistaId=28558"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "default"
+                }
+              ]
+            },
+            "isPreview": false,
+            "isWeeklyMovieOuting": false
+          },
+          {
+            "__typename": "Showtime",
+            "internalId": 73905330312,
+            "startsAt": "2026-03-20T22:15:00",
+            "timeBeforeStart": "PT0H0M0S",
+            "service": null,
+            "experience": null,
+            "comfort": null,
+            "projection": [
+              "DIGITAL"
+            ],
+            "picture": null,
+            "sound": null,
+            "tags": [
+              "Localization.Language.English",
+              "Localization.Subtitle.Spanish",
+              "Localization.Version.Original",
+              "Format.Projection.Digital"
+            ],
+            "diffusionVersion": "ORIGINAL",
+            "data": {
+              "__typename": "ShowtimeData",
+              "ticketing": [
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://relay.mvtx.us/ticketing/dbz?code_theater=E0621&gid_entity=movie.movie._.1000007235&tags=Localization.Language.English,Localization.Subtitle.Spanish,Localization.Version.Original,Format.Projection.Digital&perfd=20260320&perft=22:15&code=2D; INGLES SUBTITULADO EN ESPANOL (VOSE)"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "relay"
+                },
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://compra.yelmocines.es/?cinemaVistaId=780&showtimeVistaId=28559"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "default"
+                }
+              ]
+            },
+            "isPreview": false,
+            "isWeeklyMovieOuting": false
+          }
+        ],
+        "local": []
+      }
+    },
+    {
+      "movie": {
+        "synopsis": "Dos miembros de un partido ultraderechista descubren el carisma de Torrente, lo invitan a hablar en algunos mítines. Sin embargo, su influencia crece inesperadamente hasta ganar poder dentro del partido, provocando una cadena de situaciones cada vez más absurdas. Nueva sátira de la sociedad española dirigida y protagonizada por Santiago Segura.",
+        "synopsis_json": {
+          "__typename": "BodyJson",
+          "body": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Una tarde a la hora de la comida en un bar. Allí, dos importantes afiliados al parido de extrema derecha NOX, se fijan en la actitud y el magnetismo que desprende Jose Luis Torrente con los parroquianos del lugar, y deciden invitarle para hablar en un par de mítines. Lo que estos dos jóvenes desconocen es que abren la caja de los truenos y Torrente poco a poco comienza a ganar poder dentro del partido y su discurso fascista empieza a calar entre los votantes. A partir de ahí comienzan una serie de acontecimientos a cada cual más surrealista, en la sexta sátira de la sociedad española -a manos del director y actor Santiago Segura- vista desde la óptica del policía más marrano e irreverente del cine español."
+                }
+              ]
+            }
+          ]
+        },
+        "__typename": "Movie",
+        "internalId": 324865,
+        "id": "TW92aWU6MzI0ODY1",
+        "poster": {
+          "__typename": "InternalImage",
+          "id": "SW1hZ2U6OTAwMjAyODM0OQ==",
+          "internalId": 9002028349,
+          "url": "https://es.web.img2.acsta.net/img/ce/63/ce63bc4bd27995d49be93a2891504e53.png",
+          "path": "/img/ce/63/ce63bc4bd27995d49be93a2891504e53.png"
+        },
+        "title": "Torrente presidente",
+        "originalTitle": "Torrente presidente",
+        "type": "FEATURE_FILM",
+        "runtime": "1h 43min",
+        "genres": [
+          {
+            "id": 13005,
+            "translate": "Comedia",
+            "tag": "COMEDY"
+          }
+        ],
+        "languages": [
+          "SPANISH"
+        ],
+        "data": {
+          "__typename": "MovieData",
+          "seo": {
+            "__typename": "Seo",
+            "browsable": true,
+            "title": null
+          },
+          "productionYear": 2026,
+          "rules": {
+            "rating": {
+              "has_warning_message": false,
+              "has_mandatory_review": false
+            }
+          }
+        },
+        "stats": {
+          "userRating": {
+            "score": 2.64,
+            "count": 49
+          },
+          "userReview": {
+            "count": 13
+          },
+          "pressReview": {
+            "score": 3.42,
+            "count": 6
+          },
+          "metric": {
+            "hits": 80240,
+            "sessions": 60286
+          },
+          "wantToSeeCount": 26
+        },
+        "editorialReviews": [
+          {
+            "rating": 3.5
+          }
+        ],
+        "releases": [
+          {
+            "__typename": "MovieRelease",
+            "releaseDate": {
+              "__typename": "PartialDate",
+              "date": "2026-03-13",
+              "precision": "day"
+            },
+            "name": "Released",
+            "certificate": {
+              "__typename": "Certificate",
+              "code": "16",
+              "label": "Pelicula no recomendada a menores de 16"
+            },
+            "advice": null,
+            "companyLimitation": null,
+            "releaseTags": {
+              "tagTypes": [
+                "THEATER"
+              ],
+              "tagFlags": null
+            },
+            "visaNumber": null
+          }
+        ],
+        "credits": [
+          {
+            "person": {
+              "__typename": "Person",
+              "internalId": 19543,
+              "lastName": "Segura",
+              "firstName": "Santiago",
+              "seo": {
+                "__typename": "Seo",
+                "browsable": true
+              }
+            },
+            "position": {
+              "__typename": "Position",
+              "name": "DIRECTOR",
+              "department": "DIRECTION"
+            },
+            "rank": 1
+          }
+        ],
+        "cast": {
+          "__typename": "castMemberConnection",
+          "edges": [
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 19543,
+                  "lastName": "Segura",
+                  "firstName": "Santiago",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 1
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 14784,
+                  "lastName": "Diego",
+                  "firstName": "Gabino",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 2
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 781176,
+                  "lastName": "Leo Harlem",
+                  "firstName": null,
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 4
+              }
+            }
+          ],
+          "nodes": [
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 19543,
+                "lastName": "Segura",
+                "firstName": "Santiago",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 1
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 14784,
+                "lastName": "Diego",
+                "firstName": "Gabino",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 2
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 781176,
+                "lastName": "Leo Harlem",
+                "firstName": null,
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 4
+            }
+          ]
+        },
+        "countries": [
+          {
+            "__typename": "Country",
+            "id": 5017,
+            "name": "Spain",
+            "localizedName": "España"
+          }
+        ],
+        "relatedTags": [],
+        "flags": {
+          "hasDvdRelease": false,
+          "hasNews": true,
+          "hasOnlineProduct": false,
+          "hasOnlineRelease": false,
+          "hasPhysicalProduct": false,
+          "hasPreview": false,
+          "hasShowtime": true,
+          "hasSoundtrack": false,
+          "hasTheaterRelease": true,
+          "hasTrivia": false,
+          "hasAwards": false,
+          "isLesIndes": false,
+          "isIncontestable": false,
+          "isClubApproved": [],
+          "hasClubNews": [],
+          "isComingSoon": false,
+          "isPlayingNow": true,
+          "tvRelease": false,
+          "hasTeaser": true,
+          "hasTrailer": true
+        },
+        "customFlags": {
+          "isPremiere": false,
+          "weeklyOuting": false
+        },
+        "synopsisFull": "<p class=\"bo-p\">Una tarde a la hora de la comida en un bar. Allí, dos importantes afiliados al parido de extrema derecha NOX, se fijan en la actitud y el magnetismo que desprende Jose Luis Torrente con los parroquianos del lugar, y deciden invitarle para hablar en un par de mítines. Lo que estos dos jóvenes desconocen es que abren la caja de los truenos y Torrente poco a poco comienza a ganar poder dentro del partido y su discurso fascista empieza a calar entre los votantes. A partir de ahí comienzan una serie de acontecimientos a cada cual más surrealista, en la sexta sátira de la sociedad española -a manos del director y actor Santiago Segura- vista desde la óptica del policía más marrano e irreverente del cine español.</p>"
+      },
+      "showtimes": {
+        "dubbed": [],
+        "original": [],
+        "local": [
+          {
+            "__typename": "Showtime",
+            "internalId": 73905330442,
+            "startsAt": "2026-03-20T20:15:00",
+            "timeBeforeStart": "PT0H0M0S",
+            "service": null,
+            "experience": null,
+            "comfort": null,
+            "projection": [
+              "DIGITAL"
+            ],
+            "picture": null,
+            "sound": null,
+            "tags": [
+              "Localization.Language.Spanish",
+              "Format.Projection.Digital"
+            ],
+            "diffusionVersion": "LOCAL",
+            "data": {
+              "__typename": "ShowtimeData",
+              "ticketing": [
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://relay.mvtx.us/ticketing/dbz?code_theater=E0621&gid_entity=movie.movie._.324865&tags=Localization.Language.Spanish,Format.Projection.Digital&perfd=20260320&perft=20:15&code=2D; ESPANOL"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "relay"
+                },
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://compra.yelmocines.es/?cinemaVistaId=780&showtimeVistaId=28485"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "default"
+                }
+              ]
+            },
+            "isPreview": false,
+            "isWeeklyMovieOuting": false
+          },
+          {
+            "__typename": "Showtime",
+            "internalId": 73905330387,
+            "startsAt": "2026-03-20T21:15:00",
+            "timeBeforeStart": "PT0H0M0S",
+            "service": null,
+            "experience": null,
+            "comfort": null,
+            "projection": [
+              "DIGITAL"
+            ],
+            "picture": null,
+            "sound": null,
+            "tags": [
+              "Localization.Language.Spanish",
+              "Format.Projection.Digital"
+            ],
+            "diffusionVersion": "LOCAL",
+            "data": {
+              "__typename": "ShowtimeData",
+              "ticketing": [
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://relay.mvtx.us/ticketing/dbz?code_theater=E0621&gid_entity=movie.movie._.324865&tags=Localization.Language.Spanish,Format.Projection.Digital&perfd=20260320&perft=21:15&code=2D; ESPANOL"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "relay"
+                },
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://compra.yelmocines.es/?cinemaVistaId=780&showtimeVistaId=28578"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "default"
+                }
+              ]
+            },
+            "isPreview": false,
+            "isWeeklyMovieOuting": false
+          },
+          {
+            "__typename": "Showtime",
+            "internalId": 73905330686,
+            "startsAt": "2026-03-20T22:30:00",
+            "timeBeforeStart": "PT0H0M0S",
+            "service": null,
+            "experience": null,
+            "comfort": null,
+            "projection": [
+              "DIGITAL"
+            ],
+            "picture": null,
+            "sound": null,
+            "tags": [
+              "Localization.Language.Spanish",
+              "Format.Projection.Digital"
+            ],
+            "diffusionVersion": "LOCAL",
+            "data": {
+              "__typename": "ShowtimeData",
+              "ticketing": [
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://relay.mvtx.us/ticketing/dbz?code_theater=E0621&gid_entity=movie.movie._.324865&tags=Localization.Language.Spanish,Format.Projection.Digital&perfd=20260320&perft=22:30&code=2D; ESPANOL"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "relay"
+                },
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://compra.yelmocines.es/?cinemaVistaId=780&showtimeVistaId=28486"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "default"
+                }
+              ]
+            },
+            "isPreview": false,
+            "isWeeklyMovieOuting": false
+          },
+          {
+            "__typename": "Showtime",
+            "internalId": 73905330615,
+            "startsAt": "2026-03-20T23:30:00",
+            "timeBeforeStart": "PT0H0M0S",
+            "service": null,
+            "experience": null,
+            "comfort": null,
+            "projection": [
+              "DIGITAL"
+            ],
+            "picture": null,
+            "sound": null,
+            "tags": [
+              "Localization.Language.Spanish",
+              "Format.Projection.Digital"
+            ],
+            "diffusionVersion": "LOCAL",
+            "data": {
+              "__typename": "ShowtimeData",
+              "ticketing": [
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://relay.mvtx.us/ticketing/dbz?code_theater=E0621&gid_entity=movie.movie._.324865&tags=Localization.Language.Spanish,Format.Projection.Digital&perfd=20260320&perft=23:30&code=2D; ESPANOL"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "relay"
+                },
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://compra.yelmocines.es/?cinemaVistaId=780&showtimeVistaId=28577"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "default"
+                }
+              ]
+            },
+            "isPreview": false,
+            "isWeeklyMovieOuting": false
+          }
+        ]
+      }
+    },
+    {
+      "movie": {
+        "synopsis": "Bob Ferguson, un ex revolucionario, debe rescatar a su hija secuestrada por un enemigo de su pasado. Con la ayuda de antiguos compañeros liderados por Sensei Sergio, enfrenta peligros y busca redención.",
+        "synopsis_json": {
+          "__typename": "BodyJson",
+          "body": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Bob Ferguson es un ex revolucionario cuya vida da un giro cuando su hija es secuestrada por un enemigo de su pasado. Desesperado por recuperarla, Bob se ve obligado a confrontar viejas heridas y a recurrir a un grupo de antiguos compañeros revolucionarios liderados por el experimentado Sensei Sergio."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Juntos planean enfrentarse a fuerzas peligrosas, combinando astucia, estrategia y habilidades adquiridas en su pasado militante. La historia mezcla acción, suspenso y redención mientras Bob lucha por salvar a su hija y reconciliarse con su historia."
+                }
+              ]
+            }
+          ]
+        },
+        "__typename": "Movie",
+        "internalId": 311364,
+        "id": "TW92aWU6MzExMzY0",
+        "poster": {
+          "__typename": "InternalImage",
+          "id": "SW1hZ2U6OTAwMTkwNDE0Nw==",
+          "internalId": 9001904147,
+          "url": "https://es.web.img3.acsta.net/img/a6/af/a6af650c0fe2634ffe65b610e02fe489.jpg",
+          "path": "/img/a6/af/a6af650c0fe2634ffe65b610e02fe489.jpg"
+        },
+        "title": "Una batalla tras otra",
+        "originalTitle": "One Battle After Another",
+        "type": "FEATURE_FILM",
+        "runtime": "2h 42min",
+        "genres": [
+          {
+            "id": 13025,
+            "translate": "Acción",
+            "tag": "ACTION"
+          },
+          {
+            "id": 13008,
+            "translate": "Drama",
+            "tag": "DRAMA"
+          },
+          {
+            "id": 13005,
+            "translate": "Comedia",
+            "tag": "COMEDY"
+          }
+        ],
+        "languages": [
+          "ENGLISH"
+        ],
+        "data": {
+          "__typename": "MovieData",
+          "seo": {
+            "__typename": "Seo",
+            "browsable": true,
+            "title": null
+          },
+          "productionYear": 2025,
+          "rules": {
+            "rating": {
+              "has_warning_message": false,
+              "has_mandatory_review": false
+            }
+          }
+        },
+        "stats": {
+          "userRating": {
+            "score": 3.81,
+            "count": 180
+          },
+          "userReview": {
+            "count": 34
+          },
+          "pressReview": {
+            "score": 4,
+            "count": 5
+          },
+          "metric": {
+            "hits": 88495,
+            "sessions": 62805
+          },
+          "wantToSeeCount": 84
+        },
+        "editorialReviews": [
+          {
+            "rating": 5
+          }
+        ],
+        "releases": [
+          {
+            "__typename": "MovieRelease",
+            "releaseDate": {
+              "__typename": "PartialDate",
+              "date": "2025-12-19",
+              "precision": "day"
+            },
+            "name": "Svod",
+            "certificate": null,
+            "advice": null,
+            "companyLimitation": {
+              "id": "Q29tcGFueTo0MDMxNQ==",
+              "internalId": 40315,
+              "name": "HBO Max"
+            },
+            "releaseTags": {
+              "tagTypes": [
+                "ONLINE",
+                "ONLINE_SVOD"
+              ],
+              "tagFlags": null
+            },
+            "visaNumber": null
+          },
+          {
+            "__typename": "MovieRelease",
+            "releaseDate": {
+              "__typename": "PartialDate",
+              "date": "2025-09-26",
+              "precision": "day"
+            },
+            "name": "Released",
+            "certificate": {
+              "__typename": "Certificate",
+              "code": "16",
+              "label": "Pelicula no recomendada a menores de 16"
+            },
+            "advice": null,
+            "companyLimitation": null,
+            "releaseTags": {
+              "tagTypes": [
+                "THEATER"
+              ],
+              "tagFlags": null
+            },
+            "visaNumber": null
+          }
+        ],
+        "credits": [
+          {
+            "person": {
+              "__typename": "Person",
+              "internalId": 35733,
+              "lastName": "Anderson",
+              "firstName": "Paul Thomas",
+              "seo": {
+                "__typename": "Seo",
+                "browsable": true
+              }
+            },
+            "position": {
+              "__typename": "Position",
+              "name": "DIRECTOR",
+              "department": "DIRECTION"
+            },
+            "rank": 1
+          }
+        ],
+        "cast": {
+          "__typename": "castMemberConnection",
+          "edges": [
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 12972,
+                  "lastName": "DiCaprio",
+                  "firstName": "Leonardo",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 1
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 6146,
+                  "lastName": "Penn",
+                  "firstName": "Sean",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 2
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 986949,
+                  "lastName": "Infiniti",
+                  "firstName": "Chase",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 3
+              }
+            }
+          ],
+          "nodes": [
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 12972,
+                "lastName": "DiCaprio",
+                "firstName": "Leonardo",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 1
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 6146,
+                "lastName": "Penn",
+                "firstName": "Sean",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 2
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 986949,
+                "lastName": "Infiniti",
+                "firstName": "Chase",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 3
+            }
+          ]
+        },
+        "countries": [
+          {
+            "__typename": "Country",
+            "id": 5002,
+            "name": "USA",
+            "localizedName": "EE.UU."
+          }
+        ],
+        "relatedTags": [],
+        "flags": {
+          "hasDvdRelease": false,
+          "hasNews": true,
+          "hasOnlineProduct": true,
+          "hasOnlineRelease": true,
+          "hasPhysicalProduct": false,
+          "hasPreview": false,
+          "hasShowtime": true,
+          "hasSoundtrack": false,
+          "hasTheaterRelease": true,
+          "hasTrivia": true,
+          "hasAwards": true,
+          "isLesIndes": false,
+          "isIncontestable": false,
+          "isClubApproved": [],
+          "hasClubNews": [],
+          "isComingSoon": false,
+          "isPlayingNow": true,
+          "tvRelease": false,
+          "hasTeaser": false,
+          "hasTrailer": true
+        },
+        "customFlags": {
+          "isPremiere": false,
+          "weeklyOuting": false
+        },
+        "synopsisFull": "<p class=\"bo-p\">Bob Ferguson es un ex revolucionario cuya vida da un giro cuando su hija es secuestrada por un enemigo de su pasado. Desesperado por recuperarla, Bob se ve obligado a confrontar viejas heridas y a recurrir a un grupo de antiguos compañeros revolucionarios liderados por el experimentado Sensei Sergio.</p><p class=\"bo-p\">Juntos planean enfrentarse a fuerzas peligrosas, combinando astucia, estrategia y habilidades adquiridas en su pasado militante. La historia mezcla acción, suspenso y redención mientras Bob lucha por salvar a su hija y reconciliarse con su historia.</p>"
+      },
+      "showtimes": {
+        "dubbed": [],
+        "original": [
+          {
+            "__typename": "Showtime",
+            "internalId": 73905330510,
+            "startsAt": "2026-03-20T20:25:00",
+            "timeBeforeStart": "PT0H0M0S",
+            "service": null,
+            "experience": null,
+            "comfort": null,
+            "projection": [
+              "DIGITAL"
+            ],
+            "picture": null,
+            "sound": null,
+            "tags": [
+              "Localization.Language.English",
+              "Localization.Subtitle.Spanish",
+              "Localization.Version.Original",
+              "Format.Projection.Digital"
+            ],
+            "diffusionVersion": "ORIGINAL",
+            "data": {
+              "__typename": "ShowtimeData",
+              "ticketing": [
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://relay.mvtx.us/ticketing/dbz?code_theater=E0621&gid_entity=movie.movie._.311364&tags=Localization.Language.English,Localization.Subtitle.Spanish,Localization.Version.Original,Format.Projection.Digital&perfd=20260320&perft=20:25&code=2D; INGLES SUBTITULADO EN ESPANOL (VOSE)"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "relay"
+                },
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://compra.yelmocines.es/?cinemaVistaId=780&showtimeVistaId=28571"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "default"
+                }
+              ]
+            },
+            "isPreview": false,
+            "isWeeklyMovieOuting": false
+          }
+        ],
+        "local": []
+      }
+    },
+    {
+      "movie": {
+        "synopsis": "Mabel, una joven que controla un castor robot, se infiltra en el reino animal para frenar a un promotor que amenaza su hábitat. Junto al Rey Jorge, lidera una divertida y valiente rebelión para salvar su mundo.",
+        "synopsis_json": {
+          "__typename": "BodyJson",
+          "body": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Mabel, una joven con una habilidad extraordinaria, puede transferir su mente a un castor robot para infiltrarse en el reino animal. Su misión: descubrir los planes de un ambicioso promotor inmobiliario que amenaza con destruir el hábitat natural. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "En su aventura, Mabel entabla una inesperada amistad con el carismático y sabio Rey Jorge, un castor que lidera a los suyos con nobleza. Juntos, unirán a los animales en una lucha por defender su hogar. Esta historia está llena de humor, ingenio y corazón para la amistad."
+                }
+              ]
+            }
+          ]
+        },
+        "__typename": "Movie",
+        "internalId": 1000009065,
+        "id": "TW92aWU6MTAwMDAwOTA2NQ==",
+        "poster": {
+          "__typename": "InternalImage",
+          "id": "SW1hZ2U6OTAwMTkwNDEzNg==",
+          "internalId": 9001904136,
+          "url": "https://es.web.img2.acsta.net/img/0f/d8/0fd8f3c56fa2f4bbd9cdf169fa88f569.jpg",
+          "path": "/img/0f/d8/0fd8f3c56fa2f4bbd9cdf169fa88f569.jpg"
+        },
+        "title": "Hoppers",
+        "originalTitle": "Hoppers",
+        "type": "FEATURE_FILM",
+        "runtime": "1h 45min",
+        "genres": [
+          {
+            "id": 13026,
+            "translate": "Animación",
+            "tag": "ANIMATION"
+          },
+          {
+            "id": 13001,
+            "translate": "Aventura",
+            "tag": "ADVENTURE"
+          },
+          {
+            "id": 13005,
+            "translate": "Comedia",
+            "tag": "COMEDY"
+          }
+        ],
+        "languages": [
+          "ENGLISH"
+        ],
+        "data": {
+          "__typename": "MovieData",
+          "seo": {
+            "__typename": "Seo",
+            "browsable": true,
+            "title": null
+          },
+          "productionYear": 2026,
+          "rules": {
+            "rating": {
+              "has_warning_message": false,
+              "has_mandatory_review": false
+            }
+          }
+        },
+        "stats": {
+          "userRating": {
+            "score": 3.34,
+            "count": 18
+          },
+          "userReview": {
+            "count": 1
+          },
+          "pressReview": {
+            "score": 3.9,
+            "count": 5
+          },
+          "metric": {
+            "hits": 15023,
+            "sessions": 9338
+          },
+          "wantToSeeCount": 19
+        },
+        "editorialReviews": [
+          {
+            "rating": 4
+          }
+        ],
+        "releases": [
+          {
+            "__typename": "MovieRelease",
+            "releaseDate": {
+              "__typename": "PartialDate",
+              "date": "2026-03-06",
+              "precision": "day"
+            },
+            "name": "Released",
+            "certificate": {
+              "__typename": "Certificate",
+              "code": "APTA(i)",
+              "label": "Todos los publicos"
+            },
+            "advice": null,
+            "companyLimitation": null,
+            "releaseTags": {
+              "tagTypes": [
+                "THEATER"
+              ],
+              "tagFlags": null
+            },
+            "visaNumber": null
+          }
+        ],
+        "credits": [
+          {
+            "person": {
+              "__typename": "Person",
+              "internalId": 676962,
+              "lastName": "Chong",
+              "firstName": "Daniel",
+              "seo": {
+                "__typename": "Seo",
+                "browsable": true
+              }
+            },
+            "position": {
+              "__typename": "Position",
+              "name": "DIRECTOR",
+              "department": "DIRECTION"
+            },
+            "rank": 1
+          }
+        ],
+        "cast": {
+          "__typename": "castMemberConnection",
+          "edges": [
+            {
+              "node": {
+                "actor": null,
+                "voiceActor": null,
+                "originalVoiceActor": {
+                  "__typename": "Person",
+                  "internalId": 587897,
+                  "lastName": "Curda",
+                  "firstName": "Piper",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "rank": 1
+              }
+            },
+            {
+              "node": {
+                "actor": null,
+                "voiceActor": null,
+                "originalVoiceActor": {
+                  "__typename": "Person",
+                  "internalId": 419218,
+                  "lastName": "Moynihan",
+                  "firstName": "Bobby",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "rank": 2
+              }
+            },
+            {
+              "node": {
+                "actor": null,
+                "voiceActor": null,
+                "originalVoiceActor": {
+                  "__typename": "Person",
+                  "internalId": 834107,
+                  "lastName": "Villaseñor",
+                  "firstName": "Melissa",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "rank": 3
+              }
+            }
+          ],
+          "nodes": [
+            {
+              "actor": null,
+              "voiceActor": null,
+              "originalVoiceActor": {
+                "__typename": "Person",
+                "internalId": 587897,
+                "lastName": "Curda",
+                "firstName": "Piper",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "rank": 1
+            },
+            {
+              "actor": null,
+              "voiceActor": null,
+              "originalVoiceActor": {
+                "__typename": "Person",
+                "internalId": 419218,
+                "lastName": "Moynihan",
+                "firstName": "Bobby",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "rank": 2
+            },
+            {
+              "actor": null,
+              "voiceActor": null,
+              "originalVoiceActor": {
+                "__typename": "Person",
+                "internalId": 834107,
+                "lastName": "Villaseñor",
+                "firstName": "Melissa",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "rank": 3
+            }
+          ]
+        },
+        "countries": [
+          {
+            "__typename": "Country",
+            "id": 5002,
+            "name": "USA",
+            "localizedName": "EE.UU."
+          }
+        ],
+        "relatedTags": [],
+        "flags": {
+          "hasDvdRelease": false,
+          "hasNews": true,
+          "hasOnlineProduct": false,
+          "hasOnlineRelease": false,
+          "hasPhysicalProduct": false,
+          "hasPreview": false,
+          "hasShowtime": true,
+          "hasSoundtrack": false,
+          "hasTheaterRelease": true,
+          "hasTrivia": true,
+          "hasAwards": false,
+          "isLesIndes": false,
+          "isIncontestable": false,
+          "isClubApproved": [],
+          "hasClubNews": [],
+          "isComingSoon": false,
+          "isPlayingNow": true,
+          "tvRelease": false,
+          "hasTeaser": false,
+          "hasTrailer": true
+        },
+        "customFlags": {
+          "isPremiere": false,
+          "weeklyOuting": false
+        },
+        "synopsisFull": "<p class=\"bo-p\">Mabel, una joven con una habilidad extraordinaria, puede transferir su mente a un castor robot para infiltrarse en el reino animal. Su misión: descubrir los planes de un ambicioso promotor inmobiliario que amenaza con destruir el hábitat natural. </p><p class=\"bo-p\">En su aventura, Mabel entabla una inesperada amistad con el carismático y sabio Rey Jorge, un castor que lidera a los suyos con nobleza. Juntos, unirán a los animales en una lucha por defender su hogar. Esta historia está llena de humor, ingenio y corazón para la amistad.</p>"
+      },
+      "showtimes": {
+        "dubbed": [],
+        "original": [
+          {
+            "__typename": "Showtime",
+            "internalId": 73905330606,
+            "startsAt": "2026-03-20T20:35:00",
+            "timeBeforeStart": "PT0H0M0S",
+            "service": null,
+            "experience": null,
+            "comfort": null,
+            "projection": [
+              "DIGITAL"
+            ],
+            "picture": null,
+            "sound": null,
+            "tags": [
+              "Localization.Language.English",
+              "Localization.Subtitle.Spanish",
+              "Localization.Version.Original",
+              "Format.Projection.Digital"
+            ],
+            "diffusionVersion": "ORIGINAL",
+            "data": {
+              "__typename": "ShowtimeData",
+              "ticketing": [
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://relay.mvtx.us/ticketing/dbz?code_theater=E0621&gid_entity=movie.movie._.1000009065&tags=Localization.Language.English,Localization.Subtitle.Spanish,Localization.Version.Original,Format.Projection.Digital&perfd=20260320&perft=20:35&code=2D; INGLES SUBTITULADO EN ESPANOL (VOSE)"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "relay"
+                },
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://compra.yelmocines.es/?cinemaVistaId=780&showtimeVistaId=28562"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "default"
+                }
+              ]
+            },
+            "isPreview": false,
+            "isWeeklyMovieOuting": false
+          },
+          {
+            "__typename": "Showtime",
+            "internalId": 73905330647,
+            "startsAt": "2026-03-20T22:45:00",
+            "timeBeforeStart": "PT0H0M0S",
+            "service": null,
+            "experience": null,
+            "comfort": null,
+            "projection": [
+              "DIGITAL"
+            ],
+            "picture": null,
+            "sound": null,
+            "tags": [
+              "Localization.Language.English",
+              "Localization.Subtitle.Spanish",
+              "Localization.Version.Original",
+              "Format.Projection.Digital"
+            ],
+            "diffusionVersion": "ORIGINAL",
+            "data": {
+              "__typename": "ShowtimeData",
+              "ticketing": [
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://relay.mvtx.us/ticketing/dbz?code_theater=E0621&gid_entity=movie.movie._.1000009065&tags=Localization.Language.English,Localization.Subtitle.Spanish,Localization.Version.Original,Format.Projection.Digital&perfd=20260320&perft=22:45&code=2D; INGLES SUBTITULADO EN ESPANOL (VOSE)"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "relay"
+                },
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://compra.yelmocines.es/?cinemaVistaId=780&showtimeVistaId=28563"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "default"
+                }
+              ]
+            },
+            "isPreview": false,
+            "isWeeklyMovieOuting": false
+          }
+        ],
+        "local": []
+      }
+    },
+    {
+      "movie": {
+        "synopsis": "Colin, un hombre solitario y estructurado, conoce a Ray, un líder de moteros cuya influencia transforma su vida. Su relación, basada en la sumisión, impulsa a Colin a enfrentar sus miedos y descubrir una nueva libertad personal.",
+        "synopsis_json": {
+          "__typename": "BodyJson",
+          "body": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Colin, un hombre solitario, ve su vida transformada al conocer a Ray, un carismático líder de moteros. Lo que comienza como una amistad inesperada evoluciona hacia una relación marcada por una dinámica de sumisión que desafía las estructuras rígidas de Colin. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "A través de esta experiencia intensa y fuera de lo común, Colin confronta sus miedos, se libera de patrones autoimpuestos y experimenta un profundo proceso de autodescubrimiento. La presencia de Ray sacude su rutina y despierta en él una nueva forma de entender el deseo, el poder y la libertad personal."
+                }
+              ]
+            }
+          ]
+        },
+        "__typename": "Movie",
+        "internalId": 1000004467,
+        "id": "TW92aWU6MTAwMDAwNDQ2Nw==",
+        "poster": {
+          "__typename": "InternalImage",
+          "id": "SW1hZ2U6OTAwMTk3ODk4Ng==",
+          "internalId": 9001978986,
+          "url": "https://es.web.img2.acsta.net/img/a2/05/a205ecea7ee491167d8a2eea56708319.jpg",
+          "path": "/img/a2/05/a205ecea7ee491167d8a2eea56708319.jpg"
+        },
+        "title": "Pillion",
+        "originalTitle": "Pillion",
+        "type": "FEATURE_FILM",
+        "runtime": "1h 47min",
+        "genres": [
+          {
+            "id": 13008,
+            "translate": "Drama",
+            "tag": "DRAMA"
+          },
+          {
+            "id": 13010,
+            "translate": "Erótico",
+            "tag": "EROTIC"
+          },
+          {
+            "id": 13005,
+            "translate": "Comedia",
+            "tag": "COMEDY"
+          },
+          {
+            "id": 13024,
+            "translate": "Romántico",
+            "tag": "ROMANCE"
+          }
+        ],
+        "languages": [
+          "ENGLISH"
+        ],
+        "data": {
+          "__typename": "MovieData",
+          "seo": {
+            "__typename": "Seo",
+            "browsable": true,
+            "title": null
+          },
+          "productionYear": 2025,
+          "rules": {
+            "rating": {
+              "has_warning_message": false,
+              "has_mandatory_review": false
+            }
+          }
+        },
+        "stats": {
+          "userRating": {
+            "score": 3.04,
+            "count": 4
+          },
+          "userReview": {
+            "count": 1
+          },
+          "pressReview": {
+            "score": 3.92,
+            "count": 6
+          },
+          "metric": {
+            "hits": 6864,
+            "sessions": 4538
+          },
+          "wantToSeeCount": 9
+        },
+        "editorialReviews": [
+          {
+            "rating": 5
+          }
+        ],
+        "releases": [
+          {
+            "__typename": "MovieRelease",
+            "releaseDate": {
+              "__typename": "PartialDate",
+              "date": "2026-03-06",
+              "precision": "day"
+            },
+            "name": "Released",
+            "certificate": {
+              "__typename": "Certificate",
+              "code": "16",
+              "label": "Pelicula no recomendada a menores de 16"
+            },
+            "advice": null,
+            "companyLimitation": null,
+            "releaseTags": {
+              "tagTypes": [
+                "THEATER"
+              ],
+              "tagFlags": null
+            },
+            "visaNumber": null
+          }
+        ],
+        "credits": [
+          {
+            "person": {
+              "__typename": "Person",
+              "internalId": 905854,
+              "lastName": "Lighton",
+              "firstName": "Harry",
+              "seo": {
+                "__typename": "Seo",
+                "browsable": true
+              }
+            },
+            "position": {
+              "__typename": "Position",
+              "name": "DIRECTOR",
+              "department": "DIRECTION"
+            },
+            "rank": 1
+          }
+        ],
+        "cast": {
+          "__typename": "castMemberConnection",
+          "edges": [
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 67770,
+                  "lastName": "Melling",
+                  "firstName": "Harry",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 1
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 79275,
+                  "lastName": "Skarsgård",
+                  "firstName": "Alexander",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 2
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 137779,
+                  "lastName": "Hodge",
+                  "firstName": "Douglas",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 3
+              }
+            }
+          ],
+          "nodes": [
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 67770,
+                "lastName": "Melling",
+                "firstName": "Harry",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 1
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 79275,
+                "lastName": "Skarsgård",
+                "firstName": "Alexander",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 2
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 137779,
+                "lastName": "Hodge",
+                "firstName": "Douglas",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 3
+            }
+          ]
+        },
+        "countries": [
+          {
+            "__typename": "Country",
+            "id": 5004,
+            "name": "United Kingdom",
+            "localizedName": "Gran Bretaña"
+          },
+          {
+            "__typename": "Country",
+            "id": 5030,
+            "name": "Ireland",
+            "localizedName": "Irlanda"
+          }
+        ],
+        "relatedTags": [],
+        "flags": {
+          "hasDvdRelease": false,
+          "hasNews": true,
+          "hasOnlineProduct": false,
+          "hasOnlineRelease": false,
+          "hasPhysicalProduct": false,
+          "hasPreview": false,
+          "hasShowtime": true,
+          "hasSoundtrack": false,
+          "hasTheaterRelease": true,
+          "hasTrivia": true,
+          "hasAwards": true,
+          "isLesIndes": false,
+          "isIncontestable": false,
+          "isClubApproved": [],
+          "hasClubNews": [],
+          "isComingSoon": false,
+          "isPlayingNow": true,
+          "tvRelease": false,
+          "hasTeaser": false,
+          "hasTrailer": true
+        },
+        "customFlags": {
+          "isPremiere": false,
+          "weeklyOuting": false
+        },
+        "synopsisFull": "<p class=\"bo-p\">Colin, un hombre solitario, ve su vida transformada al conocer a Ray, un carismático líder de moteros. Lo que comienza como una amistad inesperada evoluciona hacia una relación marcada por una dinámica de sumisión que desafía las estructuras rígidas de Colin. </p><p class=\"bo-p\">A través de esta experiencia intensa y fuera de lo común, Colin confronta sus miedos, se libera de patrones autoimpuestos y experimenta un profundo proceso de autodescubrimiento. La presencia de Ray sacude su rutina y despierta en él una nueva forma de entender el deseo, el poder y la libertad personal.</p>"
+      },
+      "showtimes": {
+        "dubbed": [],
+        "original": [
+          {
+            "__typename": "Showtime",
+            "internalId": 73905330521,
+            "startsAt": "2026-03-20T20:45:00",
+            "timeBeforeStart": "PT0H0M0S",
+            "service": null,
+            "experience": null,
+            "comfort": null,
+            "projection": [
+              "DIGITAL"
+            ],
+            "picture": null,
+            "sound": null,
+            "tags": [
+              "Localization.Language.English",
+              "Localization.Subtitle.Spanish",
+              "Localization.Version.Original",
+              "Format.Projection.Digital"
+            ],
+            "diffusionVersion": "ORIGINAL",
+            "data": {
+              "__typename": "ShowtimeData",
+              "ticketing": [
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://relay.mvtx.us/ticketing/dbz?code_theater=E0621&gid_entity=movie.movie._.1000004467&tags=Localization.Language.English,Localization.Subtitle.Spanish,Localization.Version.Original,Format.Projection.Digital&perfd=20260320&perft=20:45&code=2D; INGLES SUBTITULADO EN ESPANOL (VOSE)"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "relay"
+                },
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://compra.yelmocines.es/?cinemaVistaId=780&showtimeVistaId=28575"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "default"
+                }
+              ]
+            },
+            "isPreview": false,
+            "isWeeklyMovieOuting": false
+          }
+        ],
+        "local": []
+      }
+    },
+    {
+      "movie": {
+        "synopsis": "Marty Reisman, un carismático jugador callejero, pasó de apostar en clubes clandestinos de Manhattan a ganar 22 títulos importantes de ping pong. A los 67 años, se convirtió en el campeón más veterano en un torneo nacional de deportes de raqueta.",
+        "synopsis_json": {
+          "__typename": "BodyJson",
+          "body": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Marty Reisman, un carismático buscavidas de Nueva York, descubrió su don para el ping pong en los clubes clandestinos de Manhattan, donde jugaba por dinero. Su estilo llamativo y su audaz juego ofensivo lo llevaron a lo más alto del tenis de mesa, ganando 22 títulos importantes, incluidos dos campeonatos nacionales. "
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Icono del espectáculo y la destreza, se convirtió, a los 67 años, en el campeón más veterano en un torneo nacional de deportes de raqueta. Su vida, entre apuestas, desafíos y gloria, es el retrato de un genio rebelde del deporte."
+                }
+              ]
+            }
+          ]
+        },
+        "__typename": "Movie",
+        "internalId": 1000007317,
+        "id": "TW92aWU6MTAwMDAwNzMxNw==",
+        "poster": {
+          "__typename": "InternalImage",
+          "id": "SW1hZ2U6OTAwMTk2MTgzNg==",
+          "internalId": 9001961836,
+          "url": "https://es.web.img2.acsta.net/img/a8/e5/a8e58393b089b9ae573a06bf3e3068c9.jpg",
+          "path": "/img/a8/e5/a8e58393b089b9ae573a06bf3e3068c9.jpg"
+        },
+        "title": "Marty Supreme",
+        "originalTitle": "Marty Supreme",
+        "type": "FEATURE_FILM",
+        "runtime": "2h 30min",
+        "genres": [
+          {
+            "id": 13008,
+            "translate": "Drama",
+            "tag": "DRAMA"
+          },
+          {
+            "id": 13027,
+            "translate": "Biopic",
+            "tag": "BIOPIC"
+          }
+        ],
+        "languages": [
+          "ENGLISH"
+        ],
+        "data": {
+          "__typename": "MovieData",
+          "seo": {
+            "__typename": "Seo",
+            "browsable": true,
+            "title": null
+          },
+          "productionYear": 2025,
+          "rules": {
+            "rating": {
+              "has_warning_message": false,
+              "has_mandatory_review": false
+            }
+          }
+        },
+        "stats": {
+          "userRating": {
+            "score": 3.67,
+            "count": 59
+          },
+          "userReview": {
+            "count": 10
+          },
+          "pressReview": {
+            "score": 4.3,
+            "count": 10
+          },
+          "metric": {
+            "hits": 26639,
+            "sessions": 17801
+          },
+          "wantToSeeCount": 69
+        },
+        "editorialReviews": [
+          {
+            "rating": 4.5
+          }
+        ],
+        "releases": [
+          {
+            "__typename": "MovieRelease",
+            "releaseDate": {
+              "__typename": "PartialDate",
+              "date": "2026-01-30",
+              "precision": "day"
+            },
+            "name": "Released",
+            "certificate": {
+              "__typename": "Certificate",
+              "code": "7(i)",
+              "label": "Pelicula no recomendada a menores de 7 "
+            },
+            "advice": null,
+            "companyLimitation": null,
+            "releaseTags": {
+              "tagTypes": [
+                "THEATER"
+              ],
+              "tagFlags": null
+            },
+            "visaNumber": null
+          }
+        ],
+        "credits": [
+          {
+            "person": {
+              "__typename": "Person",
+              "internalId": 222226,
+              "lastName": "Safdie",
+              "firstName": "Josh",
+              "seo": {
+                "__typename": "Seo",
+                "browsable": true
+              }
+            },
+            "position": {
+              "__typename": "Position",
+              "name": "DIRECTOR",
+              "department": "DIRECTION"
+            },
+            "rank": 1
+          }
+        ],
+        "cast": {
+          "__typename": "castMemberConnection",
+          "edges": [
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 525421,
+                  "lastName": "Chalamet",
+                  "firstName": "Timothée",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 1
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 21358,
+                  "lastName": "Paltrow",
+                  "firstName": "Gwyneth",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 2
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 810910,
+                  "lastName": "A’zion",
+                  "firstName": "Odessa",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 3
+              }
+            }
+          ],
+          "nodes": [
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 525421,
+                "lastName": "Chalamet",
+                "firstName": "Timothée",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 1
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 21358,
+                "lastName": "Paltrow",
+                "firstName": "Gwyneth",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 2
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 810910,
+                "lastName": "A’zion",
+                "firstName": "Odessa",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 3
+            }
+          ]
+        },
+        "countries": [
+          {
+            "__typename": "Country",
+            "id": 5002,
+            "name": "USA",
+            "localizedName": "EE.UU."
+          }
+        ],
+        "relatedTags": [],
+        "flags": {
+          "hasDvdRelease": false,
+          "hasNews": true,
+          "hasOnlineProduct": false,
+          "hasOnlineRelease": false,
+          "hasPhysicalProduct": false,
+          "hasPreview": false,
+          "hasShowtime": true,
+          "hasSoundtrack": false,
+          "hasTheaterRelease": true,
+          "hasTrivia": true,
+          "hasAwards": true,
+          "isLesIndes": false,
+          "isIncontestable": false,
+          "isClubApproved": [],
+          "hasClubNews": [],
+          "isComingSoon": false,
+          "isPlayingNow": true,
+          "tvRelease": false,
+          "hasTeaser": false,
+          "hasTrailer": true
+        },
+        "customFlags": {
+          "isPremiere": false,
+          "weeklyOuting": false
+        },
+        "synopsisFull": "<p class=\"bo-p\">Marty Reisman, un carismático buscavidas de Nueva York, descubrió su don para el ping pong en los clubes clandestinos de Manhattan, donde jugaba por dinero. Su estilo llamativo y su audaz juego ofensivo lo llevaron a lo más alto del tenis de mesa, ganando 22 títulos importantes, incluidos dos campeonatos nacionales. </p><p class=\"bo-p\">Icono del espectáculo y la destreza, se convirtió, a los 67 años, en el campeón más veterano en un torneo nacional de deportes de raqueta. Su vida, entre apuestas, desafíos y gloria, es el retrato de un genio rebelde del deporte.</p>"
+      },
+      "showtimes": {
+        "dubbed": [],
+        "original": [
+          {
+            "__typename": "Showtime",
+            "internalId": 73905330541,
+            "startsAt": "2026-03-20T21:30:00",
+            "timeBeforeStart": "PT0H0M0S",
+            "service": null,
+            "experience": null,
+            "comfort": null,
+            "projection": [
+              "DIGITAL"
+            ],
+            "picture": null,
+            "sound": null,
+            "tags": [
+              "Localization.Language.English",
+              "Localization.Subtitle.Spanish",
+              "Localization.Version.Original",
+              "Format.Projection.Digital"
+            ],
+            "diffusionVersion": "ORIGINAL",
+            "data": {
+              "__typename": "ShowtimeData",
+              "ticketing": [
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://relay.mvtx.us/ticketing/dbz?code_theater=E0621&gid_entity=movie.movie._.1000007317&tags=Localization.Language.English,Localization.Subtitle.Spanish,Localization.Version.Original,Format.Projection.Digital&perfd=20260320&perft=21:30&code=2D; INGLES SUBTITULADO EN ESPANOL (VOSE)"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "relay"
+                },
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://compra.yelmocines.es/?cinemaVistaId=780&showtimeVistaId=28566"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "default"
+                }
+              ]
+            },
+            "isPreview": false,
+            "isWeeklyMovieOuting": false
+          }
+        ],
+        "local": []
+      }
+    },
+    {
+      "movie": {
+        "synopsis": "Un nuevo asesino Ghostface amenaza la vida tranquila de Sidney Prescott y pone a su hija en peligro. Para salvarla, Sidney deberá enfrentar su pasado y detener la masacre definitiva.",
+        "synopsis_json": {
+          "__typename": "BodyJson",
+          "body": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Cuando un nuevo asesino Ghostface aparece en el tranquilo y relajaddo pueblo donde Sidney Prescott ha intentado reconstruir su vida, sus peores pesadillas vuelven. Todo se vuelve aún más aterrador cuando su hija se convierte en el nuevo objetivo del enmascarado."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "Obligada a enfrentarse a los traumas que creía enterrados, Sidney deberá enfrentarse a su oscuro pasado y a un enemigo implacable. En una carrera contra el tiempo, madre e hija lucharán por sobrevivir y acabar con la masacre de una vez por todas."
+                }
+              ]
+            }
+          ]
+        },
+        "__typename": "Movie",
+        "internalId": 318865,
+        "id": "TW92aWU6MzE4ODY1",
+        "poster": {
+          "__typename": "InternalImage",
+          "id": "SW1hZ2U6OTAwMTk5NDU1Mw==",
+          "internalId": 9001994553,
+          "url": "https://es.web.img3.acsta.net/img/f9/57/f957e82b8374af3029d4e7acc0b62229.png",
+          "path": "/img/f9/57/f957e82b8374af3029d4e7acc0b62229.png"
+        },
+        "title": "Scream 7",
+        "originalTitle": "Scream 7",
+        "type": "FEATURE_FILM",
+        "runtime": "1h 54min",
+        "genres": [
+          {
+            "id": 13009,
+            "translate": "Terror",
+            "tag": "HORROR"
+          },
+          {
+            "id": 13023,
+            "translate": "Suspense",
+            "tag": "THRILLER"
+          }
+        ],
+        "languages": [
+          "ENGLISH"
+        ],
+        "data": {
+          "__typename": "MovieData",
+          "seo": {
+            "__typename": "Seo",
+            "browsable": true,
+            "title": null
+          },
+          "productionYear": 2026,
+          "rules": {
+            "rating": {
+              "has_warning_message": false,
+              "has_mandatory_review": false
+            }
+          }
+        },
+        "stats": {
+          "userRating": {
+            "score": 3.07,
+            "count": 22
+          },
+          "userReview": {
+            "count": 3
+          },
+          "pressReview": {
+            "score": 2.75,
+            "count": 2
+          },
+          "metric": {
+            "hits": 14056,
+            "sessions": 9373
+          },
+          "wantToSeeCount": 36
+        },
+        "editorialReviews": [
+          {
+            "rating": 2.5
+          }
+        ],
+        "releases": [
+          {
+            "__typename": "MovieRelease",
+            "releaseDate": {
+              "__typename": "PartialDate",
+              "date": "2026-02-27",
+              "precision": "day"
+            },
+            "name": "Released",
+            "certificate": {
+              "__typename": "Certificate",
+              "code": "16",
+              "label": "Pelicula no recomendada a menores de 16"
+            },
+            "advice": null,
+            "companyLimitation": null,
+            "releaseTags": {
+              "tagTypes": [
+                "THEATER"
+              ],
+              "tagFlags": null
+            },
+            "visaNumber": null
+          }
+        ],
+        "credits": [
+          {
+            "person": {
+              "__typename": "Person",
+              "internalId": 30143,
+              "lastName": "Williamson",
+              "firstName": "Kevin",
+              "seo": {
+                "__typename": "Seo",
+                "browsable": true
+              }
+            },
+            "position": {
+              "__typename": "Position",
+              "name": "DIRECTOR",
+              "department": "DIRECTION"
+            },
+            "rank": 1
+          }
+        ],
+        "cast": {
+          "__typename": "castMemberConnection",
+          "edges": [
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 19882,
+                  "lastName": "Campbell",
+                  "firstName": "Neve",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 1
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 19881,
+                  "lastName": "Cox",
+                  "firstName": "Courteney",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 2
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 807594,
+                  "lastName": "May",
+                  "firstName": "Isabel",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 3
+              }
+            }
+          ],
+          "nodes": [
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 19882,
+                "lastName": "Campbell",
+                "firstName": "Neve",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 1
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 19881,
+                "lastName": "Cox",
+                "firstName": "Courteney",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 2
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 807594,
+                "lastName": "May",
+                "firstName": "Isabel",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 3
+            }
+          ]
+        },
+        "countries": [
+          {
+            "__typename": "Country",
+            "id": 5002,
+            "name": "USA",
+            "localizedName": "EE.UU."
+          }
+        ],
+        "relatedTags": [],
+        "flags": {
+          "hasDvdRelease": false,
+          "hasNews": true,
+          "hasOnlineProduct": false,
+          "hasOnlineRelease": false,
+          "hasPhysicalProduct": false,
+          "hasPreview": false,
+          "hasShowtime": true,
+          "hasSoundtrack": false,
+          "hasTheaterRelease": true,
+          "hasTrivia": true,
+          "hasAwards": false,
+          "isLesIndes": false,
+          "isIncontestable": false,
+          "isClubApproved": [],
+          "hasClubNews": [],
+          "isComingSoon": false,
+          "isPlayingNow": true,
+          "tvRelease": false,
+          "hasTeaser": true,
+          "hasTrailer": true
+        },
+        "customFlags": {
+          "isPremiere": false,
+          "weeklyOuting": false
+        },
+        "synopsisFull": "<p class=\"bo-p\">Cuando un nuevo asesino Ghostface aparece en el tranquilo y relajaddo pueblo donde Sidney Prescott ha intentado reconstruir su vida, sus peores pesadillas vuelven. Todo se vuelve aún más aterrador cuando su hija se convierte en el nuevo objetivo del enmascarado.</p><p class=\"bo-p\">Obligada a enfrentarse a los traumas que creía enterrados, Sidney deberá enfrentarse a su oscuro pasado y a un enemigo implacable. En una carrera contra el tiempo, madre e hija lucharán por sobrevivir y acabar con la masacre de una vez por todas.</p>"
+      },
+      "showtimes": {
+        "dubbed": [],
+        "original": [
+          {
+            "__typename": "Showtime",
+            "internalId": 73905330540,
+            "startsAt": "2026-03-20T23:00:00",
+            "timeBeforeStart": "PT0H0M0S",
+            "service": null,
+            "experience": null,
+            "comfort": null,
+            "projection": [
+              "DIGITAL"
+            ],
+            "picture": null,
+            "sound": null,
+            "tags": [
+              "Localization.Language.English",
+              "Localization.Subtitle.Spanish",
+              "Localization.Version.Original",
+              "Format.Projection.Digital"
+            ],
+            "diffusionVersion": "ORIGINAL",
+            "data": {
+              "__typename": "ShowtimeData",
+              "ticketing": [
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://relay.mvtx.us/ticketing/dbz?code_theater=E0621&gid_entity=movie.movie._.318865&tags=Localization.Language.English,Localization.Subtitle.Spanish,Localization.Version.Original,Format.Projection.Digital&perfd=20260320&perft=23:00&code=2D; INGLES SUBTITULADO EN ESPANOL (VOSE)"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "relay"
+                },
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://compra.yelmocines.es/?cinemaVistaId=780&showtimeVistaId=28576"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "default"
+                }
+              ]
+            },
+            "isPreview": false,
+            "isWeeklyMovieOuting": false
+          }
+        ],
+        "local": []
+      }
+    },
+    {
+      "movie": {
+        "synopsis": "En el Chicago de los años 30, Frankenstein y el Dr. Euphronius crean a la Novia, lo que da lugar a un romance inesperado. Su aparición atrae la atención de la policía y provoca un cambio social en la ciudad.",
+        "synopsis_json": {
+          "__typename": "BodyJson",
+          "body": [
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "En el Chicago de los años 30, Frankenstein recurre al Dr. Euphronius para crear una compañera, dando vida a una mujer asesinada conocida como la Novia. Esta petición despierta una intensa relación entre ambos, mientras la policía comienza a investigar los extraños sucesos."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "children": [
+                {
+                  "text": "La presencia de la Novia no solo genera un inesperado romance, sino que también provoca un cambio social que desafía las normas de la época y transforma la percepción de la vida, la muerte y las relaciones humanas en la ciudad."
+                }
+              ]
+            }
+          ]
+        },
+        "__typename": "Movie",
+        "internalId": 180943,
+        "id": "TW92aWU6MTgwOTQz",
+        "poster": {
+          "__typename": "InternalImage",
+          "id": "SW1hZ2U6OTAwMjAxNjM4MQ==",
+          "internalId": 9002016381,
+          "url": "https://es.web.img3.acsta.net/img/aa/05/aa0515d133a7885cf864d3e9b0fc747e.jpg",
+          "path": "/img/aa/05/aa0515d133a7885cf864d3e9b0fc747e.jpg"
+        },
+        "title": "¡La novia!",
+        "originalTitle": "The Bride!",
+        "type": "FEATURE_FILM",
+        "runtime": "2h 07min",
+        "genres": [
+          {
+            "id": 13008,
+            "translate": "Drama",
+            "tag": "DRAMA"
+          },
+          {
+            "id": 13023,
+            "translate": "Suspense",
+            "tag": "THRILLER"
+          },
+          {
+            "id": 13024,
+            "translate": "Romántico",
+            "tag": "ROMANCE"
+          },
+          {
+            "id": 13021,
+            "translate": "Ciencia ficción",
+            "tag": "SCIENCE_FICTION"
+          },
+          {
+            "id": 13009,
+            "translate": "Terror",
+            "tag": "HORROR"
+          }
+        ],
+        "languages": [
+          "ENGLISH"
+        ],
+        "data": {
+          "__typename": "MovieData",
+          "seo": {
+            "__typename": "Seo",
+            "browsable": true,
+            "title": null
+          },
+          "productionYear": 2026,
+          "rules": {
+            "rating": {
+              "has_warning_message": false,
+              "has_mandatory_review": false
+            }
+          }
+        },
+        "stats": {
+          "userRating": {
+            "score": 3.03,
+            "count": 14
+          },
+          "userReview": {
+            "count": 5
+          },
+          "pressReview": {
+            "score": 3.33,
+            "count": 6
+          },
+          "metric": {
+            "hits": 14410,
+            "sessions": 10622
+          },
+          "wantToSeeCount": 25
+        },
+        "editorialReviews": [],
+        "releases": [
+          {
+            "__typename": "MovieRelease",
+            "releaseDate": {
+              "__typename": "PartialDate",
+              "date": "2026-03-06",
+              "precision": "day"
+            },
+            "name": "Released",
+            "certificate": {
+              "__typename": "Certificate",
+              "code": "16",
+              "label": "Pelicula no recomendada a menores de 16"
+            },
+            "advice": null,
+            "companyLimitation": null,
+            "releaseTags": {
+              "tagTypes": [
+                "THEATER"
+              ],
+              "tagFlags": null
+            },
+            "visaNumber": null
+          }
+        ],
+        "credits": [
+          {
+            "person": {
+              "__typename": "Person",
+              "internalId": 70218,
+              "lastName": "Gyllenhaal",
+              "firstName": "Maggie",
+              "seo": {
+                "__typename": "Seo",
+                "browsable": true
+              }
+            },
+            "position": {
+              "__typename": "Position",
+              "name": "DIRECTOR",
+              "department": "DIRECTION"
+            },
+            "rank": 1
+          }
+        ],
+        "cast": {
+          "__typename": "castMemberConnection",
+          "edges": [
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 723723,
+                  "lastName": "Buckley",
+                  "firstName": "Jessie",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 1
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 8471,
+                  "lastName": "Bale",
+                  "firstName": "Christian",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 2
+              }
+            },
+            {
+              "node": {
+                "actor": {
+                  "__typename": "Person",
+                  "internalId": 31683,
+                  "lastName": "Gyllenhaal",
+                  "firstName": "Jake",
+                  "seo": {
+                    "__typename": "Seo",
+                    "browsable": true
+                  }
+                },
+                "voiceActor": null,
+                "originalVoiceActor": null,
+                "rank": 3
+              }
+            }
+          ],
+          "nodes": [
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 723723,
+                "lastName": "Buckley",
+                "firstName": "Jessie",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 1
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 8471,
+                "lastName": "Bale",
+                "firstName": "Christian",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 2
+            },
+            {
+              "actor": {
+                "__typename": "Person",
+                "internalId": 31683,
+                "lastName": "Gyllenhaal",
+                "firstName": "Jake",
+                "seo": {
+                  "__typename": "Seo",
+                  "browsable": true
+                }
+              },
+              "voiceActor": null,
+              "originalVoiceActor": null,
+              "rank": 3
+            }
+          ]
+        },
+        "countries": [
+          {
+            "__typename": "Country",
+            "id": 5002,
+            "name": "USA",
+            "localizedName": "EE.UU."
+          }
+        ],
+        "relatedTags": [
+          {
+            "__typename": "Tag",
+            "internalId": 1447,
+            "name": "Frankenstein",
+            "scope": null,
+            "data": {
+              "seo": {
+                "browsable": true,
+                "friendly": false,
+                "scope": {
+                  "userRating": {
+                    "movie": {
+                      "title": null,
+                      "subTitle": null,
+                      "description": null
+                    },
+                    "series": {
+                      "title": null,
+                      "subTitle": null,
+                      "description": null
+                    }
+                  },
+                  "pressRating": {
+                    "movie": {
+                      "title": null,
+                      "subTitle": null,
+                      "description": null
+                    },
+                    "series": {
+                      "title": null,
+                      "subTitle": null,
+                      "description": null
+                    }
+                  },
+                  "popularity": {
+                    "movie": {
+                      "title": null,
+                      "subTitle": null,
+                      "description": null
+                    },
+                    "series": {
+                      "title": null,
+                      "subTitle": null,
+                      "description": null
+                    }
+                  },
+                  "ranking": {
+                    "movie": {
+                      "title": null,
+                      "subTitle": null,
+                      "description": null
+                    },
+                    "series": {
+                      "title": null,
+                      "subTitle": null,
+                      "description": null
+                    }
+                  }
+                }
+              }
+            },
+            "tags": {
+              "list": [
+                "Tag.Type.Saga"
+              ]
+            }
+          }
+        ],
+        "flags": {
+          "hasDvdRelease": false,
+          "hasNews": true,
+          "hasOnlineProduct": false,
+          "hasOnlineRelease": false,
+          "hasPhysicalProduct": false,
+          "hasPreview": false,
+          "hasShowtime": true,
+          "hasSoundtrack": false,
+          "hasTheaterRelease": true,
+          "hasTrivia": true,
+          "hasAwards": false,
+          "isLesIndes": false,
+          "isIncontestable": false,
+          "isClubApproved": [],
+          "hasClubNews": [],
+          "isComingSoon": false,
+          "isPlayingNow": true,
+          "tvRelease": false,
+          "hasTeaser": false,
+          "hasTrailer": true
+        },
+        "customFlags": {
+          "isPremiere": false,
+          "weeklyOuting": false
+        },
+        "synopsisFull": "<p class=\"bo-p\">En el Chicago de los años 30, Frankenstein recurre al Dr. Euphronius para crear una compañera, dando vida a una mujer asesinada conocida como la Novia. Esta petición despierta una intensa relación entre ambos, mientras la policía comienza a investigar los extraños sucesos.</p><p class=\"bo-p\">La presencia de la Novia no solo genera un inesperado romance, sino que también provoca un cambio social que desafía las normas de la época y transforma la percepción de la vida, la muerte y las relaciones humanas en la ciudad.</p>"
+      },
+      "showtimes": {
+        "dubbed": [],
+        "original": [
+          {
+            "__typename": "Showtime",
+            "internalId": 73905330357,
+            "startsAt": "2026-03-20T23:30:00",
+            "timeBeforeStart": "PT0H0M0S",
+            "service": null,
+            "experience": null,
+            "comfort": null,
+            "projection": [
+              "DIGITAL"
+            ],
+            "picture": null,
+            "sound": null,
+            "tags": [
+              "Localization.Language.English",
+              "Localization.Subtitle.Spanish",
+              "Localization.Version.Original",
+              "Format.Projection.Digital"
+            ],
+            "diffusionVersion": "ORIGINAL",
+            "data": {
+              "__typename": "ShowtimeData",
+              "ticketing": [
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://relay.mvtx.us/ticketing/dbz?code_theater=E0621&gid_entity=movie.movie._.180943&tags=Localization.Language.English,Localization.Subtitle.Spanish,Localization.Version.Original,Format.Projection.Digital&perfd=20260320&perft=23:30&code=2D; INGLES SUBTITULADO EN ESPANOL (VOSE)"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "relay"
+                },
+                {
+                  "__typename": "Ticketing",
+                  "urls": [
+                    "https://compra.yelmocines.es/?cinemaVistaId=780&showtimeVistaId=28573"
+                  ],
+                  "type": "DESKTOP",
+                  "provider": "default"
+                }
+              ]
+            },
+            "isPreview": false,
+            "isWeeklyMovieOuting": false
+          }
+        ],
+        "local": []
+      }
+    }
+  ]
+}
