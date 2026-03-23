@@ -655,6 +655,7 @@ def update_html(
         r"const EMBEDDED_MOVIES\s*=\s*\[.*?\];\s*\n",
         f"const EMBEDDED_MOVIES = {movies_json};\n",
         html,
+        flags=re.DOTALL,
     )
 
     # --- EMBEDDED_SHOWTIMES ---
@@ -663,6 +664,7 @@ def update_html(
         r"const EMBEDDED_SHOWTIMES\s*=\s*\[.*?\];\s*\n",
         f"const EMBEDDED_SHOWTIMES = {showtimes_json};\n",
         html,
+        flags=re.DOTALL,
     )
 
     # --- EMBEDDED_CINEMAS ---
@@ -671,6 +673,7 @@ def update_html(
         r"const EMBEDDED_CINEMAS\s*=\s*\[.*?\];\s*\n",
         f"const EMBEDDED_CINEMAS = {cinemas_json};\n",
         html,
+        flags=re.DOTALL,
     )
 
     # --- TMDB_IDS ---
@@ -787,6 +790,7 @@ def update_html_concerts(concerts: list[dict]) -> None:
             r"const EMBEDDED_CONCERTS\s*=\s*\[.*?\];\s*\n",
             f"const EMBEDDED_CONCERTS = {concerts_json};\n",
             html,
+            flags=re.DOTALL,
         )
     else:
         # Insert after EMBEDDED_CINEMAS
