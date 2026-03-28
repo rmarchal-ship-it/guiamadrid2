@@ -751,6 +751,19 @@ def scrape_concerts(target_date: date) -> list[dict]:
     except Exception as e:
         print(f"error ({e})")
 
+    # Songkick
+    try:
+        from guiamadrid.scrapers.conciertos.songkick import SongkickScraper
+        print("  Songkick...", end=" ", flush=True)
+        with SongkickScraper() as s:
+            result = s.scrape(target_date)
+        add_events(result)
+        print(f"{len(result.events)} events from {result.venues_count} venues")
+        if result.errors:
+            print(f"    ({len(result.errors)} errors)")
+    except Exception as e:
+        print(f"error ({e})")
+
     # Sort by date, then time
     all_events.sort(key=lambda e: (e["date"], e["time"]))
     return all_events

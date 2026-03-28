@@ -97,6 +97,24 @@ def cmd_scrape_concerts(target_date: str | None = None):
     except Exception as e:
         print(f"  DICE.fm error: {e}")
 
+    # Songkick
+    try:
+        from guiamadrid.scrapers.conciertos.songkick import SongkickScraper
+        print(f"Scraping Songkick for {target_date or 'today'}...")
+        with SongkickScraper() as scraper:
+            result = scraper.scrape(d)
+        print(f"  {len(result.events)} events, {result.venues_count} venues")
+        if result.errors:
+            print(f"  {len(result.errors)} errors")
+            for e in result.errors[:3]:
+                print(f"    - {e}")
+        if result.events:
+            inserted = store_concert_scrape_result(result, source="songkick")
+            total_inserted += inserted
+            print(f"  {inserted} new concerts stored")
+    except Exception as e:
+        print(f"  Songkick error: {e}")
+
     print(f"Total: {total_inserted} new concerts stored in DB")
 
 
