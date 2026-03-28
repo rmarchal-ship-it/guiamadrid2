@@ -19,7 +19,7 @@ from bs4 import BeautifulSoup
 
 from guiamadrid.scrapers.base import ConcertEvent, ConcertScrapeResult
 
-METRO_ID = "28714-es-madrid"
+METRO_ID = "28755-spain-madrid"
 BASE_URL = "https://www.songkick.com"
 CALENDAR_URL = f"{BASE_URL}/metro-areas/{METRO_ID}/calendar"
 HEADERS = {
